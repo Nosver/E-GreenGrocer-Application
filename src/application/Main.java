@@ -47,13 +47,14 @@ public class Main extends Application {
 		}
 	}
 	
+	// connection URL
+    
+    
+	
 	public static void main(String[] args) {
-		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
+		
+		
 		launch(args);
 	}
 }
+
