@@ -41,7 +41,34 @@ public class Main extends Application {
 	    }
 	}
 
-		public static void main(String[] args) {
+	public void loadDatabase() {
+		try {
+
+			Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+
+			String sql = "SELECT * FROM book";
+			try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+				// Execute the SELECT statement
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
+					// Process the result set
+					while (resultSet.next()) {
+						String column1Value = resultSet.getString("id");
+						String column2Value = resultSet.getString("book_name");
+						String column3Value = resultSet.getNString("isbn_number");
+						// Process the retrieved data as needed
+						System.out.println("id " + column1Value + ", book_name: " + column2Value + ", isbn_number:"
+								+ column3Value);
+					}
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
 		
 		launch(args);
 	}
