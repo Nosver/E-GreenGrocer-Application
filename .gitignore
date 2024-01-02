@@ -1,0 +1,6 @@
+
+bin/application/controller/LoginScreenController.class
+bin/application/DatabaseAdapter.class
+bin/application/Main.class
+*.class
+tryVS/demo/target/classes/group/App.class
