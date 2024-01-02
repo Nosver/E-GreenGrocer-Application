@@ -24,11 +24,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 	    try {
 	        // Load Login Screen FXML file
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/Login Screen.fxml"));
-	        Parent root = loader.load();
+	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+			Scene scene= new Scene(root);
 
 	        // Set the main FXML file as the scene
-	        Scene scene = new Scene(root);
+	       
 
 	        // Set the stage title and scene
 	        primaryStage.setTitle("Main Screen");
