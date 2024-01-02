@@ -16,7 +16,18 @@ import javafx.stage.Stage;
 // Main java
 public class Main extends Application {
 
-	// Comment from me
+	/*
+	 * 
+	-- userinfo ve update ekranı ve backend // Masis
+
+	-- forgot & change password  //doğukan
+
+	-- sign up  //yiğit
+
+	-- product ekranı //kemal
+
+	 
+	 * */
 
 	@Override
 	public void start(Stage primaryStage) {
