@@ -54,7 +54,7 @@
         </Menu>
       </menus>
     </MenuBar>
-      <AnchorPane fx:id="signUpScreen" maxHeight="-1.0" maxWidth="-1.0" prefHeight="540.0" prefWidth="960.0">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="540.0" prefWidth="960.0">
          <children>
             <Text layoutX="117.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name-Surname" textAlignment="RIGHT" wrappingWidth="148.0">
                <font>

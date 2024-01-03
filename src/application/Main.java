@@ -47,12 +47,15 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws SQLException {
-	    // testFXML(primaryStage, "loginScreen.fxml");
-	    
-	    testFXML(primaryStage, "productScreen.fxml");
-	    
-	    
+	public void start(Stage primaryStage) {
+	    testFXML(primaryStage, "loginScreen.fxml");
+	    try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    //testFXML(primaryStage, "productScreen.fxml");
 	}
 	
 	

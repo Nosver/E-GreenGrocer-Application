@@ -18,7 +18,7 @@ public class signUpScreenController {
     private PasswordField PasswordBox;
 
     @FXML
-    private Button loginButton;
+    private Button RegisterButton;
 
     @FXML
     private TextField nameBox;
@@ -36,7 +36,8 @@ public class signUpScreenController {
     	user.setRole("customer");
     	
         DatabaseAdapter.insertUser(user);
-    	
+        
+        SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     	
     }
 
