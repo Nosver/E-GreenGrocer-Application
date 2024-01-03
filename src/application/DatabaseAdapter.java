@@ -60,4 +60,17 @@ public class DatabaseAdapter {
         return null; 
     }
     
+    
+    public static  void resetPassword(User user, String password) {
+    	
+        try (Connection connection = getConnection()) {
+        	user.setPassword(password);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    }
+    
+    
+    
 }
