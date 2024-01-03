@@ -16,7 +16,7 @@ public class Main extends Application {
 	 * 
 	-- userinfo ve update ekranı ve backend // Masis
 
-	-- forgot & change password  //doğukan
+	-- forgot password  //doğukan
 
 	-- sign up  //yiğit
 

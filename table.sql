@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `name` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(100) NOT NULL UNIQUE,
+    `address` VARCHAR(100) ,
     `role` VARCHAR(50) NOT NULL
 );
 
@@ -33,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `chart` (
 -- ADD PRODUCT ?!??!?!
 
 -- Insert a sample user
-INSERT INTO `users` (`name`, `password`, `email`, `role`) VALUES
-('John Doe', '123456', 'example@mail.com', 'admin'),
-('Jane Doe', '123456', 'example1@mail.com', 'customer'),
-('John Smith', '123456', 'example2@mail.com', 'carrier');
+INSERT INTO `users` (`name`, `password`, `email`, `address` ,`role`) VALUES
+('John Doe', '123456', 'example@mail.com', null ,'admin'),
+('Jane Doe', '123456', 'example1@mail.com', 'abc mahallesi def sokak','customer'),
+('John Smith', '123456', 'example2@mail.com', null ,'carrier');
 
 -- Insert sample products 
 INSERT INTO `products` (`product_name`, `stock`, `price`) VALUES
@@ -56,11 +57,3 @@ INSERT INTO `chart` (`user_id`, `product_id`, `quantity`) VALUES
 (2, 5, 5.8),
 (2, 6, 6.0);
 
--- add chart table some exmples NOT WORKING
-INSERT INTO `chart` (`user_id`, `product_id`, `quantity`) VALUES
-(2, 1, 1.4),
-(2, 2, 2.5),
-(2, 3, 3.6),
-(2, 4, 4.7),
-(2, 5, 5.8),
-(2, 6, 6.0);
