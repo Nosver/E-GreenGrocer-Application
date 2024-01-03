@@ -37,7 +37,7 @@ public class signUpScreenController {
     	
         DatabaseAdapter.insertUser(user);
         
-        SceneSwitch.switchScene("LoginScreen.fxml", event, user);
+        SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     	
     }
 
