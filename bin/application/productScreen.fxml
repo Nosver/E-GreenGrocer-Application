@@ -58,7 +58,7 @@
             <Button fx:id="SEEPROFILE" layoutX="125.0" layoutY="461.0" mnemonicParsing="false" text="See my profile" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="125.0" />
             <TableView fx:id="PRODUCTS" layoutY="25.0" prefHeight="282.0" prefWidth="299.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
                <columns>
-                  <TableColumn fx:id="PRODUCT_ID" prefWidth="138.0" resizable="false" text="Name" />
+                  <TableColumn fx:id="PRODUCT_NAME" prefWidth="138.0" resizable="false" text="Name" />
                   <TableColumn fx:id="PRODUCT_STOCK" prefWidth="51.0" resizable="false" text="Stock" />
                   <TableColumn fx:id="PRODUCT_PRICE" prefWidth="47.0" resizable="false" text="Price" />
                   <TableColumn fx:id="PRODUCT_AMOUNT" maxWidth="1.7976931348623157E308" prefWidth="62.0" resizable="false" text="Amount" />
