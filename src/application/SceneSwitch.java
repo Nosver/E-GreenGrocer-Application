@@ -3,6 +3,8 @@ package application;
 import java.io.IOException;
 
 import application.controller.CustomerScreenController;
+import application.controller.ForgotPasswordScreenController1;
+import application.controller.ForgotPasswordScreenController2;
 import application.controller.MyProfileController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,14 @@ public class SceneSwitch {
                 } else if ("customer.fxml".equals(fxmlFileName)) {
                     CustomerScreenController controller = loader.getController();
                     controller.setUser(user);
+                }
+                else if("ForgotPassword1.fxml".equals(fxmlFileName)){
+                	ForgotPasswordScreenController1 controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("ForgotPassword2.fxml".equals(fxmlFileName)){
+                	ForgotPasswordScreenController2 controller = loader.getController();
+                	controller.setUser(user);
                 }
             }
             
