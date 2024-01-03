@@ -61,7 +61,8 @@ public class DatabaseAdapter {
         
     }
     
- public static  void resetPassword(User user, String password) {
+    
+    public static  void resetPassword(User user, String password) {
     	
         try (Connection connection = getConnection()) {
         	user.setPassword(password);
