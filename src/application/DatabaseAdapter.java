@@ -63,10 +63,20 @@ public class DatabaseAdapter {
     }
     
     
-    public static  void resetPassword(User user, String password) {
+    public static  void resetPassword(User user , String password) {
     	
         try (Connection connection = getConnection()) {
-        	user.setPassword(password);
+        	
+            String updateQuery = "UPDATE users SET password = ? WHERE id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+            	Integer userid = user.getId();
+            	preparedStatement.setString(1, password);
+            	preparedStatement.setString(2, userid.toString());
+            	preparedStatement.executeUpdate();
+            }
+
+        	
         }catch (SQLException e) {
             e.printStackTrace();
         }
