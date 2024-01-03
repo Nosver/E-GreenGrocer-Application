@@ -44,9 +44,10 @@ public class DatabaseAdapter {
                         String storedUsername = resultSet.getString("name");
                         String storedPassword = resultSet.getString("password");
                         String storedEMail = resultSet.getString("email");
+                        String storedAddress = resultSet.getString("address");
                         String storedRole = resultSet.getString("role");
                         // Create a User object with the retrieved data
-                        User user = new User(storedUsername,storedPassword,storedEMail,storedRole);
+                        User user = new User(storedUsername,storedPassword,storedEMail,storedAddress,storedRole);
                         
                         return user;
                     }

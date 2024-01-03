@@ -1,6 +1,7 @@
 package application.controller;
 
 import application.DatabaseAdapter;
+import application.SceneSwitch;
 import application.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,7 +37,7 @@ public class LoginScreenController {
     		String enteredPassword =PasswordBox.getText();
     		
     		if(user.getPassword().equals(enteredPassword)) {
-    			System.out.println("sa");
+    			//SceneSwitch.switchScene(, event);
     		}
     		else
     			System.out.println("password yanlış aq");

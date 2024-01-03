@@ -5,6 +5,7 @@ public class User {
 	String name;
 	String password;
 	String email;
+	String address;
 	String role;
 	
 	
@@ -12,20 +13,28 @@ public class User {
 	public User() {
 		
 	}
-	public User(String name, String password, String email, String role) {
+	public User(String name, String password, String email, String address,String role) {
 		super();
 		this.name = name;
 		this.password = password;
 		this.email = email;
+		this.address=address;
 		this.role = role;
 	}
-	public User(int id, String name, String password, String email, String role) {
+	public User(int id, String name, String password, String email, String address, String role) {
 		
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
+		this.address=address;
 		this.role = role;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getId() {
 		return id;
