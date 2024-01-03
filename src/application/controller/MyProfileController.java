@@ -4,34 +4,40 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Main;
-import application.SceneSwitch;
 import application.model.User;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
 public class MyProfileController implements Initializable {
 
-	@FXML
-    private Button changePersonalInfo;
+	 @FXML
+	    private AnchorPane UserProfileScene;
 
-    @FXML
-    private Circle profileIconCircle;
-    
+	    @FXML
+	    private Text addressField;
 
-    @FXML
-    private AnchorPane UserProfileScene;
+	    @FXML
+	    private Button changePersonalInfo;
+
+	    @FXML
+	    private Text emailField;
+
+	    @FXML
+	    private Label nameField;
+
+	    @FXML
+	    private Text passwordField;
+
+	    @FXML
+	    private Circle profileIconCircle;
     
     private User user;
     
@@ -41,6 +47,11 @@ public class MyProfileController implements Initializable {
 
 	public void setUser(User user) {
 		this.user = user;
+		addressField.setText(user.getAddress());
+		nameField.setText(user.getName());
+		emailField.setText(user.getEmail());
+		passwordField.setText(user.getPassword());
+		
 	}
 
 	@FXML

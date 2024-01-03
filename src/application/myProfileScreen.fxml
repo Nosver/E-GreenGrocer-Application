@@ -88,7 +88,7 @@
     <AnchorPane fx:id="UserProfileScene" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <Circle fx:id="profileIconCircle" fill="DODGERBLUE" layoutX="136.0" layoutY="121.0" radius="72.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="255.0" layoutY="97.0" prefHeight="47.0" prefWidth="326.0" text="&quot;Get name From DB&quot;">
+            <Label fx:id="nameField" layoutX="255.0" layoutY="97.0" prefHeight="47.0" prefWidth="326.0" text="&quot;Get name From DB&quot;">
                <font>
                   <Font size="32.0" />
                </font>
@@ -109,17 +109,17 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Text layoutX="347.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="176.53668212890625">
+            <Text fx:id="emailField" layoutX="347.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="176.53668212890625">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text layoutX="347.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="176.53668212890625">
+            <Text fx:id="passwordField" layoutX="347.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="176.53668212890625">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text layoutX="347.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="176.53668212890625">
+            <Text fx:id="addressField" layoutX="347.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="176.53668212890625">
                <font>
                   <Font size="16.0" />
                </font>
