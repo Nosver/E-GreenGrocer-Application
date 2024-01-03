@@ -54,7 +54,7 @@ public class Main extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    testFXML(primaryStage, "productScreen.fxml");
+	    //testFXML(primaryStage, "productScreen.fxml");
 	}
 	
 	

@@ -36,7 +36,8 @@ public class signUpScreenController {
     	user.setRole("customer");
     	
         DatabaseAdapter.insertUser(user);
-    	
+        
+        SceneSwitch.switchScene("LoginScreen.fxml", event, user);
     	
     }
 
