@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -46,15 +47,12 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) {
-	    testFXML(primaryStage, "loginScreen.fxml");
-	    try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void start(Stage primaryStage) throws SQLException {
+	    // testFXML(primaryStage, "loginScreen.fxml");
+	    
 	    testFXML(primaryStage, "productScreen.fxml");
+	    
+	    
 	}
 	
 	
