@@ -58,6 +58,42 @@ public class DatabaseAdapter {
         }
 
         return null; 
+        
     }
+    
+ public static  void resetPassword(User user, String password) {
+    	
+        try (Connection connection = getConnection()) {
+        	user.setPassword(password);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    }
+    
+    public static void insertUser(User user) {
+        try (Connection connection = getConnection()) {
+            String query = "INSERT INTO oop3.users (name, password, email, address, role) VALUES (?, ?, ?, ?, ?)";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                
+                preparedStatement.setString(1, user.getName());
+                preparedStatement.setString(2, user.getPassword());
+                preparedStatement.setString(3, user.getEmail());
+                preparedStatement.setString(4, user.getAddress());
+                preparedStatement.setString(5, user.getRole());
+
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       
+    }
+    
+    
+    
+    
+    
     
 }
