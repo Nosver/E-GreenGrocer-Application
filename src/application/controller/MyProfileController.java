@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.Main;
 import application.SceneSwitch;
+import application.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,9 +33,19 @@ public class MyProfileController implements Initializable {
     @FXML
     private AnchorPane UserProfileScene;
     
-    @FXML
+    private User user;
+    
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@FXML
     void ClickOnChangeInfoButton(MouseEvent event) throws IOException {
-    	SceneSwitch.switchScene("LoginScreen.fxml", event);
+    	//SceneSwitch.switchScene("LoginScreen.fxml", event, this.user);
     }
 
 	@Override

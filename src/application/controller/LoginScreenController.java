@@ -37,7 +37,7 @@ public class LoginScreenController {
     		String enteredPassword =PasswordBox.getText();
     		
     		if(user.getPassword().equals(enteredPassword)) {
-    			//SceneSwitch.switchScene(, event);
+    			SceneSwitch.switchScene("customer.fxml", event, user);
     		}
     		else
     			System.out.println("password yanlış aq");
