@@ -6,7 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import application.model.Product;
 import application.model.User;
 
 public class DatabaseAdapter {
@@ -102,9 +103,46 @@ public class DatabaseAdapter {
        
     }
     
+    public static ArrayList<Product> getAllProducts() throws SQLException{
+        try(Connection connection = getConnection()){
+            String query = "SELECT * FROM oop3.products";
+
+            /*
+             Content of 
+                - product_id
+                - product_name
+                - stock
+                - price
+             */
+
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+                ArrayList<Product> products = new ArrayList<Product>();
+
+                try(ResultSet resultSet = preparedStatement.executeQuery()){
+                    while(resultSet.next()){
+                        // Retrieve product data from the result set
+                        String storedProductName = resultSet.getString("product_name");
+                        int storedStock = resultSet.getInt("stock");
+                        double storedPrice = resultSet.getDouble("price");
+                        // Create a Product object with the retrieved data
+                        Product product = new Product(storedProductName, storedStock, storedPrice);
+                        // Add the product to the list
+                        products.add(product);
+                    }
+                    
+                    /*
+                     
+	                    for(int i=0; i < products.size(); i++) {
+	                    	System.out.println(products.get(i).getName());
+	                    }
+                   		
+                     */
+                    return products;
+                }
+            }
+        }
     
-    
-    
-    
-    
+    }
+
 }
