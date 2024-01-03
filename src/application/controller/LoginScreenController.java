@@ -31,6 +31,11 @@ public class LoginScreenController {
 
     @FXML
     private Button loginButton;
+    
+    @FXML
+    void createUserButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("signUpScreen.fxml", event, null);
+    }
 
     @FXML
     void loginButtonClicked(MouseEvent event) {
@@ -67,5 +72,6 @@ public class LoginScreenController {
     			System.out.println("password yanlış aq");
     		
     }
+   
 
 }

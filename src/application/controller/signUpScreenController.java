@@ -18,7 +18,7 @@ public class signUpScreenController {
     private PasswordField PasswordBox;
 
     @FXML
-    private Button loginButton;
+    private Button RegisterButton;
 
     @FXML
     private TextField nameBox;
