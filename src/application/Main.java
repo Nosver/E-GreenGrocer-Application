@@ -24,12 +24,11 @@ public class Main extends Application {
 
 	 
 	 * */
-
-	@Override
-	public void start(Stage primaryStage) {
-	    try {
+	
+	public void testFXML(Stage primaryStage, String name) {
+		try {
 	        // Load Login Screen FXML file
-	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+	    	Parent root=FXMLLoader.load(getClass().getResource(name));
 			Scene scene= new Scene(root);
 
 	        // Set the main FXML file as the scene
@@ -46,9 +45,25 @@ public class Main extends Application {
 	    }
 	}
 
+	@Override
+	public void start(Stage primaryStage) {
+	    testFXML(primaryStage, "loginScreen.fxml");
+	    try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    testFXML(primaryStage, "productScreen.fxml");
+	}
+	
+	
+	
+
 
 	public static void main(String[] args) {
 		
 		launch(args);
+		
 	}
 }
