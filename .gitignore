@@ -5,3 +5,4 @@ bin/application/Main.class
 *.class
 tryVS/demo/target/classes/group/App.class
 *.class
+bin/application/Main.class
