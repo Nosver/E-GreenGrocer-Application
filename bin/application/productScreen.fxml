@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,7 +14,7 @@
 
 <VBox prefHeight="512.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar VBox.vgrow="ALWAYS">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -54,20 +53,30 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="514.0" prefWidth="723.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="540.0" prefWidth="960.0" VBox.vgrow="ALWAYS">
       <children>
-            <ListView fx:id="list" prefHeight="461.0" prefWidth="302.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <TableView layoutX="302.0" prefHeight="235.0" prefWidth="342.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                <TableColumn prefWidth="159.0" text="Name" />
-                <TableColumn prefWidth="60.0" text="Stock" />
-                  <TableColumn prefWidth="64.0" text="Price" />
-                  <TableColumn prefWidth="58.0" text="Chart" />
-              </columns>
+            <Button fx:id="SEEPROFILE" layoutX="125.0" layoutY="461.0" mnemonicParsing="false" text="See my profile" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="125.0" />
+            <TableView fx:id="PRODUCTS" layoutY="25.0" prefHeight="282.0" prefWidth="299.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
+               <columns>
+                  <TableColumn fx:id="PRODUCT_ID" prefWidth="138.0" resizable="false" text="Name" />
+                  <TableColumn fx:id="PRODUCT_STOCK" prefWidth="51.0" resizable="false" text="Stock" />
+                  <TableColumn fx:id="PRODUCT_PRICE" prefWidth="47.0" resizable="false" text="Price" />
+                  <TableColumn fx:id="PRODUCT_AMOUNT" maxWidth="1.7976931348623157E308" prefWidth="62.0" resizable="false" text="Amount" />
+               </columns>
             </TableView>
-            <Label layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="57.0" text="Products" />
-            <ImageView fitHeight="251.0" fitWidth="342.0" layoutX="302.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="105.0" layoutY="461.0" mnemonicParsing="false" text="See my profile" />
+            <TableView fx:id="CHART" layoutX="342.0" layoutY="25.0" prefHeight="282.0" prefWidth="342.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+               <columns>
+                  <TableColumn fx:id="CHART_NAME" maxWidth="200.0" prefWidth="200.0" text="Name" />
+                  <TableColumn fx:id="CHART_PRICE" prefWidth="70.0" text="Price" />
+                  <TableColumn fx:id="CHART_QUANTITY" maxWidth="1.7976931348623157E308" prefWidth="71.0" text="Quantity" />
+               </columns>
+            </TableView>
+            <ImageView fx:id="IMAGE" fitHeight="126.0" fitWidth="299.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="3.0" layoutY="2.0" prefHeight="25.0" prefWidth="342.0" text="Products" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="342.0" layoutY="2.0" prefHeight="25.0" prefWidth="342.0" text="Chart" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutY="307.0" prefHeight="25.0" prefWidth="299.0" text="Image" textAlignment="CENTER" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" />
+            <Button fx:id="RESETCHART" layoutX="537.0" layoutY="320.0" mnemonicParsing="false" text="Reset My Chart" AnchorPane.bottomAnchor="142.0" AnchorPane.rightAnchor="6.0" />
+            <Button fx:id="PURCHASE" layoutX="429.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Purchase" AnchorPane.bottomAnchor="142.0" AnchorPane.rightAnchor="114.0" />
       </children>
     </AnchorPane>
   </children>
