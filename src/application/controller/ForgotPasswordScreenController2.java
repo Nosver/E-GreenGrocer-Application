@@ -56,8 +56,9 @@ public class ForgotPasswordScreenController2 {
     	
     	
     	if(PasswordBox.getText().equals(PasswordBoxAuth.getText()) ) {
-    		DatabaseAdapter db= new DatabaseAdapter();
+    		DatabaseAdapter db = new DatabaseAdapter();
     		db.resetPassword(user, PasswordBox.getText());
+    		System.out.println(user.getName());
     		SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     	}
     	

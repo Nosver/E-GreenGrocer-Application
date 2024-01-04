@@ -29,7 +29,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 	    try {
 	        // Load Login Screen FXML file
-	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+	    	Parent root=FXMLLoader.load(getClass().getResource("ForgotPassword1.fxml"));
 			Scene scene= new Scene(root);
 
 	        // Set the main FXML file as the scene
