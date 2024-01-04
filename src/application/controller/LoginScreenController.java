@@ -78,6 +78,11 @@ public class LoginScreenController {
 			}
     		
     }
+    @FXML
+    void resetPasswordButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("ForgotPassword1.fxml", event, null);
+    }
+
    
 
 }

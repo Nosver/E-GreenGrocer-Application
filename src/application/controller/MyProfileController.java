@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.SceneSwitch;
 import application.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +24,9 @@ public class MyProfileController implements Initializable {
 
 	    @FXML
 	    private Text addressField;
+	    
+	    @FXML
+	    private Button backButton;
 
 	    @FXML
 	    private Button changePersonalInfo;
@@ -56,7 +60,11 @@ public class MyProfileController implements Initializable {
 
 	@FXML
     void ClickOnChangeInfoButton(MouseEvent event) throws IOException {
-    	//SceneSwitch.switchScene("LoginScreen.fxml", event, this.user);
+    	SceneSwitch.switchScene("UpdateUserInfo.fxml", event, this.user);
+    }
+	@FXML
+    void backButtonPressed(MouseEvent event) {
+		SceneSwitch.switchScene("Customer.fxml", event, this.user);
     }
 
 	@Override
@@ -64,5 +72,7 @@ public class MyProfileController implements Initializable {
 			Image image = new Image("images/profie icon.png",false);
 			profileIconCircle.setFill(new ImagePattern(image));
 	}
+	
+	
 
 }

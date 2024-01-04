@@ -92,6 +92,22 @@ public class DatabaseAdapter {
         
        
     }
+    public void UpdateUser(User user) throws SQLException {
+    	 String updateQuery = "UPDATE oop3.users SET name=?, password=?, email=?, address=?, role=? WHERE id=?";
+    	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+            
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setString(5, user.getRole());
+            preparedStatement.setInt(6, user.getId());
+            
+            preparedStatement.executeUpdate();
+    	}
+    	
+    }
     
     public  ArrayList<Product> getAllProducts() throws SQLException{
         
