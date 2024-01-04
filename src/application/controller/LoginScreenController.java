@@ -60,7 +60,7 @@ public class LoginScreenController {
     		if(user== null) {
     			Alert alert = new Alert(Alert.AlertType.WARNING);
     			alert.setTitle("error");
-    			alert.setContentText("wrong Email or Password");
+    			alert.setContentText("wrong Email");
     			Optional<ButtonType>	result = alert.showAndWait();
     			return;
     		}
@@ -75,6 +75,11 @@ public class LoginScreenController {
 				System.out.print(user.getPassword());
 				System.out.println("Entered Password:\t");
 				System.out.print(enteredPassword); 
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+    			alert.setTitle("error");
+    			alert.setContentText("Wrong Password");
+    			Optional<ButtonType>	result = alert.showAndWait();
+    			return;
 			}
     		
     }
