@@ -47,8 +47,9 @@ public class DatabaseAdapter {
                         String storedEMail = resultSet.getString("email");
                         String storedAddress = resultSet.getString("address");
                         String storedRole = resultSet.getString("role");
+                        String storedId = resultSet.getString("id");
                         // Create a User object with the retrieved data
-                        User user = new User(storedUsername,storedPassword,storedEMail,storedAddress,storedRole);
+                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedAddress,storedRole);
                         
                         return user;
                     }
@@ -62,21 +63,16 @@ public class DatabaseAdapter {
     
     
     public  void resetPassword(User user , String password) throws SQLException {
-    	
-       
-        	
+    		
             String updateQuery = "UPDATE oop3.users SET password = ? WHERE id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
             	Integer userid = user.getId();
             	preparedStatement.setString(1, password);
             	preparedStatement.setString(2, userid.toString());
+            	System.out.println(userid);
             	preparedStatement.executeUpdate();
             }
-
-        	
-       
-    	
     }
     
     public  void insertUser(User user) throws SQLException {
@@ -126,12 +122,10 @@ public class DatabaseAdapter {
                     }
                     
                     /*
-                     
 	                    for(int i=0; i < products.size(); i++) {
 	                    	System.out.println(products.get(i).getName());
 	                    }
-                   		
-                     */
+                    */
                     return products;
                 }
             }

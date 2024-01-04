@@ -36,7 +36,7 @@ public class ForgotPasswordScreenController1{
     
 	@FXML
     void continueButtonClicked(MouseEvent event) throws SQLException {
-    	
+    			
     	if(EMailBox.getText().isBlank()){
     		Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("error");

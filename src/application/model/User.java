@@ -21,13 +21,14 @@ public class User {
 		this.address=address;
 		this.role = role;
 	}
+
 	public User(int id, String name, String password, String email, String address, String role) {
-		
+		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
-		this.address=address;
+		this.address = address;
 		this.role = role;
 	}
 	public String getAddress() {
