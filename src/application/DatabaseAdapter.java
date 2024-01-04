@@ -65,7 +65,7 @@ public class DatabaseAdapter {
     	
        
         	
-            String updateQuery = "UPDATE users SET password = ? WHERE id = ?";
+            String updateQuery = "UPDATE oop3.users SET password = ? WHERE id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
             	Integer userid = user.getId();
