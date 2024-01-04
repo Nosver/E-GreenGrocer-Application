@@ -46,10 +46,10 @@ public class DatabaseAdapter {
                         String storedPassword = resultSet.getString("password");
                         String storedEMail = resultSet.getString("email");
                         String storedAddress = resultSet.getString("address");
-                        String storedRole = resultSet.getString("role");
+                        
                         String storedId = resultSet.getString("id");
                         // Create a User object with the retrieved data
-                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedAddress,storedRole);
+                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedAddress);
                         
                         return user;
                     }
@@ -77,7 +77,7 @@ public class DatabaseAdapter {
     
     public  void insertUser(User user) throws SQLException {
         
-            String query = "INSERT INTO oop3.users (name, password, email, address, role) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO oop3.users (name, password, email, address) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 
@@ -85,12 +85,28 @@ public class DatabaseAdapter {
                 preparedStatement.setString(2, user.getPassword());
                 preparedStatement.setString(3, user.getEmail());
                 preparedStatement.setString(4, user.getAddress());
-                preparedStatement.setString(5, user.getRole());
+                
 
                 preparedStatement.executeUpdate();
             }
         
        
+    }
+    public void UpdateUser(User user) throws SQLException {
+    	 String updateQuery = "UPDATE oop3.users SET name=?, password=?, email=?, address=? WHERE id=?";
+    	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+            
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getAddress());
+            
+            preparedStatement.setInt(6, user.getId());
+            
+            preparedStatement.executeUpdate();
+    	}
+    	
     }
     
     public  ArrayList<Product> getAllProducts() throws SQLException{

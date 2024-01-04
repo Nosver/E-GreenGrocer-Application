@@ -6,30 +6,30 @@ public class User {
 	String password;
 	String email;
 	String address;
-	String role;
+	//String role;
 	
 	
 	
 	public User() {
 		
 	}
-	public User(String name, String password, String email, String address,String role) {
+	public User(String name, String password, String email, String address) {
 		super();
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.address=address;
-		this.role = role;
+		
 	}
 
-	public User(int id, String name, String password, String email, String address, String role) {
+	public User(int id, String name, String password, String email, String address) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.address = address;
-		this.role = role;
+		
 	}
 	public String getAddress() {
 		return address;
@@ -61,10 +61,5 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 }

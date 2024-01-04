@@ -29,7 +29,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 	    try {
 	        // Load Login Screen FXML file
-	    	Parent root=FXMLLoader.load(getClass().getResource("ForgotPassword1.fxml"));
+	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
 			Scene scene= new Scene(root);
 
 	        // Set the main FXML file as the scene
@@ -38,7 +38,7 @@ public class Main extends Application {
 	        // Set the stage title and scene
 	        primaryStage.setTitle("Main Screen");
 	        primaryStage.setScene(scene);
-
+	        primaryStage.setResizable(false);
 	        // Show the main screen
 	        primaryStage.show();
 	    } catch (IOException e) {
