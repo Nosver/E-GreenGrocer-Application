@@ -132,12 +132,10 @@ public class DatabaseAdapter {
                     }
                     
                     /*
-                     
 	                    for(int i=0; i < products.size(); i++) {
 	                    	System.out.println(products.get(i).getName());
 	                    }
-                   		
-                     */
+                    */
                     return products;
                 }
             }
