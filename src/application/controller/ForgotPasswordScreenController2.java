@@ -2,6 +2,7 @@ package application.controller;
 
 
 import java.lang.ModuleLayer.Controller;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
@@ -36,7 +37,7 @@ public class ForgotPasswordScreenController2 {
     private Button ResetButton;
 
     @FXML
-    void resetButtonClicked(MouseEvent event) {
+    void resetButtonClicked(MouseEvent event) throws SQLException {
     	if(PasswordBox.getText().isBlank()) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("error");
@@ -55,7 +56,8 @@ public class ForgotPasswordScreenController2 {
     	
     	
     	if(PasswordBox.getText().equals(PasswordBoxAuth.getText()) ) {
-    		DatabaseAdapter.resetPassword(user, PasswordBox.getText());
+    		DatabaseAdapter db= new DatabaseAdapter();
+    		db.resetPassword(user, PasswordBox.getText());
     		SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     	}
     	

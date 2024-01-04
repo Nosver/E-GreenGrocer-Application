@@ -81,13 +81,13 @@ public class productScreenController {
         assert SEEPROFILE != null : 	"fx:id=\"SEEPROFILE\" was not injected: check your FXML file 'productScreen.fxml'.";
         		
         // DO SOMETHING HERE ...
-        
-        ArrayList<Product> productList = DatabaseAdapter.getAllProducts();
-        
+       
+        //ArrayList<Product> productList = DatabaseAdapter.getAllProducts();
+        /*
         for(int i=0; i < productList.size(); i++) {
         	
         }
-        
+        */
         
 
     }
