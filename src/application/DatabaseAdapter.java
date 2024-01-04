@@ -18,11 +18,11 @@ public class DatabaseAdapter {
     private static Connection connection;
 
    public DatabaseAdapter() {
-	   getConnection();
+	  this.connection= getConnection();
    }
 
-    public static Connection getConnection() {
-        if (connection == null) {
+    public Connection getConnection() {
+        if (this.connection == null) {
             try {
                 connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
             } catch (SQLException e) {
@@ -32,8 +32,8 @@ public class DatabaseAdapter {
         return connection;
     }
     
-    public static User getUserByEmail(String email) {
-        try (Connection connection = getConnection()) {
+    public  User getUserByEmail(String email) throws SQLException {
+        
             String query = "SELECT * FROM oop3.users where email = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -54,18 +54,16 @@ public class DatabaseAdapter {
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
 
         return null; 
         
     }
     
     
-    public static  void resetPassword(User user , String password) {
+    public  void resetPassword(User user , String password) throws SQLException {
     	
-        try (Connection connection = getConnection()) {
+       
         	
             String updateQuery = "UPDATE users SET password = ? WHERE id = ?";
 
@@ -77,14 +75,12 @@ public class DatabaseAdapter {
             }
 
         	
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+       
     	
     }
     
-    public static void insertUser(User user) {
-        try (Connection connection = getConnection()) {
+    public  void insertUser(User user) throws SQLException {
+        
             String query = "INSERT INTO oop3.users (name, password, email, address, role) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -97,14 +93,12 @@ public class DatabaseAdapter {
 
                 preparedStatement.executeUpdate();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
        
     }
     
-    public static ArrayList<Product> getAllProducts() throws SQLException{
-        try(Connection connection = getConnection()){
+    public  ArrayList<Product> getAllProducts() throws SQLException{
+        
             String query = "SELECT * FROM oop3.products";
 
             /*
@@ -141,7 +135,7 @@ public class DatabaseAdapter {
                     return products;
                 }
             }
-        }
+        
     
     }
 

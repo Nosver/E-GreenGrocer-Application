@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
@@ -29,7 +30,7 @@ public class signUpScreenController {
 
 
     @FXML
-    void RegisterButtonClicked(MouseEvent event) {
+    void RegisterButtonClicked(MouseEvent event) throws SQLException {
     	
     	if(nameBox.getText().isBlank()) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -59,8 +60,8 @@ public class signUpScreenController {
     		
     		User user = new User(nameBox.getText(), EMailBox.getText(), PasswordBox.getText(), null, null);
         	user.setRole("customer");
-        
-        	DatabaseAdapter.insertUser(user);
+        	DatabaseAdapter db= new DatabaseAdapter();
+        	db.insertUser(user);
             
             SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     		

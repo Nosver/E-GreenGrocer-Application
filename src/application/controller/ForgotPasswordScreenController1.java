@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
@@ -34,7 +35,7 @@ public class ForgotPasswordScreenController1{
     private Button loginButton;
     
 	@FXML
-    void continueButtonClicked(MouseEvent event) {
+    void continueButtonClicked(MouseEvent event) throws SQLException {
     	
     	if(EMailBox.getText().isBlank()){
     		Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -43,8 +44,8 @@ public class ForgotPasswordScreenController1{
 			Optional<ButtonType>result = alert.showAndWait();
 			return;
     	}
-    	
-    	User user = DatabaseAdapter.getUserByEmail(EMailBox.getText());
+    	DatabaseAdapter db= new DatabaseAdapter();
+    	User user = db.getUserByEmail(EMailBox.getText());
     	
     	if(user == null) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);

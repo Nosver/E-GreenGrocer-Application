@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
@@ -38,7 +39,7 @@ public class LoginScreenController {
     }
 
     @FXML
-    void loginButtonClicked(MouseEvent event) {
+    void loginButtonClicked(MouseEvent event) throws SQLException {
     		if(EMailBox.getText().isBlank()) {
     			Alert alert = new Alert(Alert.AlertType.WARNING);
     			alert.setTitle("error");
@@ -54,8 +55,8 @@ public class LoginScreenController {
     			return;
     		}
     		
-    	
-    		User user= DatabaseAdapter.getUserByEmail(EMailBox.getText());
+    		DatabaseAdapter databaseAdapter=  new DatabaseAdapter();
+    		User user= databaseAdapter.getUserByEmail(EMailBox.getText());
     		if(user== null) {
     			Alert alert = new Alert(Alert.AlertType.WARNING);
     			alert.setTitle("error");
