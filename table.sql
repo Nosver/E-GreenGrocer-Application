@@ -9,8 +9,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `name` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(100) NOT NULL UNIQUE,
-    `address` VARCHAR(100) ,
-    `role` VARCHAR(50) NOT NULL
+    `address` VARCHAR(100) 
 );
 
 -- Create a products table
@@ -34,10 +33,10 @@ CREATE TABLE IF NOT EXISTS `chart` (
 -- ADD PRODUCT ?!??!?!
 
 -- Insert a sample user
-INSERT INTO `users` (`name`, `password`, `email`, `address` ,`role`) VALUES
-('John Doe', '123456', 'example@mail.com', null ,'admin'),
-('Jane Doe', '123456', 'example1@mail.com', 'abc mahallesi def sokak','customer'),
-('John Smith', '123456', 'example2@mail.com', null ,'carrier');
+INSERT INTO `users` (`name`, `password`, `email`, `address`) VALUES
+('John Doe', '123456', 'example@mail.com', null ),
+('Jane Doe', '123456', 'example1@mail.com', 'abc mahallesi def sokak'),
+('John Smith', '123456', 'example2@mail.com', null );
 
 -- Insert sample products 
 INSERT INTO `products` (`product_name`, `stock`, `price`) VALUES

@@ -75,9 +75,7 @@ public class UpdateUserInfoController  {
 			alert.setContentText("Updated succesfully");
 			Optional<ButtonType>	result = alert.showAndWait();
 			
-    		
-			
-    		
+
     }
     @FXML
     void BackButtonClicked(MouseEvent event) {
