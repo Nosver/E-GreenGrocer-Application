@@ -13,6 +13,7 @@ public class Chart {
 		double totalPrice;
 		boolean isPurchased;
 		LocalDateTime date;
+		boolean isDelivered;
 		
 		public Chart() {
 			this.isPurchased=false;

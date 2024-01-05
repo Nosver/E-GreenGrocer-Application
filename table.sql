@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `Chart` (
     `userId` INT,
     `totalPrice` DOUBLE,
     `isPurchased` BOOLEAN,
+    `isDelivered` BOOLEAN,
     `date` DATETIME,
     FOREIGN KEY (userId) REFERENCES users(id) -- Assuming you have a User table
 );
@@ -54,8 +55,8 @@ INSERT INTO `Product` ( `name`, `stock`, `price`, `imagePath`) VALUES
 ( 'Product B', 30.0, 5.99, '/images/product_b.jpg');
 
 -- Inserting a sample chart
-INSERT INTO `Chart` (`userId`, `totalPrice`, `isPurchased`, `date`) VALUES
-(2, 25.0, false, '2024-01-05 12:30:00');
+INSERT INTO `Chart` (`userId`, `totalPrice`, `isPurchased`,`isDelivered` ,`date`) VALUES
+(2, 25.0, false, 0 ,'2024-01-05 12:30:00');
 
 -- Getting the auto-generated chartId for the newly inserted chart
 SET @chartId = LAST_INSERT_ID();
