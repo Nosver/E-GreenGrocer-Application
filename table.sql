@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `Product` (
     `name`  VARCHAR(255) NOT NULL,
     `stock` DOUBLE NOT NULL,
     `price` DOUBLE NOT NULL,
-    `treshold` DOUBLE NOT NULL,
+    `threshold` DOUBLE NOT NULL,
     `imagePath` VARCHAR(255) NOT NULL
     
 );
@@ -51,7 +51,7 @@ INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
 ('John Smith', '123456', 'example2@mail.com', 'carrier', null);
 
 -- Inserting sample products
-INSERT INTO `Product` ( `name`, `stock`, `price`, `treshold`,`imagePath`) VALUES
+INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUES
 ( 'Product A', 50.0, 10.99, 5,'/images/product_a.jpg'),
 ( 'Product B', 30.0, 5.99, 3,'/images/product_b.jpg');
 

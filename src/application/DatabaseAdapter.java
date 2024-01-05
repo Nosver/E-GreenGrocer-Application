@@ -120,7 +120,7 @@ public class DatabaseAdapter implements Crud{
     @Override
     public  ArrayList<Product> getAllProducts() throws SQLException{
         
-            String query = "SELECT * FROM oop3.products";
+            String query = "SELECT * FROM oop3.product";
 
             /*
              Content of 
@@ -137,12 +137,14 @@ public class DatabaseAdapter implements Crud{
                 try(ResultSet resultSet = preparedStatement.executeQuery()){
                     while(resultSet.next()){
                         // Retrieve product data from the result set
-                        String storedProductName = resultSet.getString("product_name");
+                        String storedProductName = resultSet.getString("name");
                         int storedStock = resultSet.getInt("stock");
                         double storedPrice = resultSet.getDouble("price");
-                        // Create a Product object with the retrieved data
-                        Product product = new Product(storedProductName, storedStock, storedPrice);
-                        // Add the product to the list
+                        double storedThreshold =resultSet.getDouble("threshold");
+                        String storedImagePath= resultSet.getString("imagePath");
+                        
+                        Product product = new Product(storedProductName, storedStock, storedPrice,storedThreshold,storedImagePath);
+                        
                         products.add(product);
                     }
                     
@@ -157,5 +159,28 @@ public class DatabaseAdapter implements Crud{
         
     
     }
+
+	@Override
+	public void insertProduct(Product product) throws SQLException {
+		 String sql = "INSERT INTO Product (name, stock, price, threshold, imagePath) VALUES (?, ?, ?, ?, ?)";
+
+	        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+	            // Set the parameters for the prepared statement
+	            statement.setString(1, product.getName());
+	            statement.setDouble(2, product.getStock());
+	            statement.setDouble(3, product.getPrice());
+	            statement.setDouble(4, product.getThreshold());
+	            statement.setString(5, product.getImagePath());
+
+	            
+	            statement.executeUpdate();
+	            System.out.println("Product inserted successfully");
+	        }catch (SQLException e) {
+	            
+	            System.err.println("Error inserting product: " + e.getMessage());
+	            
+	        }
+		
+	}
 
 }

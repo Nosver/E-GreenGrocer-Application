@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +26,8 @@ public class LoginScreenController {
     @FXML
     private PasswordField PasswordBox;
 
-
+    @FXML
+    private CheckBox showPasswordButton;
 
     @FXML
     private Button forgotpassword_BUTTON;
@@ -88,6 +90,11 @@ public class LoginScreenController {
     	SceneSwitch.switchScene("ForgotPassword1.fxml", event, null);
     }
 
+    @FXML
+    void showPasswordButtonClicked(MouseEvent event) {
+    	
+    		
+    }
    
 
 }

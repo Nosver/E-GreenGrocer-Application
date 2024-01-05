@@ -12,4 +12,5 @@ public interface Crud {
 	 public  void insertUser(User user) throws SQLException;
 	 public void UpdateUser(User user) throws SQLException;
 	 public  ArrayList<Product> getAllProducts() throws SQLException;
+	 public void insertProduct(Product product) throws SQLException;
 }

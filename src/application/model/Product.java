@@ -5,16 +5,45 @@ public class Product {
 	String name;
 	double stock;
 	double price;
-	double treshold;
+	double threshold;
 	String imagePath;
 	
-	public Product(String name, double stock, double price) {
+	public double getThreshold() {
+		return threshold;
+	}
+
+
+	public void setThreshold(double threshold) {
+		this.threshold = threshold;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+	public Product(String name, double stock, double price, double threshold, String imagePath) {
 		this.name = name;
 		this.stock = stock;
 		this.price = price;
+		this.threshold=threshold;
+		this.imagePath=imagePath;
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Product [name=" + name + ", stock=" + stock + ", price=" + price + ", threshold=" + threshold
+				+ ", imagePath=" + imagePath + "]";
+	}
+
+
 	public int getid() {
 		return id;
 	}
