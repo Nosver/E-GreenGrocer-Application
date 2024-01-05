@@ -1,10 +1,11 @@
 package application.model;
 
 public class Product {
-	int ID;
+	int id;
 	String name;
 	double stock;
 	double price;
+	String imagePath;
 	
 	public Product(String name, double stock, double price) {
 		this.name = name;
@@ -12,12 +13,12 @@ public class Product {
 		this.price = price;
 	}
 	
-	// Getters and Setter
-	public int getID() {
-		return ID;
+	
+	public int getid() {
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setid(int id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import application.model.Product;
 import application.model.User;
 
-public class DatabaseAdapter {
+public class DatabaseAdapter implements Crud{
 	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/oop3";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "1A2b3c4d5e.";
@@ -32,6 +32,7 @@ public class DatabaseAdapter {
         return connection;
     }
     
+    @Override
     public  User getUserByEmail(String email) throws SQLException {
         
             String query = "SELECT * FROM oop3.users where email = ?";
@@ -46,10 +47,10 @@ public class DatabaseAdapter {
                         String storedPassword = resultSet.getString("password");
                         String storedEMail = resultSet.getString("email");
                         String storedAddress = resultSet.getString("address");
-                        String storedRole = resultSet.getString("role");
+                        
                         String storedId = resultSet.getString("id");
                         // Create a User object with the retrieved data
-                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedAddress,storedRole);
+                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedAddress);
                         
                         return user;
                     }
@@ -61,7 +62,7 @@ public class DatabaseAdapter {
         
     }
     
-    
+    @Override
     public  void resetPassword(User user , String password) throws SQLException {
     		
             String updateQuery = "UPDATE oop3.users SET password = ? WHERE id = ?";
@@ -78,9 +79,10 @@ public class DatabaseAdapter {
     
 }
     
+    @Override
     public  void insertUser(User user) throws SQLException {
         
-            String query = "INSERT INTO oop3.users (name, password, email, address, role) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO oop3.users (name, password, email, address) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 
@@ -88,7 +90,7 @@ public class DatabaseAdapter {
                 preparedStatement.setString(2, user.getPassword());
                 preparedStatement.setString(3, user.getEmail());
                 preparedStatement.setString(4, user.getAddress());
-                preparedStatement.setString(5, user.getRole());
+                
 
                 preparedStatement.executeUpdate();
             }
@@ -96,6 +98,25 @@ public class DatabaseAdapter {
        
     }
     
+    @Override
+    public void UpdateUser(User user) throws SQLException {
+    	 String updateQuery = "UPDATE oop3.users SET name=?, password=?, email=?, address=? WHERE id=?";
+    	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+            
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getAddress());
+            
+            preparedStatement.setInt(5, user.getId());
+            
+            preparedStatement.executeUpdate();
+    	}
+    	
+    }
+    
+    @Override
     public  ArrayList<Product> getAllProducts() throws SQLException{
         
             String query = "SELECT * FROM oop3.products";
