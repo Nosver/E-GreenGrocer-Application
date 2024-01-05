@@ -66,7 +66,7 @@ public class signUpScreenController {
     	
     	if(!nameBox.getText().isBlank() && !EMailBox.getText().isBlank() && !PasswordBox.getText().isBlank()) {
     		
-    		User user = new User(nameBox.getText(), PasswordBox.getText(),EMailBox.getText() ,null);
+    		User user = new User(nameBox.getText(), PasswordBox.getText(),EMailBox.getText(),"customer" ,null);
         	
         	DatabaseAdapter db= new DatabaseAdapter();
         	db.insertUser(user);

@@ -17,10 +17,10 @@ public class Main extends Application {
 	 -giriş ekranı
 	  		login
 	  		sign in
-	--kurye ekranı
+	--kurye ekranı //yiğit
 				sipariş görme
 				sipariş teslimi
-	-owner ekranı
+	-owner ekranı //Masis
 				kurye ekleme
 				stok ekleme
 				product ekleme
@@ -28,7 +28,15 @@ public class Main extends Application {
 				kurye silme
 				stok silme
 				view all orders (all types)
-
+				
+		- chart screen //güney
+				-charttan ekle çıkar
+				-ödeme ekranına geç butonu 
+				(if addres varsa ) 
+						adressi göster ve update sor
+				else
+					adress sor
+					
 	--password visibility
 	
 	-- product ekranı // kemal doğukan 

@@ -6,29 +6,36 @@ public class User {
 	String password;
 	String email;
 	String address;
-	//String role;
+	String role;
 	
 	
 	
 	public User() {
 		
 	}
-	public User(String name, String password, String email, String address) {
+	public User(String name, String password, String email, String role,String address) {
 		super();
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.address=address;
-		
+		this.role= role;
 	}
 
-	public User(int id, String name, String password, String email, String address) {
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public User(int id, String name, String password, String email, String role,String address) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.address = address;
+		this.role= role;
 		
 	}
 	public String getAddress() {

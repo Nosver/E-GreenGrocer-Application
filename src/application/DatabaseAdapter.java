@@ -47,10 +47,10 @@ public class DatabaseAdapter implements Crud{
                         String storedPassword = resultSet.getString("password");
                         String storedEMail = resultSet.getString("email");
                         String storedAddress = resultSet.getString("address");
-                        
+                        String storedRole = resultSet.getString("role");
                         String storedId = resultSet.getString("id");
                         // Create a User object with the retrieved data
-                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedAddress);
+                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedId,storedAddress);
                         
                         return user;
                     }
@@ -77,19 +77,20 @@ public class DatabaseAdapter implements Crud{
     }
     
     
-}
+
     
     @Override
     public  void insertUser(User user) throws SQLException {
         
-            String query = "INSERT INTO oop3.users (name, password, email, address) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO oop3.users (name, password, email, role ,address) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 
                 preparedStatement.setString(1, user.getName());
                 preparedStatement.setString(2, user.getPassword());
                 preparedStatement.setString(3, user.getEmail());
-                preparedStatement.setString(4, user.getAddress());
+                preparedStatement.setString(4, user.getRole());
+                preparedStatement.setString(5, user.getAddress());
                 
 
                 preparedStatement.executeUpdate();
