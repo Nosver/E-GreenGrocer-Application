@@ -75,6 +75,9 @@ public class DatabaseAdapter {
             }
     }
     
+    
+}
+    
     public  void insertUser(User user) throws SQLException {
         
             String query = "INSERT INTO oop3.users (name, password, email, address, role) VALUES (?, ?, ?, ?, ?)";
