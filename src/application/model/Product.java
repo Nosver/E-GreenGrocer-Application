@@ -5,6 +5,7 @@ public class Product {
 	String name;
 	double stock;
 	double price;
+	double treshold;
 	String imagePath;
 	
 	public Product(String name, double stock, double price) {

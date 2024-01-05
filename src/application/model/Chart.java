@@ -13,7 +13,7 @@ public class Chart {
 		double totalPrice;
 		boolean isPurchased;
 		LocalDateTime date;
-		boolean isDelivered;
+		String situation;
 		
 		public Chart() {
 			this.isPurchased=false;

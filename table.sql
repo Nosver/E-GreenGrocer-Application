@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `Product` (
     `name`  VARCHAR(255) NOT NULL,
     `stock` DOUBLE NOT NULL,
     `price` DOUBLE NOT NULL,
+    `treshold` DOUBLE NOT NULL,
     `imagePath` VARCHAR(255) NOT NULL
     
 );
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Chart` (
     `userId` INT,
     `totalPrice` DOUBLE,
     `isPurchased` BOOLEAN,
-    `isDelivered` BOOLEAN,
+    `situation` VARCHAR(25),
     `date` DATETIME,
     FOREIGN KEY (userId) REFERENCES users(id) -- Assuming you have a User table
 );
@@ -50,13 +51,13 @@ INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
 ('John Smith', '123456', 'example2@mail.com', 'carrier', null);
 
 -- Inserting sample products
-INSERT INTO `Product` ( `name`, `stock`, `price`, `imagePath`) VALUES
-( 'Product A', 50.0, 10.99, '/images/product_a.jpg'),
-( 'Product B', 30.0, 5.99, '/images/product_b.jpg');
+INSERT INTO `Product` ( `name`, `stock`, `price`, `treshold`,`imagePath`) VALUES
+( 'Product A', 50.0, 10.99, 5,'/images/product_a.jpg'),
+( 'Product B', 30.0, 5.99, 3,'/images/product_b.jpg');
 
 -- Inserting a sample chart
-INSERT INTO `Chart` (`userId`, `totalPrice`, `isPurchased`,`isDelivered` ,`date`) VALUES
-(2, 25.0, false, 0 ,'2024-01-05 12:30:00');
+INSERT INTO `Chart` (`userId`, `totalPrice`, `isPurchased`,`situation` ,`date`) VALUES
+(2, 25.0, false, 'available' ,'2024-01-05 12:30:00');
 
 -- Getting the auto-generated chartId for the newly inserted chart
 SET @chartId = LAST_INSERT_ID();

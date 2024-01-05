@@ -14,13 +14,24 @@ public class Main extends Application {
 
 	/*
 	 * 
-	-- userinfo ve update ekranı ve backend // Masis
+	 -giriş ekranı
+	  		login
+	  		sign in
+	--kurye ekranı
+				sipariş görme
+				sipariş teslimi
+	-owner ekranı
+				kurye ekleme
+				stok ekleme
+				product ekleme
+				product silme
+				kurye silme
+				stok silme
+				view all orders (all types)
 
-	-- forgot password  //doğukan
-
-	-- sign up  //yiğit
-
-	-- product ekranı //kemal
+	--password visibility
+	
+	-- product ekranı // kemal doğukan 
 
 	 
 	 * */
