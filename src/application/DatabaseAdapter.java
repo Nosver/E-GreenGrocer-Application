@@ -75,6 +75,10 @@ public class DatabaseAdapter implements Crud{
             	preparedStatement.executeUpdate();
             }
     }
+    
+    
+}
+    
     @Override
     public  void insertUser(User user) throws SQLException {
         
