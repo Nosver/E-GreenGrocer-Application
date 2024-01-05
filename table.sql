@@ -9,50 +9,58 @@ CREATE TABLE IF NOT EXISTS `users` (
     `name` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(100) NOT NULL UNIQUE,
+    `role`  VARCHAR(10) NOT NULL, 
     `address` VARCHAR(100) 
 );
 
--- Create a products table
-CREATE TABLE IF NOT EXISTS `products` (
-    `product_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `product_name` VARCHAR(255) NOT NULL UNIQUE,
+
+CREATE TABLE IF NOT EXISTS `Product` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `name`  VARCHAR(255) NOT NULL,
     `stock` DOUBLE NOT NULL,
-    `price` DOUBLE NOT NULL
+    `price` DOUBLE NOT NULL,
+    `imagePath` VARCHAR(255) NOT NULL
+    
 );
 
--- Create a chart table
-CREATE TABLE IF NOT EXISTS `chart` (
-    `user_id` INT NOT NULL,
-    `product_id` INT NOT NULL,
-    `quantity` DOUBLE NOT NULL,
-    PRIMARY KEY (`user_id`, `product_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
-    FOREIGN KEY (`product_id`) REFERENCES `products`(`product_id`)
+CREATE TABLE IF NOT EXISTS `Chart` (
+    `chartId` INT PRIMARY KEY AUTO_INCREMENT,
+    `userId` INT,
+    `totalPrice` DOUBLE,
+    `isPurchased` BOOLEAN,
+    `date` DATETIME,
+    FOREIGN KEY (userId) REFERENCES users(id) -- Assuming you have a User table
 );
 
--- ADD PRODUCT ?!??!?!
+CREATE TABLE IF NOT EXISTS `ChartItem` (
+    `chartItemId` INT PRIMARY KEY AUTO_INCREMENT,
+    `chartId` INT,
+    `productId` INT,
+    `quantity` DOUBLE,
+    FOREIGN KEY (chartId) REFERENCES Chart(chartId),
+    FOREIGN KEY (productId) REFERENCES Product(id)
+);
 
--- Insert a sample user
-INSERT INTO `users` (`name`, `password`, `email`, `address`) VALUES
-('John Doe', '123456', 'example@mail.com', null ),
-('Jane Doe', '123456', 'example1@mail.com', 'abc mahallesi def sokak'),
-('John Smith', '123456', 'example2@mail.com', null );
 
--- Insert sample products 
-INSERT INTO `products` (`product_name`, `stock`, `price`) VALUES
-('Apple', 10.4, 100.35),
-('Banana', 20.5, 50.25),
-('Orange', 30.6, 25.15),
-('Mango', 40.7, 1),
-('Pineapple', 50.8, 5.05),
-('Grapes', 60.9, 1.05);
+-- Inserting sample users
+INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
+('John Doe', '123456', 'example@mail.com', 'owner', null),
+('Jane Doe', '123456', 'example1@mail.com', 'customer', 'abc mahallesi def sokak'),
+('John Smith', '123456', 'example2@mail.com', 'carrier', null);
 
--- Associate products with the user
-INSERT INTO `chart` (`user_id`, `product_id`, `quantity`) VALUES
-(2, 1, 1.4),
-(2, 2, 2.5),
-(2, 3, 3.6),
-(2, 4, 4.7),
-(2, 5, 5.8),
-(2, 6, 6.0);
+-- Inserting sample products
+INSERT INTO `Product` ( `name`, `stock`, `price`, `imagePath`) VALUES
+( 'Product A', 50.0, 10.99, '/images/product_a.jpg'),
+( 'Product B', 30.0, 5.99, '/images/product_b.jpg');
 
+-- Inserting a sample chart
+INSERT INTO `Chart` (`userId`, `totalPrice`, `isPurchased`, `date`) VALUES
+(2, 25.0, false, '2024-01-05 12:30:00');
+
+-- Getting the auto-generated chartId for the newly inserted chart
+SET @chartId = LAST_INSERT_ID();
+
+-- Inserting items for the chart
+INSERT INTO `ChartItem` (`chartId`, `productId`, `quantity`) VALUES
+(@chartId, 1, 2.0),  -- Adding 2 units of Product A
+(@chartId, 2, 3.0);  -- Adding 3 units of Product B
