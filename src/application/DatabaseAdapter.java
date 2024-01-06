@@ -1,12 +1,17 @@
 
 package application;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+
+import application.model.Chart;
 import application.model.Product;
 import application.model.User;
 
@@ -39,6 +44,36 @@ public class DatabaseAdapter implements Crud{
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, email);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Retrieve user data from the result set
+                        String storedUsername = resultSet.getString("name");
+                        String storedPassword = resultSet.getString("password");
+                        String storedEMail = resultSet.getString("email");
+                        String storedAddress = resultSet.getString("address");
+                        String storedRole = resultSet.getString("role");
+                        String storedId = resultSet.getString("id");
+                        // Create a User object with the retrieved data
+                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedRole,storedAddress);
+                        
+                        return user;
+                    }
+                }
+            }
+        
+
+        return null; 
+        
+    }
+    
+    @Override
+    public  User getUserByID(int id) throws SQLException {
+        
+            String query = "SELECT * FROM oop3.users where email = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, String.valueOf(id));
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
@@ -116,6 +151,31 @@ public class DatabaseAdapter implements Crud{
     	}
     	
     }
+    
+    public List<Chart> getPurchasedCharts() throws SQLException {
+    	String query = "SELECT * FROM Chart WHERE state = 'purchased'";
+
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                List<Chart> purchasedCharts = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    int userId = resultSet.getInt("userId");
+                    double totalPrice = resultSet.getDouble("totalPrice");
+                    String state = resultSet.getString("state");
+                    LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
+
+                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    purchasedCharts.add(chart);
+                }
+
+                return purchasedCharts;
+            }
+        }
+    }
+
     
     @Override
     public  ArrayList<Product> getAllProducts() throws SQLException{

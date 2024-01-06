@@ -87,7 +87,7 @@ public class LoginScreenController {
 				Alert alert = new Alert(Alert.AlertType.WARNING);
     			alert.setTitle("error");
     			alert.setContentText("Wrong Password");
-    			Optional<ButtonType>	result = alert.showAndWait();
+    			Optional<ButtonType> result = alert.showAndWait();
     			return;
 			}
     		
