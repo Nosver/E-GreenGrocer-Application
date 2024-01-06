@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -49,11 +50,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 	    try {
 	        // Load Login Screen FXML file
-	    	Parent root=FXMLLoader.load(getClass().getResource("CreateNewProductScreen.fxml"));
+	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
 			Scene scene= new Scene(root);
 
 	        // Set the main FXML file as the scene
 	       
+			
+			
 
 	        // Set the stage title and scene
 	        primaryStage.setTitle("Main Screen");
