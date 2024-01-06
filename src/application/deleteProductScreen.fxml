@@ -87,7 +87,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="productTable" layoutX="341.0" layoutY="50.0" prefHeight="314.0" prefWidth="298.0">
+            <TableView fx:id="productTable" layoutX="341.0" layoutY="50.0" onMouseClicked="#tableClicked" prefHeight="314.0" prefWidth="298.0">
               <columns>
                   <TableColumn fx:id="idField" prefWidth="36.0" text="id" />
                 <TableColumn fx:id="nameColumn" prefWidth="62.39996337890625" text="Name" />

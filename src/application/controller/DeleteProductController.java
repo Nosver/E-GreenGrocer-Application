@@ -120,6 +120,11 @@ public class DeleteProductController implements Initializable {
 		
 	}
 	
+	@FXML
+    void tableClicked(MouseEvent event) {
+		Product product = productTable.getSelectionModel().getSelectedItem();
+		selectedProductLabel.setText(product.getName());
+    }
 	
 
 }
