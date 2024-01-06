@@ -7,11 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
+import application.SceneSwitch;
 import application.model.Product;
+import application.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -51,8 +52,19 @@ public class CreateNewProductController {
     private String imageFileName;
     
     private String imageFilePath;
+    
+    private User user;
+    
 
-    @FXML
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@FXML
     void addProductButtonClicked(MouseEvent event) throws SQLException {
     		double price;
     		double stock;
@@ -149,7 +161,7 @@ public class CreateNewProductController {
 
     @FXML
     void backButtonClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("OwnerScreen.fxml", event, user);
     }
 
     @FXML

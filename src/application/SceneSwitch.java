@@ -2,7 +2,9 @@ package application;
 
 import java.io.IOException;
 
+import application.controller.CreateNewProductController;
 import application.controller.CustomerScreenController;
+import application.controller.DeleteProductController;
 import application.controller.ForgotPasswordScreenController1;
 import application.controller.ForgotPasswordScreenController2;
 import application.controller.MyProfileController;
@@ -48,6 +50,15 @@ public class SceneSwitch {
                 	controller.setUser(user);
                 	controller.getWelcomeLabel().setText("Welcome "+user.getName());
                 }
+                else if("CreateNewProductScreen.fxml".equals(fxmlFileName)){
+                	CreateNewProductController controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("deleteProductScreen.fxml".equals(fxmlFileName)){
+                	DeleteProductController controller = loader.getController();
+                	controller.setUser(user);
+                }
+            	
             }
             
             Scene scene = new Scene(root);

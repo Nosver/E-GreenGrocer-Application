@@ -75,7 +75,7 @@ public class LoginScreenController {
     			else if(user.getRole().equals("owner"))
     				SceneSwitch.switchScene("OwnerScreen.fxml", event, user);
     			else if(user.getRole().equals("carrier"))
-    				System.out.println("switch to carrier scene");
+    				System.out.println("switch to carrier scene"); //GÜNEY
     				//SceneSwitch.switchScene("fxml", event, user);
     		}
     		else{

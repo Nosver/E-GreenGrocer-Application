@@ -64,7 +64,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void addProductPressed(MouseEvent event) {
-    		SceneSwitch.switchScene("CreateNewProductScreen", event, user);
+    		SceneSwitch.switchScene("CreateNewProductScreen.fxml", event, user);
     }
 
     @FXML
@@ -79,7 +79,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void removeProductClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("deleteProductScreen.fxml", event, user);
     }
 
     @FXML
