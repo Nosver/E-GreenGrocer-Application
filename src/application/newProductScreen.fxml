@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="512.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.productScreenController">
+<VBox prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.productScreenController">
   <children>
     <MenuBar VBox.vgrow="ALWAYS">
       <menus>
@@ -51,7 +51,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="495.0" prefWidth="411.0" VBox.vgrow="ALWAYS">
          <children>
-            <FlowPane fx:id="PRODUCTS_FLOW" prefHeight="475.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <FlowPane fx:id="PRODUCTS_FLOW" prefHeight="487.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
     </AnchorPane>
   </children>
