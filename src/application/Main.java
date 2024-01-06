@@ -25,7 +25,7 @@ public class Main extends Application {
 	-owner ekranı //Masis
 				kurye ekleme
 				stok ekleme
-				product ekleme
+				product ekleme //Done
 				product silme
 				kurye silme
 				stok silme
