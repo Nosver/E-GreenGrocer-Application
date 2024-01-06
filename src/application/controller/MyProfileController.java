@@ -69,6 +69,7 @@ public class MyProfileController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+	
 			Image image = new Image("images/profie icon.png",false);
 			profileIconCircle.setFill(new ImagePattern(image));
 	}

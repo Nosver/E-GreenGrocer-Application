@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
@@ -127,9 +128,9 @@ public class CreateNewProductController {
     			return;
     		}
     		name=nameField.getText();
-    		Product product = new Product(name,stock,price,threshold,"images\\"+imageFileName); 
+    		Product product = new Product(name,stock,price,threshold,"images/"+imageFileName); 
     		System.out.println(product);
-    		saveImage(imageFileName,"src/images");
+    		saveImage(imageFilePath,"src/images");
     		DatabaseAdapter db = new DatabaseAdapter();
     		db.insertProduct(product);
     		
@@ -138,8 +139,11 @@ public class CreateNewProductController {
 			alert.setContentText("Product Successfully added");
 			Optional<ButtonType>	result = alert.showAndWait();
 
-    		
-    		
+			StockField.setText("");
+			nameField.setText("");
+			priceField.setText("");
+			tresholdField.setText("");
+			imageField.setImage(null);
     		
     }
 
@@ -149,13 +153,13 @@ public class CreateNewProductController {
     }
 
     @FXML
-    void chooseImageButtonClicked(MouseEvent event) throws MalformedURLException {
+    void chooseImageButtonClicked(MouseEvent event) throws MalformedURLException, SQLException {
     		
     		FileChooser fileChooser = new FileChooser();
     		fileChooser.setTitle("Choose an image");
     		//fileChooser.setInitialDirectory(new File("C:"));
     		fileChooser.getExtensionFilters().addAll(
-    				new FileChooser.ExtensionFilter("All images", "*.svg","*.png","*.jpg"),	
+    				new FileChooser.ExtensionFilter("All images", "*.svg","*.png","*.jpg","*.jpeg"),	
     				new FileChooser.ExtensionFilter("JPG Image", "*.jpg"),
     				new FileChooser.ExtensionFilter("JPEG Image", "*.jpeg"),
     				new FileChooser.ExtensionFilter("PNG Image", "*.png"),
@@ -163,25 +167,26 @@ public class CreateNewProductController {
     				
     				);
     		File selectedFile=fileChooser.showOpenDialog(null);
-    		if(selectedFile!= null) { ///
+    		if(selectedFile!= null) { 
+    			
     			Image image = new Image(selectedFile.toURI().toURL().toString());
-    			System.out.println(selectedFile.getPath());
-    			System.out.println(selectedFile.getAbsolutePath());
     			imageField.setImage(image);
+    			this.imageFilePath=selectedFile.getAbsolutePath();
     			this.imageFileName=selectedFile.getName();
+    			System.out.println(imageFilePath);
     		}
     				
     }
     
     
     
-    public void saveImage(String imagePath, String folderPath) {
+    public boolean saveImage(String imagePath, String folderPath) {
         byte[] content;
         try {
             content = Files.readAllBytes(Paths.get(imagePath));
         } catch (IOException e) {
             e.printStackTrace();
-            return;
+            return false;
         }
 
         
@@ -194,7 +199,7 @@ public class CreateNewProductController {
                 Files.createDirectories(folder);
             } catch (IOException e) {
                 e.printStackTrace();
-                return;
+                return false;
             }
         }
 
@@ -203,9 +208,11 @@ public class CreateNewProductController {
         try {
             Files.write(filePath, content);
             System.out.println("Image saved successfully: " + filePath);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error saving the image.");
+            return false;
         }
     }
 

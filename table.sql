@@ -52,8 +52,8 @@ INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
 
 -- Inserting sample products
 INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUES
-( 'Product A', 50.0, 10.99, 5,'/images/product_a.jpg'),
-( 'Product B', 30.0, 5.99, 3,'/images/product_b.jpg');
+( 'Product A', 50.0, 10.99, 5,'images/product_a.jpg'),
+( 'Product B', 30.0, 5.99, 3,'images/product_b.jpg');
 
 -- Inserting a sample chart
 INSERT INTO `Chart` (`userId`, `totalPrice`, `isPurchased`,`situation` ,`date`) VALUES
