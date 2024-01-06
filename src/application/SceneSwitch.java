@@ -46,6 +46,7 @@ public class SceneSwitch {
                 else if("OwnerScreen.fxml".equals(fxmlFileName)){
                 	OwnerController controller = loader.getController();
                 	controller.setUser(user);
+                	controller.getWelcomeLabel().setText("Welcome "+user.getName());
                 }
             }
             

@@ -86,20 +86,20 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="32.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="326.0" layoutY="37.0" prefHeight="58.0" prefWidth="110.0" text="Label">
+            <ImageView fx:id="imageField" fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="welcomeLabel" layoutX="259.0" layoutY="37.0" prefHeight="58.0" prefWidth="314.0" text="Label">
                <font>
-                  <Font size="38.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
-            <Button layoutX="73.0" layoutY="244.0" mnemonicParsing="false" text="Update My Info" />
-            <Button layoutX="284.0" layoutY="112.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Add Product" />
-            <Button layoutX="284.0" layoutY="151.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Remove Product" />
-            <Button layoutX="284.0" layoutY="187.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Update Product" />
-            <Button layoutX="284.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Employ Carrier" />
-            <Button layoutX="284.0" layoutY="270.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Fire Carrier" />
-            <Button layoutX="475.0" layoutY="127.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="110.0" text="View active orders" />
-            <Button layoutX="475.0" layoutY="232.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="110.0" text="View past orders" />
+            <Button fx:id="updateOwnerInfoButton" layoutX="73.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#updateOwnerInfoClicked" text="Update My Info" />
+            <Button fx:id="addProductButton" layoutX="261.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#addProductPressed" prefHeight="26.0" prefWidth="118.0" text="Add Product" />
+            <Button fx:id="removeProductButton" layoutX="261.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#removeProductClicked" prefHeight="26.0" prefWidth="118.0" text="Remove Product" />
+            <Button fx:id="updateProductButton" layoutX="261.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#updateProductClicked" prefHeight="26.0" prefWidth="118.0" text="Update Product" />
+            <Button fx:id="employCarrierButton" layoutX="261.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#employCarrierButtonClicked" prefHeight="26.0" prefWidth="118.0" text="Employ Carrier" />
+            <Button fx:id="fireCarrierButton" layoutX="261.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#fireCarrierButtonClicked" prefHeight="26.0" prefWidth="118.0" text="Fire Carrier" />
+            <Button fx:id="ViewActiveOrdersButton" layoutX="452.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#ViewActiveOrdersButtonClicked" prefHeight="48.0" prefWidth="118.0" text="View active orders" />
+            <Button fx:id="viewPastOrdersButton" layoutX="452.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#viewPastOrdersButtonClicked" prefHeight="48.0" prefWidth="118.0" text="View past orders" />
          </children>
     </AnchorPane>
   </children>
