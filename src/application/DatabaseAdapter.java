@@ -182,14 +182,6 @@ public class DatabaseAdapter implements Crud{
         
             String query = "SELECT * FROM oop3.product";
 
-            /*
-             Content of 
-                - product_id
-                - product_name
-                - stock
-                - price
-             */
-
             try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
 
                 ArrayList<Product> products = new ArrayList<Product>();
@@ -198,12 +190,47 @@ public class DatabaseAdapter implements Crud{
                     while(resultSet.next()){
                         // Retrieve product data from the result set
                         String storedProductName = resultSet.getString("name");
-                        int storedStock = resultSet.getInt("stock");
+                        double storedStock = resultSet.getDouble("stock");
                         double storedPrice = resultSet.getDouble("price");
                         double storedThreshold =resultSet.getDouble("threshold");
                         String storedImagePath= resultSet.getString("imagePath");
                         
                         Product product = new Product(storedProductName, storedStock, storedPrice,storedThreshold,storedImagePath);
+                        
+                        products.add(product);
+                    }
+                    
+                    /*
+	                    for(int i=0; i < products.size(); i++) {
+	                    	System.out.println(products.get(i).getName());
+	                    }
+                    */
+                    return products;
+                }
+            }
+        
+    
+    }
+    
+    @Override
+    public  ArrayList<Product> getAllProductsWithId() throws SQLException{
+        
+            String query = "SELECT * FROM oop3.product";
+
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+                ArrayList<Product> products = new ArrayList<Product>();
+
+                try(ResultSet resultSet = preparedStatement.executeQuery()){
+                    while(resultSet.next()){
+                        Integer storedId= resultSet.getInt("id");
+                        String storedProductName = resultSet.getString("name");
+                        double storedStock = resultSet.getDouble("stock");
+                        double storedPrice = resultSet.getDouble("price");
+                        double storedThreshold =resultSet.getDouble("threshold");
+                        String storedImagePath= resultSet.getString("imagePath");
+                        
+                        Product product = new Product(storedId,storedProductName, storedStock, storedPrice,storedThreshold,storedImagePath);
                         
                         products.add(product);
                     }
@@ -241,6 +268,29 @@ public class DatabaseAdapter implements Crud{
 	            
 	        }
 		
+	}
+
+	@Override
+	public void deleteProduct(Product product) throws SQLException {
+		String sql1 = "DELETE FROM oop3.chartitem WHERE productId = ?";
+		
+		try(PreparedStatement preparedStatement = connection.prepareStatement(sql1)) {
+			 preparedStatement.setInt(1, product.getId());
+			 preparedStatement.executeUpdate();
+		}catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+		
+		
+		 String sql2 = "DELETE FROM product WHERE id = ?";
+		 try(PreparedStatement statement = connection.prepareStatement(sql2)){
+			 statement.setInt(1, product.getId());
+			 statement.executeUpdate();
+		 }catch (SQLException e) {
+	            e.printStackTrace();
+	            
+	        }
 	}
 
 }

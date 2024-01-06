@@ -38,12 +38,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.OwnerController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DeleteProductController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -86,20 +87,37 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imageField" fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="welcomeLabel" layoutX="259.0" layoutY="37.0" prefHeight="58.0" prefWidth="314.0" text="Label">
+            <TableView fx:id="productTable" layoutX="341.0" layoutY="50.0" onMouseClicked="#tableClicked" prefHeight="314.0" prefWidth="298.0">
+              <columns>
+                  <TableColumn fx:id="idField" prefWidth="36.0" text="id" />
+                <TableColumn fx:id="nameColumn" prefWidth="62.39996337890625" text="Name" />
+                <TableColumn fx:id="stockColumn" prefWidth="70.39996337890625" text="Stock" />
+                  <TableColumn fx:id="priceColumn" prefWidth="62.4000244140625" text="Price" />
+                  <TableColumn fx:id="thresholdColumn" prefWidth="71.199951171875" text="Threshold" />
+              </columns>
+            </TableView>
+            <Label layoutX="413.0" layoutY="11.0" text="Product List">
                <font>
-                  <Font size="30.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
-            <Button fx:id="updateOwnerInfoButton" layoutX="73.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#updateOwnerInfoClicked" text="Update My Info" />
-            <Button fx:id="addProductButton" layoutX="261.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#addProductPressed" prefHeight="26.0" prefWidth="118.0" text="Add Product" />
-            <Button fx:id="removeProductButton" layoutX="261.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#removeProductClicked" prefHeight="26.0" prefWidth="118.0" text="Remove Product" />
-            <Button fx:id="updateProductButton" layoutX="261.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#updateProductClicked" prefHeight="26.0" prefWidth="118.0" text="Update Product" />
-            <Button fx:id="employCarrierButton" layoutX="261.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#employCarrierButtonClicked" prefHeight="26.0" prefWidth="118.0" text="Employ Carrier" />
-            <Button fx:id="fireCarrierButton" layoutX="261.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#fireCarrierButtonClicked" prefHeight="26.0" prefWidth="118.0" text="Fire Carrier" />
-            <Button fx:id="ViewActiveOrdersButton" layoutX="452.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#ViewActiveOrdersButtonClicked" prefHeight="48.0" prefWidth="118.0" text="View active orders" />
-            <Button fx:id="viewPastOrdersButton" layoutX="452.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#viewPastOrdersButtonClicked" prefHeight="48.0" prefWidth="118.0" text="View past orders" />
+            <Label layoutX="42.0" layoutY="58.0" prefHeight="58.0" prefWidth="297.0" text="Select a Product From The List">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="135.0" prefHeight="58.0" prefWidth="129.0" text="Selected Product :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="deleteProductButton" layoutX="122.0" layoutY="276.0" mnemonicParsing="false" onMouseClicked="#deleteButtonClicked" prefHeight="58.0" prefWidth="85.0" text="Delete" />
+            <Label fx:id="selectedProductLabel" layoutX="172.0" layoutY="135.0" prefHeight="58.0" prefWidth="129.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
          </children>
     </AnchorPane>
   </children>

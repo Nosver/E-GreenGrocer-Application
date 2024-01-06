@@ -52,6 +52,7 @@ public class ForgotPasswordScreenController1{
 			alert.setTitle("error");
 			alert.setContentText("User doesn't exist on the database !");
 			Optional<ButtonType>result = alert.showAndWait();
+			
 			return;
     	}else {
     		SceneSwitch.switchScene("ForgotPassword2.fxml", event, user);
