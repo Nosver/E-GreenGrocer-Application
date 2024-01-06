@@ -24,7 +24,7 @@ public class Main extends Application {
 	-owner ekranı //Masis
 				kurye ekleme
 				stok ekleme
-				product ekleme
+				product ekleme //Done
 				product silme
 				kurye silme
 				stok silme
@@ -49,7 +49,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 	    try {
 	        // Load Login Screen FXML file
-	    	Parent root=FXMLLoader.load(getClass().getResource("CreateNewProductScreen.fxml"));
+	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
 			Scene scene= new Scene(root);
 
 	        // Set the main FXML file as the scene

@@ -11,12 +11,11 @@ public class Chart {
 		int userId;
 		ArrayList<Pair<Product,Double>> items;
 		double totalPrice;
-		boolean isPurchased;
+		String state; //onChart // purchased //active //delivered
 		LocalDateTime date;
-		String situation;
 		
 		public Chart() {
-			this.isPurchased=false;
+			this.state="onChart";
 			this.date=null;
 		}
 }

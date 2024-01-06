@@ -29,7 +29,7 @@ public class User {
 		this.role = role;
 	}
 	public User(int id, String name, String password, String email, String role,String address) {
-		super();
+		
 		this.id = id;
 		this.name = name;
 		this.password = password;

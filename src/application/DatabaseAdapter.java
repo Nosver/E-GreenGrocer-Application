@@ -50,7 +50,7 @@ public class DatabaseAdapter implements Crud{
                         String storedRole = resultSet.getString("role");
                         String storedId = resultSet.getString("id");
                         // Create a User object with the retrieved data
-                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedId,storedAddress);
+                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedRole,storedAddress);
                         
                         return user;
                     }
