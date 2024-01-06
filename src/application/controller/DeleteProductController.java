@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,9 @@ public class DeleteProductController implements Initializable {
     @FXML
     private TableColumn<Product, Double> thresholdColumn;
     
+    @FXML
+    private TableColumn<Product, Integer> idField;
+
     private User user;
     
     public User getUser() {
@@ -64,16 +68,18 @@ public class DeleteProductController implements Initializable {
     
 
 	@FXML
-    void deleteButtonClicked(MouseEvent event) {
-		
+    void deleteButtonClicked(MouseEvent event) throws SQLException {
+		ObservableList<Product> selectedProducts = productTable.getSelectionModel().getSelectedItems();
+		if(selectedProducts.isEmpty())
+			return;
+		Product toBeDeleted =selectedProducts.get(0);
+		System.out.println(toBeDeleted.getId());
+		DatabaseAdapter db = new DatabaseAdapter();
+		db.deleteProduct(toBeDeleted);
+		refreshTable();
     }
 	
-	public DeleteProductController() throws SQLException{
-		
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	private void refreshTable() {
 		DatabaseAdapter db= new DatabaseAdapter();
 		ArrayList<Product> products= null;
 		try {
@@ -81,17 +87,39 @@ public class DeleteProductController implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+			productTable.getItems().clear();
 			ObservableList<Product> productList = FXCollections.observableArrayList(products);
 		 	//idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 	        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 	        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 	        stockColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("stock"));
 	        thresholdColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("threshold"));
-	       
+	        idField.setCellValueFactory(new PropertyValueFactory<Product,Integer>("id"));
+	        productTable.setItems(productList);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		DatabaseAdapter db= new DatabaseAdapter();
+		ArrayList<Product> products= null;
+		try {
+			products = db.getAllProductsWithId();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
+			ObservableList<Product> productList = FXCollections.observableArrayList(products);
+		 	
+	        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+	        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+	        stockColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("stock"));
+	        thresholdColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("threshold"));
+	        idField.setCellValueFactory(new PropertyValueFactory<Product,Integer>("id"));
 	        productTable.setItems(productList);
 
 		
 	}
+	
+	
 
 }

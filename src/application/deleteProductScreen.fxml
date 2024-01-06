@@ -87,12 +87,13 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="productTable" layoutX="341.0" layoutY="50.0" prefHeight="314.0" prefWidth="279.0">
+            <TableView fx:id="productTable" layoutX="341.0" layoutY="50.0" prefHeight="314.0" prefWidth="298.0">
               <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                <TableColumn fx:id="stockColumn" prefWidth="75.0" text="Stock" />
-                  <TableColumn fx:id="priceColumn" prefWidth="48.79998779296875" text="Price" />
-                  <TableColumn fx:id="thresholdColumn" prefWidth="75.0" text="Threshold" />
+                  <TableColumn fx:id="idField" prefWidth="36.0" text="id" />
+                <TableColumn fx:id="nameColumn" prefWidth="62.39996337890625" text="Name" />
+                <TableColumn fx:id="stockColumn" prefWidth="70.39996337890625" text="Stock" />
+                  <TableColumn fx:id="priceColumn" prefWidth="62.4000244140625" text="Price" />
+                  <TableColumn fx:id="thresholdColumn" prefWidth="71.199951171875" text="Threshold" />
               </columns>
             </TableView>
             <Label layoutX="413.0" layoutY="11.0" text="Product List">
