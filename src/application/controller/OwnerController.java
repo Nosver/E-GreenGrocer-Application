@@ -59,7 +59,7 @@ public class OwnerController implements Initializable{
     }
     @FXML
     void ViewActiveOrdersButtonClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("ViewActiveOrders.fxml", event, user);
     }
 
     @FXML
@@ -94,7 +94,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void viewPastOrdersButtonClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("ViewPastOrders.fxml", event, user);
     }
 
 	@Override

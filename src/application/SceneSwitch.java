@@ -15,6 +15,8 @@ import application.controller.MyProfileController;
 import application.controller.OwnerController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
+import application.controller.ViewActiveOrderController;
+import application.controller.ViewPastOrderController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -86,6 +88,14 @@ public class SceneSwitch {
                 }
                 else if("HireCarrierScreen.fxml".equals(fxmlFileName)){
                 	HireCarrierController controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("ViewActiveOrders.fxml".equals(fxmlFileName)) {
+                	ViewActiveOrderController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("ViewPastOrders.fxml".equals(fxmlFileName)) {
+                	ViewPastOrderController controller= loader.getController();
                 	controller.setUser(user);
                 }
             	

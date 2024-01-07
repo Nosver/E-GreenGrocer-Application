@@ -434,13 +434,14 @@ public class DatabaseAdapter implements Crud{
 		System.out.println("Chart is created");
 	}
 	
+	
 	public Chart getChart(User user) { 
 		
 		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
 		Chart chart = new Chart();
 		
 		try (PreparedStatement statement = connection.prepareStatement(chartQuery)){
-			 if(statement.getResultSet().equals(null)) {
+			 if(statement.getResultSet() == null) {
 				 createChart(user);
 				 return chart;
 			 }
@@ -469,9 +470,74 @@ public class DatabaseAdapter implements Crud{
 	         e.printStackTrace();
 	     }
 		 return chart;
+	}
+	
+	public void insertChartItem(Product product, double quantity, Chart chart) {
 		
+        String query = "INSERT INTO oop3.chartitem (chartId, productId, quantity) VALUES (?, ?, ?)";
+		
+        
+        
+        
+	}
+
+	@Override
+	public List<Chart> getPurchasedAndActiveCharts() throws SQLException {
+		
+		String query = "SELECT * FROM oop3.chart WHERE state = 'purchased' OR  state = 'active'";
+
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                List<Chart> purchasedCharts = new ArrayList<>();
+
+                while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
+                    int userId = resultSet.getInt("userId");
+                    double totalPrice = resultSet.getDouble("totalPrice");
+                    String state = resultSet.getString("state");
+                    LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
+
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
+                    purchasedCharts.add(chart);
+                }
+
+                return purchasedCharts;
+            }
+        }
+	}
+
+	@Override
+	public List<Chart> getDeliveredCharts() throws SQLException {
+		
+		String query = "SELECT * FROM oop3.chart WHERE state = 'delivered'";
+
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                List<Chart> purchasedCharts = new ArrayList<>();
+
+                while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
+                    int userId = resultSet.getInt("userId");
+                    double totalPrice = resultSet.getDouble("totalPrice");
+                    String state = resultSet.getString("state");
+                    LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
+
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
+                    purchasedCharts.add(chart);
+                }
+
+                return purchasedCharts;
+            }
+        }
 	}
 	
 	
 
+	
+	
 }
+
