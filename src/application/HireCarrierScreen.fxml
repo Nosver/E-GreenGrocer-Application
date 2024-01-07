@@ -99,7 +99,7 @@
             <Label layoutX="85.0" layoutY="199.0" text="E-mail :" />
             <TextField fx:id="emailField" layoutX="140.0" layoutY="195.0" />
             <Button fx:id="hireCarrierButton" layoutX="163.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#hireCarrierButtonClicked" prefHeight="58.0" prefWidth="104.0" text="Hire Carrier" />
-            <ImageView fitHeight="207.0" fitWidth="246.0" layoutX="353.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageField" fitHeight="207.0" fitWidth="246.0" layoutX="353.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
          </children>
     </AnchorPane>
