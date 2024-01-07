@@ -74,7 +74,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void fireCarrierButtonClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("FireCarrierScreen.fxml", event, user);
     }
 
     @FXML

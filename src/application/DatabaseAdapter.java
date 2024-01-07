@@ -252,4 +252,43 @@ public class DatabaseAdapter implements Crud{
 		
 	}
 
+	@Override
+	public ArrayList<User> getAllCarriers() throws SQLException {
+		String query = "SELECT * FROM oop3.users WHERE role ='carrier' ";
+	    
+	    try (PreparedStatement statement = connection.prepareStatement(query);
+	         ResultSet resultSet = statement.executeQuery()) {
+
+	        ArrayList<User> carriers = new ArrayList<>();
+
+	        while (resultSet.next()) {
+	            int id = resultSet.getInt("id");
+	            String name = resultSet.getString("name");
+	            String role = resultSet.getString("role");
+	            String password = resultSet.getString("password");
+	            String email = resultSet.getString("email");
+	            String address = resultSet.getString("address");
+
+	            User carrier = new User(id, name, password, email, role, address);
+	            carriers.add(carrier);
+	        }
+
+	        return carriers;
+	    }
+	}
+
+	@Override
+	public void deleteUser(User user) throws SQLException {
+		String deleteStatement = "DELETE FROM oop3.users WHERE id = ?";
+		
+		 try (PreparedStatement statement = connection.prepareStatement(deleteStatement)){
+			 statement.setInt(1,user.getId());
+			 statement.executeUpdate();
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
+	}
+
 }
