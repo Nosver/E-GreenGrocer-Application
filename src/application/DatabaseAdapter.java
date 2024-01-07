@@ -397,11 +397,33 @@ public class DatabaseAdapter implements Crud{
 	}
 	
 	
-	public Chart getChart(User user) { // The chart might not be exist
+	public void createChart(User user) throws SQLException {
+		
+		String chartQuery = "INSERT INTO oop3.chart (userId,totalPrice,state,date) VALUES (?,?,?,?)";
+		
+		try (PreparedStatement preparedStatement = connection.prepareStatement(chartQuery)) {
+            
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setDouble(2, 0);
+            preparedStatement.setString(3, "onChart");
+            preparedStatement.setDate(4, null);
+            
+            preparedStatement.executeUpdate();
+        }
+		System.out.println("Chart is created");
+	}
+	
+	public Chart getChart(User user) { 
+		
 		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
 		Chart chart = new Chart();
 		
 		try (PreparedStatement statement = connection.prepareStatement(chartQuery)){
+			 if(statement.getResultSet().equals(null)) {
+				 createChart(user);
+				 return chart;
+			 }
+
 			 statement.setInt(1, user.getId());
 			 try (ResultSet resultSet = statement.executeQuery()) {
                  if (resultSet.next()) {
