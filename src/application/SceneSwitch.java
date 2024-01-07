@@ -38,6 +38,10 @@ public class SceneSwitch {
                     CustomerScreenController controller = loader.getController();
                     controller.setUser(user);
                 }
+                else if("updateUserInfo.fxml".equals(fxmlFileName)) {
+                	UpdateUserInfoController controler = loader.getController();
+                	controler.setUser(user);
+                }
                 else if("ForgotPassword1.fxml".equals(fxmlFileName)){
                 	ForgotPasswordScreenController1 controller = loader.getController();
                 	controller.setUser(user);
