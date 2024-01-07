@@ -10,6 +10,7 @@ import application.controller.DeleteProductController;
 import application.controller.FireCarrierController;
 import application.controller.ForgotPasswordScreenController1;
 import application.controller.ForgotPasswordScreenController2;
+import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
 import application.controller.UpdateProductController;
@@ -36,6 +37,10 @@ public class SceneSwitch {
                 } else if ("customer.fxml".equals(fxmlFileName)) {
                     CustomerScreenController controller = loader.getController();
                     controller.setUser(user);
+                }
+                else if("updateUserInfo.fxml".equals(fxmlFileName)) {
+                	UpdateUserInfoController controler = loader.getController();
+                	controler.setUser(user);
                 }
                 else if("ForgotPassword1.fxml".equals(fxmlFileName)){
                 	ForgotPasswordScreenController1 controller = loader.getController();
@@ -79,6 +84,11 @@ public class SceneSwitch {
                 	CourrierOrderScreenController controller = loader.getController();
                 	controller.setUser(user);
                 }
+                else if("HireCarrierScreen.fxml".equals(fxmlFileName)){
+                	HireCarrierController controller = loader.getController();
+                	controller.setUser(user);
+                }
+            	
             }
             
             Scene scene = new Scene(root);

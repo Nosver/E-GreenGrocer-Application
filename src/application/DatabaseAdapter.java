@@ -172,7 +172,7 @@ public class DatabaseAdapter implements Crud{
     }
     
     public List<Chart> getPurchasedCharts() throws SQLException {
-    	String query = "SELECT * FROM Chart WHERE state = 'purchased'";
+    	String query = "SELECT * FROM oop3.chart WHERE state = 'purchased'";
 
 
 
@@ -194,6 +194,32 @@ public class DatabaseAdapter implements Crud{
             }
         }
     }
+    
+    @Override
+    public ArrayList<Chart> getActiveChart() throws SQLException {  // bunu kontrol et list e gerek yok aslında
+    	String query = "SELECT * FROM oop3.chart WHERE state = 'active'";
+
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            	ArrayList<Chart> activeCharts = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    int userId = resultSet.getInt("userId");
+                    double totalPrice = resultSet.getDouble("totalPrice");
+                    String state = resultSet.getString("state");
+                    LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
+
+                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    activeCharts.add(chart);
+                }
+
+                return activeCharts;
+            }
+        }
+    }
+
 
     
     @Override
