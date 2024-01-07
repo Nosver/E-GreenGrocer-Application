@@ -1,6 +1,10 @@
 package application.controller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -16,7 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -75,6 +78,8 @@ public class DeleteProductController implements Initializable {
 		Product toBeDeleted =selectedProducts.get(0);
 		System.out.println(toBeDeleted.getId());
 		DatabaseAdapter db = new DatabaseAdapter();
+
+		//deleteFile(toBeDeleted.getImagePath());
 		db.deleteProduct(toBeDeleted);
 		refreshTable();
     }
@@ -83,19 +88,28 @@ public class DeleteProductController implements Initializable {
 		DatabaseAdapter db= new DatabaseAdapter();
 		ArrayList<Product> products= null;
 		try {
-			products = db.getAllProducts();
+			products = db.getAllProductsWithId();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 			productTable.getItems().clear();
 			ObservableList<Product> productList = FXCollections.observableArrayList(products);
-		 	//idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 	        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 	        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 	        stockColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("stock"));
 	        thresholdColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("threshold"));
 	        idField.setCellValueFactory(new PropertyValueFactory<Product,Integer>("id"));
 	        productTable.setItems(productList);
+	}
+	
+	private void deleteFile(String filePath) {
+		Path path = Paths.get(filePath);
+		try {
+            Files.delete(path);
+            System.out.println("Image file deleted successfully.");
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
 	}
 
 	@Override
