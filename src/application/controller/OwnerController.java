@@ -84,7 +84,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void updateOwnerInfoClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("UpdateOwnerInfo.fxml", event, user);
     }
 
     @FXML
