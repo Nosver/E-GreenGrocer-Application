@@ -84,8 +84,9 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="MyProfileButton" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" text="My Profile" />
+            <Button fx:id="MyProfileButton" layoutX="119.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" text="View My Profile" />
             <Text fx:id="WelcomeUserText" layoutX="231.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="177.33673095703125" />
+            <Button fx:id="startShoppingButton" layoutX="121.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#startShoppingButtonClicked" text="Start Shopping" />
       </children>
     </AnchorPane>
   </children>
