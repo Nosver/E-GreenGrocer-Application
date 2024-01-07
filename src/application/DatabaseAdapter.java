@@ -68,9 +68,9 @@ public class DatabaseAdapter implements Crud{
     }
     
     @Override
-    public  User getUserByID(int id) throws SQLException {
+    public  String getUserNameByID(int id) throws SQLException {
         
-            String query = "SELECT * FROM oop3.users where email = ?";
+            String query = "SELECT * FROM oop3.users where id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, String.valueOf(id));
@@ -79,15 +79,8 @@ public class DatabaseAdapter implements Crud{
                     if (resultSet.next()) {
                         // Retrieve user data from the result set
                         String storedUsername = resultSet.getString("name");
-                        String storedPassword = resultSet.getString("password");
-                        String storedEMail = resultSet.getString("email");
-                        String storedAddress = resultSet.getString("address");
-                        String storedRole = resultSet.getString("role");
-                        String storedId = resultSet.getString("id");
-                        // Create a User object with the retrieved data
-                        User user = new User(Integer.parseInt(storedId),storedUsername,storedPassword,storedEMail,storedRole,storedAddress);
                         
-                        return user;
+                        return storedUsername;
                     }
                 }
             }

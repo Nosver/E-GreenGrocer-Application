@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 
+import application.controller.CourrierHomeScreenController;
+import application.controller.CourrierOrderScreenController;
 import application.controller.CreateNewProductController;
 import application.controller.CustomerScreenController;
 import application.controller.DeleteProductController;
@@ -58,7 +60,15 @@ public class SceneSwitch {
                 	DeleteProductController controller = loader.getController();
                 	controller.setUser(user);
                 }
+                else if("CourrierHomeScreen.fxml".equals(fxmlFileName)){
+                	CourrierHomeScreenController controller = loader.getController();
+                	controller.setUser(user);
+                }
             	
+               /* else if("CourrierOrderScreen.fxml".equals(fxmlFileName)){
+                	CourrierOrderScreenController controller = loader.getController();
+                	controller.setUser(user);
+                }*/
             }
             
             Scene scene = new Scene(root);

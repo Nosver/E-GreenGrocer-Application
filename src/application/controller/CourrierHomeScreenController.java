@@ -1,61 +1,44 @@
 package application.controller;
 
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import application.DatabaseAdapter;
-import application.model.Chart;
+import application.SceneSwitch;
+import application.model.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class CourrierHomeScreenController {
 
     @FXML
-    private TableColumn<Chart, String> CustomerAdressColumn;
+    private Text CustomerAdressText;
 
     @FXML
-    private TableColumn<Chart, Integer> userIdColumn; // getUserID
+    private Text CustomerNameText;
+
+    @FXML
+    private Button MyProfileButton;
+
+    @FXML
+    private Button OrdersButton;
+
+    @FXML
+    private Text WelcomeUserText;
     
-    @FXML
-    private TableColumn<Chart, String> StateColumn;
+    private User user;
 
     @FXML
-    private TableColumn<Chart, LocalDateTime> DateColumn;
-
-    @FXML
-    private TableColumn<Chart, Double> TotalPriceColumn;
-
-    @FXML
-    private TableView<Chart> orderTable;
-    
-    private DatabaseAdapter db = new DatabaseAdapter();
-    
-    
-    private void loadPurchasedCharts() throws SQLException {
-        List<Chart> purchasedCharts = db.getPurchasedCharts();
-
-        orderTable.getItems().setAll(purchasedCharts);
+    void OrdersButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("CourrierOrderScreen.fxml", event, user);
     }
 
-    
-    
     @FXML
-    public void initialize() {
-        
-        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        TotalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-        StateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
-        DateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-        try {
-            loadPurchasedCharts();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    void SeeMyProfileClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("myProfileScreen.fxml", event, user);
+    }
+    public void setUser(User user) {
+        this.user = user;
+        WelcomeUserText.setText("Welcome, " + user.getName());
     }
 
-   
+
 }
