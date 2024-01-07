@@ -413,13 +413,14 @@ public class DatabaseAdapter implements Crud{
 		System.out.println("Chart is created");
 	}
 	
+	
 	public Chart getChart(User user) { 
 		
 		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
 		Chart chart = new Chart();
 		
 		try (PreparedStatement statement = connection.prepareStatement(chartQuery)){
-			 if(statement.getResultSet().equals(null)) {
+			 if(statement.getResultSet() == null) {
 				 createChart(user);
 				 return chart;
 			 }
@@ -448,9 +449,20 @@ public class DatabaseAdapter implements Crud{
 	         e.printStackTrace();
 	     }
 		 return chart;
+	}
+	
+	public void insertChartItem(Product product, double quantity, Chart chart) {
 		
+        String query = "INSERT INTO oop3.chartitem (chartId, productId, quantity) VALUES (?, ?, ?)";
+		
+        
+        
+        
 	}
 	
 	
 
+	
+	
 }
+
