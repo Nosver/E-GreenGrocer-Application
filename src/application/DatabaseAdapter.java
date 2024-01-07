@@ -233,4 +233,23 @@ public class DatabaseAdapter implements Crud{
 	        }
 	}
 
+	@Override
+	public void UpdateProductById(Product product) throws SQLException {
+   	 String updateQuery = "UPDATE oop3.product SET name=?, stock=?, price=?, threshold=?, imagePath=? WHERE id=?";
+   	 try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
+   		 statement.setString(1,product.getName());
+   		 statement.setDouble(2, product.getStock());
+   		 statement.setDouble(3, product.getPrice());
+   		 statement.setDouble(4, product.getThreshold());
+   		 statement.setString(5,product.getImagePath());
+   		 statement.setInt(6,product.getId());
+   		 
+   		statement.executeUpdate();
+	   	 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
+	}
+
 }

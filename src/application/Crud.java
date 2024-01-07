@@ -15,4 +15,5 @@ public interface Crud {
 	 public void insertProduct(Product product) throws SQLException;
 	 public void deleteProduct(Product product)throws SQLException;
 	 public ArrayList<Product> getAllProductsWithId() throws SQLException;
+	 public void UpdateProductById(Product product) throws SQLException;
 }

@@ -165,11 +165,10 @@ public class CreateNewProductController {
     }
 
     @FXML
-    void chooseImageButtonClicked(MouseEvent event) throws MalformedURLException, SQLException {
+    void chooseImageButtonClicked(MouseEvent event) throws MalformedURLException {
     		
     		FileChooser fileChooser = new FileChooser();
     		fileChooser.setTitle("Choose an image");
-    		//fileChooser.setInitialDirectory(new File("C:"));
     		fileChooser.getExtensionFilters().addAll(
     				new FileChooser.ExtensionFilter("All images", "*.svg","*.png","*.jpg","*.jpeg"),	
     				new FileChooser.ExtensionFilter("JPG Image", "*.jpg"),

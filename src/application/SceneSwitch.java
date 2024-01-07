@@ -9,6 +9,7 @@ import application.controller.ForgotPasswordScreenController1;
 import application.controller.ForgotPasswordScreenController2;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
+import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +57,10 @@ public class SceneSwitch {
                 }
                 else if("deleteProductScreen.fxml".equals(fxmlFileName)){
                 	DeleteProductController controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("UpdateProductScreen.fxml".equals(fxmlFileName)){
+                	UpdateProductController controller = loader.getController();
                 	controller.setUser(user);
                 }
             	
