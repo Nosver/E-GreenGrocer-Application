@@ -18,9 +18,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
-public class ViewActiveOrderController {
+public class ViewPastOrderController {
 
-    @FXML
+	@FXML
     private Button BackButton;
 
     @FXML
@@ -56,7 +56,7 @@ public class ViewActiveOrderController {
     }
     
     private void loadPurchasedCharts() throws SQLException {
-        List<Chart> purchasedCharts = db.getPurchasedAndActiveCharts();
+        List<Chart> purchasedCharts = db.getDeliveredCharts();
 
         activeOrdersTable.getItems().setAll(purchasedCharts);
     }
@@ -96,8 +96,5 @@ public class ViewActiveOrderController {
             return "UnknownUser";
         }
     }
-    
-
-
     
 }

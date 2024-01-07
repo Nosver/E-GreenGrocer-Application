@@ -25,4 +25,5 @@ public interface Crud {
 	ArrayList<Chart> getActiveChart() throws SQLException;
 	void UpdateChartState(Chart chart) throws SQLException;
 	public List<Chart> getPurchasedAndActiveCharts() throws SQLException;
+	public List<Chart> getDeliveredCharts() throws SQLException;
 }
