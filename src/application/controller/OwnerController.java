@@ -69,7 +69,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void employCarrierButtonClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("HireCarrierScreen.fxml", event, user);
     }
 
     @FXML
