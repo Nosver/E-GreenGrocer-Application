@@ -41,10 +41,11 @@ public class ProductItemController {
     	
 		DatabaseAdapter databaseAdapter = new DatabaseAdapter();
 		Chart chart = databaseAdapter.getChart(user);
-		System.out.println(chart.getState());
-		System.out.println(chart.getTotalPrice());
-		System.out.println(chart.getDate());
-		System.out.println(chart.getUserId());
+		
+		// chartItems insert
+		
+		// sql insert
+		
     }
     
     public void setProductItem(Product product) {

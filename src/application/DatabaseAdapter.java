@@ -171,6 +171,22 @@ public class DatabaseAdapter implements Crud{
     	
     }
     
+    @Override
+    public void UpdateChartState(Chart chart) throws SQLException {
+    	 String updateQuery = "UPDATE oop3.Chart SET state = ? WHERE chartId = ?";
+    	 
+    	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+    		preparedStatement.setInt(2, chart.getChartId());
+    		
+            preparedStatement.setString(1, chart.getState());
+            
+            
+            preparedStatement.executeUpdate();
+    	}
+    	
+    }
+    
     public List<Chart> getPurchasedCharts() throws SQLException {
     	String query = "SELECT * FROM oop3.chart WHERE state = 'purchased'";
 
@@ -181,12 +197,13 @@ public class DatabaseAdapter implements Crud{
                 List<Chart> purchasedCharts = new ArrayList<>();
 
                 while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
                     int userId = resultSet.getInt("userId");
                     double totalPrice = resultSet.getDouble("totalPrice");
                     String state = resultSet.getString("state");
                     LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
 
-                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
                     purchasedCharts.add(chart);
                 }
 
@@ -206,12 +223,13 @@ public class DatabaseAdapter implements Crud{
             	ArrayList<Chart> activeCharts = new ArrayList<>();
 
                 while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
                     int userId = resultSet.getInt("userId");
                     double totalPrice = resultSet.getDouble("totalPrice");
                     String state = resultSet.getString("state");
                     LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
 
-                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
                     activeCharts.add(chart);
                 }
 
@@ -356,6 +374,9 @@ public class DatabaseAdapter implements Crud{
 	     }
 		
 	}
+	
+	
+	
 
 	@Override
 	public ArrayList<User> getAllCarriers() throws SQLException {
@@ -397,11 +418,34 @@ public class DatabaseAdapter implements Crud{
 	}
 	
 	
-	public Chart getChart(User user) { // The chart might not be exist
+	public void createChart(User user) throws SQLException {
+		
+		String chartQuery = "INSERT INTO oop3.chart (userId,totalPrice,state,date) VALUES (?,?,?,?)";
+		
+		try (PreparedStatement preparedStatement = connection.prepareStatement(chartQuery)) {
+            
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setDouble(2, 0);
+            preparedStatement.setString(3, "onChart");
+            preparedStatement.setDate(4, null);
+            
+            preparedStatement.executeUpdate();
+        }
+		System.out.println("Chart is created");
+	}
+	
+	
+	public Chart getChart(User user) { 
+		
 		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
 		Chart chart = new Chart();
 		
 		try (PreparedStatement statement = connection.prepareStatement(chartQuery)){
+			 if(statement.getResultSet() == null) {
+				 createChart(user);
+				 return chart;
+			 }
+
 			 statement.setInt(1, user.getId());
 			 try (ResultSet resultSet = statement.executeQuery()) {
                  if (resultSet.next()) {
@@ -426,9 +470,20 @@ public class DatabaseAdapter implements Crud{
 	         e.printStackTrace();
 	     }
 		 return chart;
+	}
+	
+	public void insertChartItem(Product product, double quantity, Chart chart) {
 		
+        String query = "INSERT INTO oop3.chartitem (chartId, productId, quantity) VALUES (?, ?, ?)";
+		
+        
+        
+        
 	}
 	
 	
 
+	
+	
 }
+

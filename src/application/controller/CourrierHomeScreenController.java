@@ -35,6 +35,9 @@ public class CourrierHomeScreenController {
     @FXML
     private Text WelcomeUserText;
     
+    @FXML
+    private Button OrderDeliveredButton;
+    
     private User user;
     
     private DatabaseAdapter db = new DatabaseAdapter();
@@ -45,18 +48,20 @@ public class CourrierHomeScreenController {
     @FXML
     private void loadActiveCharts() throws SQLException {
         ArrayList<Chart> activeCharts = db.getActiveChart();
+        
         this.chart = activeCharts.get(0);
-        System.out.println();
+       
     }
 
     @FXML
     public void initialize() {
         
     	try {
-    		
-            loadActiveCharts();
-            CustomerNameText.setText(getUserName(chart.getUserId())); 
-            CustomerAdressText.setText(getCustomerAddress(chart.getUserId())); 
+    		if(!db.getActiveChart().isEmpty()) {
+	            loadActiveCharts();
+	            CustomerNameText.setText(getUserName(chart.getUserId())); 
+	            CustomerAdressText.setText(getCustomerAddress(chart.getUserId())); 
+    		}
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,6 +99,12 @@ public class CourrierHomeScreenController {
     public void setUser(User user) {
         this.user = user;
         WelcomeUserText.setText("Welcome, " + user.getName());
+    }
+    
+    
+    @FXML
+    void OrderDeliveredClicked(MouseEvent event) {
+    	
     }
 
 

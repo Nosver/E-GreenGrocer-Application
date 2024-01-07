@@ -9,6 +9,7 @@ import javafx.util.Pair;
 
 public class Chart {
 		int userId;
+		int chartId;
 		ArrayList<Pair<Product,Double>> items;
 		double totalPrice;
 		String state; //onChart // purchased //active //delivered
@@ -19,6 +20,14 @@ public class Chart {
 			this.date=null;
 		}
 		
+		public int getChartId() {
+			return chartId;
+		}
+
+		public void setChartId(int chartId) {
+			this.chartId = chartId;
+		}
+
 		public int getUserId() {
 			return userId;
 		}
@@ -61,6 +70,17 @@ public class Chart {
 
 		public Chart(int userId, double totalPrice, String state, LocalDateTime date) {
 			super();
+			this.userId = userId;
+			
+			this.totalPrice = totalPrice;
+			this.state = state;
+			this.date = date;
+		}
+		
+		public Chart(int chartId, int userId, double totalPrice, String state, LocalDateTime date) {
+			super();
+			
+			this.chartId = chartId;
 			this.userId = userId;
 			
 			this.totalPrice = totalPrice;
