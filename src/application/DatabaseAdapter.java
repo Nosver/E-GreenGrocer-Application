@@ -1,12 +1,17 @@
 
 package application;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+
+import application.model.Chart;
 import application.model.Product;
 import application.model.User;
 
@@ -63,6 +68,54 @@ public class DatabaseAdapter implements Crud{
     }
     
     @Override
+    public  String getUserNameByID(int id) throws SQLException {
+        
+            String query = "SELECT * FROM oop3.users where id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, String.valueOf(id));
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Retrieve user data from the result set
+                        String storedUsername = resultSet.getString("name");
+                        
+                        return storedUsername;
+                    }
+                }
+            }
+        
+
+        return null; 
+        
+    }
+    
+    @Override
+    public  String getCustomerAddressByID(int id) throws SQLException {
+        
+            String query = "SELECT * FROM oop3.users where id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, String.valueOf(id));
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Retrieve user data from the result set
+                        String customerAdress = resultSet.getString("address");
+                        
+                        return customerAdress;
+                    }
+                }
+            }
+        
+
+        return null; 
+        
+    }
+    
+    
+    
+    @Override
     public  void resetPassword(User user , String password) throws SQLException {
     		
             String updateQuery = "UPDATE oop3.users SET password = ? WHERE id = ?";
@@ -116,6 +169,31 @@ public class DatabaseAdapter implements Crud{
     	}
     	
     }
+    
+    public List<Chart> getPurchasedCharts() throws SQLException {
+    	String query = "SELECT * FROM Chart WHERE state = 'purchased'";
+
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                List<Chart> purchasedCharts = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    int userId = resultSet.getInt("userId");
+                    double totalPrice = resultSet.getDouble("totalPrice");
+                    String state = resultSet.getString("state");
+                    LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
+
+                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    purchasedCharts.add(chart);
+                }
+
+                return purchasedCharts;
+            }
+        }
+    }
+
     
     @Override
     public  ArrayList<Product> getAllProducts() throws SQLException{
@@ -231,6 +309,64 @@ public class DatabaseAdapter implements Crud{
 	            e.printStackTrace();
 	            
 	        }
+	}
+
+	@Override
+	public void UpdateProductById(Product product) throws SQLException {
+   	 String updateQuery = "UPDATE oop3.product SET name=?, stock=?, price=?, threshold=?, imagePath=? WHERE id=?";
+   	 try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
+   		 statement.setString(1,product.getName());
+   		 statement.setDouble(2, product.getStock());
+   		 statement.setDouble(3, product.getPrice());
+   		 statement.setDouble(4, product.getThreshold());
+   		 statement.setString(5,product.getImagePath());
+   		 statement.setInt(6,product.getId());
+   		 
+   		statement.executeUpdate();
+	   	 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
+	}
+
+	@Override
+	public ArrayList<User> getAllCarriers() throws SQLException {
+		String query = "SELECT * FROM oop3.users WHERE role ='carrier' ";
+	    
+	    try (PreparedStatement statement = connection.prepareStatement(query);
+	         ResultSet resultSet = statement.executeQuery()) {
+
+	        ArrayList<User> carriers = new ArrayList<>();
+
+	        while (resultSet.next()) {
+	            int id = resultSet.getInt("id");
+	            String name = resultSet.getString("name");
+	            String role = resultSet.getString("role");
+	            String password = resultSet.getString("password");
+	            String email = resultSet.getString("email");
+	            String address = resultSet.getString("address");
+
+	            User carrier = new User(id, name, password, email, role, address);
+	            carriers.add(carrier);
+	        }
+
+	        return carriers;
+	    }
+	}
+
+	@Override
+	public void deleteUser(User user) throws SQLException {
+		String deleteStatement = "DELETE FROM oop3.users WHERE id = ?";
+		
+		 try (PreparedStatement statement = connection.prepareStatement(deleteStatement)){
+			 statement.setInt(1,user.getId());
+			 statement.executeUpdate();
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
 	}
 
 }

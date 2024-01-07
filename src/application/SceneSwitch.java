@@ -2,13 +2,17 @@ package application;
 
 import java.io.IOException;
 
+import application.controller.CourrierHomeScreenController;
+import application.controller.CourrierOrderScreenController;
 import application.controller.CreateNewProductController;
 import application.controller.CustomerScreenController;
 import application.controller.DeleteProductController;
+import application.controller.FireCarrierController;
 import application.controller.ForgotPasswordScreenController1;
 import application.controller.ForgotPasswordScreenController2;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
+import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +62,23 @@ public class SceneSwitch {
                 	DeleteProductController controller = loader.getController();
                 	controller.setUser(user);
                 }
+                else if("CourrierHomeScreen.fxml".equals(fxmlFileName)){
+                	CourrierHomeScreenController controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("UpdateProductScreen.fxml".equals(fxmlFileName)){
+                	UpdateProductController controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("FireCarrierScreen.fxml".equals(fxmlFileName)){
+                	FireCarrierController controller = loader.getController();
+                	controller.setUser(user);
+                }
             	
+                else if("CourrierOrderScreen.fxml".equals(fxmlFileName)){
+                	CourrierOrderScreenController controller = loader.getController();
+                	controller.setUser(user);
+                }
             }
             
             Scene scene = new Scene(root);
