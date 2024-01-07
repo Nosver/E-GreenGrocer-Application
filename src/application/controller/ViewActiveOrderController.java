@@ -1,5 +1,8 @@
 package application.controller;
 
+import java.time.LocalDateTime;
+
+import application.model.Chart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -12,23 +15,28 @@ public class ViewActiveOrderController {
     private Button BackButton;
 
     @FXML
-    private TableColumn<?, ?> State;
+    private TableColumn<Chart, String> State;
 
     @FXML
-    private TableView<?> activeOrdersTable;
+    private TableView<Chart> activeOrdersTable;
 
     @FXML
-    private TableColumn<?, ?> customerName;
+    private TableColumn<Chart, String> customerName;
 
     @FXML
-    private TableColumn<?, ?> orderDate;
+    private TableColumn<Chart, LocalDateTime> orderDate;
 
     @FXML
-    private TableColumn<?, ?> totalPrice;
+    private TableColumn<Chart, Double> totalPrice;
 
     @FXML
     void backButtonClicked(MouseEvent event) {
 
     }
-
+    
+    @FXML
+    public void initialize()
+    {
+    	
+    }
 }
