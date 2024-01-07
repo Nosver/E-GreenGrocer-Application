@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.model.Chart;
 import application.model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,17 +22,20 @@ public class ProductItemController {
 
     @FXML
     private Text PRODUCT_NAME;
+    
+    @FXML
+    private Text PRODUCT_PRICE;
         
-    private void handlePurchaseButtonClicked(Product product) {
+    private void handlePurchaseButtonClicked(Chart chart, Product product) {
         
     }
     
     public void setProductItem(Product product) {
     	PRODUCT_NAME.setText(product.getName());
     	PRODUCT_AMOUNT.setPromptText("Enter the amount");
-    	System.out.println(product.getImagePath());
     	Image image = new Image(product.getImagePath());
     	PRODUCT_IMG.setImage(image);
+    	PRODUCT_PRICE.setText(Double.toString(product.getPrice()));
     	PRODUCT_BUTTON.setOnMouseClicked(event -> handlePurchaseButtonClicked(product));
     }
 

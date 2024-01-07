@@ -18,6 +18,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -36,10 +37,20 @@ public class productScreenController {
 
 	@FXML
 	private FlowPane PRODUCTS_FLOW;
+	
+    @FXML
+    private Button CART_BUTTON;
+
+    @FXML
+    private ImageView CHART_IMG;
 
 
 	public void initialize() throws IOException {
 
+    	Image image = new Image("images/cartA.png");
+		CHART_IMG.setImage(image);
+
+		
 		DatabaseAdapter db = new DatabaseAdapter();
 		ArrayList<Product> products = null;
 		System.out.println("dcsd");
