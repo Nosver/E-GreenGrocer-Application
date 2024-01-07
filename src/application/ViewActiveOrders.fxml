@@ -37,11 +37,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CustomerScreenController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ViewActiveOrderController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -83,11 +84,17 @@
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Button fx:id="MyProfileButton" layoutX="119.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" text="View My Profile" />
-            <Text fx:id="WelcomeUserText" layoutX="231.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="177.33673095703125" />
-            <Button fx:id="startShoppingButton" layoutX="121.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#startShoppingButtonClicked" text="Start Shopping" />
-      </children>
+         <children>
+            <TableView fx:id="activeOrdersTable" layoutX="91.0" layoutY="50.0" prefHeight="291.0" prefWidth="457.0">
+              <columns>
+                <TableColumn fx:id="customerName" prefWidth="100.79998779296875" text="Customer Name" />
+                <TableColumn fx:id="totalPrice" prefWidth="86.39997863769531" text="TotalPrice" />
+                  <TableColumn fx:id="orderDate" prefWidth="130.4000244140625" text="OrderDate" />
+                  <TableColumn fx:id="State" prefWidth="140.800048828125" text="State" />
+              </columns>
+            </TableView>
+            <Button fx:id="BackButton" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
+         </children>
     </AnchorPane>
   </children>
 </VBox>

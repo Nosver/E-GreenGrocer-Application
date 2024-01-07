@@ -19,6 +19,9 @@ public class CustomerScreenController   {
     @FXML
     private Text WelcomeUserText;
     
+    @FXML
+    private Button startShoppingButton;
+    
     private User user;
 
     @FXML
@@ -31,7 +34,10 @@ public class CustomerScreenController   {
         WelcomeUserText.setText("Welcome, " + user.getName());
     }
 
-	
+    @FXML
+    void startShoppingButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("newProductScreen.fxml", event, user);
+    }
 	
 
 }
