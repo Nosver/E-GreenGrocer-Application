@@ -103,7 +103,20 @@ public class CourrierHomeScreenController {
     
     
     @FXML
-    void OrderDeliveredClicked(MouseEvent event) {
+    void OrderDeliveredClicked(MouseEvent event) throws SQLException {
+    	 ArrayList<Chart> activeCharts = db.getActiveChart(); 
+    	 activeCharts.get(0).setState("delivered");
+    	 db.UpdateChartState(activeCharts.get(0));
+    	 
+    	 try {
+     		if(!db.getActiveChart().isEmpty()) {
+ 	            loadActiveCharts();
+ 	            CustomerNameText.setText(getUserName(chart.getUserId())); 
+ 	            CustomerAdressText.setText(getCustomerAddress(chart.getUserId())); 
+     		}
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
     	
     }
 
