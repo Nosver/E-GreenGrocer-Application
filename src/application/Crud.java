@@ -24,4 +24,5 @@ public interface Crud {
 	String getCustomerAddressByID(int id) throws SQLException;
 	ArrayList<Chart> getActiveChart() throws SQLException;
 	void UpdateChartState(Chart chart) throws SQLException;
+	public List<Chart> getPurchasedAndActiveCharts() throws SQLException;
 }
