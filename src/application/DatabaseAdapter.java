@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -415,5 +416,62 @@ public class DatabaseAdapter implements Crud{
 	     }
 		
 	}
+	
+	
+	public void createChart(User user) throws SQLException {
+		
+		String chartQuery = "INSERT INTO oop3.chart (userId,totalPrice,state,date) VALUES (?,?,?,?)";
+		
+		try (PreparedStatement preparedStatement = connection.prepareStatement(chartQuery)) {
+            
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setDouble(2, 0);
+            preparedStatement.setString(3, "onChart");
+            preparedStatement.setDate(4, null);
+            
+            preparedStatement.executeUpdate();
+        }
+		System.out.println("Chart is created");
+	}
+	
+	public Chart getChart(User user) { 
+		
+		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
+		Chart chart = new Chart();
+		
+		try (PreparedStatement statement = connection.prepareStatement(chartQuery)){
+			 if(statement.getResultSet().equals(null)) {
+				 createChart(user);
+				 return chart;
+			 }
+
+			 statement.setInt(1, user.getId());
+			 try (ResultSet resultSet = statement.executeQuery()) {
+                 if (resultSet.next()) {
+                	 
+                     int storedUserId = resultSet.getInt("userId");
+                     double storedTotalPrice = resultSet.getDouble("totalPrice");
+                     String storedState = resultSet.getString("state");
+                     String storedDateStr = resultSet.getString("date");
+                    
+                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                     LocalDateTime dateTime = LocalDateTime.parse(storedDateStr, formatter);
+                     
+                     chart.setUserId(storedUserId);
+                     chart.setTotalPrice(storedTotalPrice);
+                     chart.setState(storedState);
+                     chart.setDate(dateTime);
+                   
+                 }
+             }
+			 
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	     }
+		 return chart;
+		
+	}
+	
+	
 
 }
