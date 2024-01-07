@@ -32,8 +32,7 @@ public class CourrierOrderScreenController {
     private TableColumn<Chart, String> CustomerAdressColumn;
     
     
-    @FXML
-    private TableColumn<Chart, String> StateColumn;
+    
 
     @FXML
     private TableColumn<Chart, LocalDateTime> DateColumn;
@@ -70,12 +69,17 @@ public class CourrierOrderScreenController {
     	    }
     	});
        
+    	CustomerAdressColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Chart, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Chart, String> param) {
+                return new SimpleObjectProperty<>(getCustomerAddress(param.getValue().getUserId()));
+            }
+        });
     	
     	
     	
         
         TotalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-        StateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
         DateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         try {
@@ -92,6 +96,15 @@ public class CourrierOrderScreenController {
         } catch (SQLException e) {
             e.printStackTrace();
             return "UnknownUser";
+        }
+    }
+    
+    private String getCustomerAddress(Integer userId) {
+        try {
+            return db.getCustomerAddressByID(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "UnknownAddress";
         }
     }
    

@@ -19,4 +19,5 @@ public interface Crud {
 	 public void UpdateProductById(Product product) throws SQLException;
 	 public ArrayList<User> getAllCarriers() throws SQLException;
 	 public void deleteUser(User user) throws SQLException;
+	String getCustomerAddressByID(int id) throws SQLException;
 }

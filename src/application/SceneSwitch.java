@@ -75,10 +75,10 @@ public class SceneSwitch {
                 	controller.setUser(user);
                 }
             	
-               /* else if("CourrierOrderScreen.fxml".equals(fxmlFileName)){
+                else if("CourrierOrderScreen.fxml".equals(fxmlFileName)){
                 	CourrierOrderScreenController controller = loader.getController();
                 	controller.setUser(user);
-                }*/
+                }
             }
             
             Scene scene = new Scene(root);

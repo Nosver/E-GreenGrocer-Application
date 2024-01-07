@@ -91,6 +91,31 @@ public class DatabaseAdapter implements Crud{
     }
     
     @Override
+    public  String getCustomerAddressByID(int id) throws SQLException {
+        
+            String query = "SELECT * FROM oop3.users where id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, String.valueOf(id));
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Retrieve user data from the result set
+                        String customerAdress = resultSet.getString("address");
+                        
+                        return customerAdress;
+                    }
+                }
+            }
+        
+
+        return null; 
+        
+    }
+    
+    
+    
+    @Override
     public  void resetPassword(User user , String password) throws SQLException {
     		
             String updateQuery = "UPDATE oop3.users SET password = ? WHERE id = ?";
