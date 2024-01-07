@@ -2,7 +2,9 @@ package application;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import application.model.Chart;
 import application.model.Product;
 import application.model.User;
 
@@ -20,4 +22,5 @@ public interface Crud {
 	 public ArrayList<User> getAllCarriers() throws SQLException;
 	 public void deleteUser(User user) throws SQLException;
 	String getCustomerAddressByID(int id) throws SQLException;
+	ArrayList<Chart> getActiveChart() throws SQLException;
 }
