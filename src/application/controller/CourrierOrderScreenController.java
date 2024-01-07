@@ -31,9 +31,6 @@ public class CourrierOrderScreenController {
     @FXML
     private TableColumn<Chart, String> CustomerAdressColumn;
     
-    
-    
-
     @FXML
     private TableColumn<Chart, LocalDateTime> DateColumn;
 
@@ -117,6 +114,41 @@ public class CourrierOrderScreenController {
     	SceneSwitch.switchScene("CourrierHomeScreen.fxml", event, user);
     }
 
+    @FXML
+    void SetActiveButtonClicked(MouseEvent event) throws SQLException {
+    	Chart selectedOrder = orderTable.getSelectionModel().getSelectedItem();
+    	selectedOrder.setState("active");
+   
+    	db.UpdateChartState(selectedOrder);
+    	
+    	userNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Chart, String>, ObservableValue<String>>() {
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Chart, String> param) {
+    	        return new SimpleObjectProperty<>(getUserName(param.getValue().getUserId()));
+    	    }
+    	});
+       
+    	CustomerAdressColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Chart, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Chart, String> param) {
+                return new SimpleObjectProperty<>(getCustomerAddress(param.getValue().getUserId()));
+            }
+        });
+    	
+    	
+    	
+        
+        TotalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        DateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        try {
+            loadPurchasedCharts();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	
+    }
 
    
 }

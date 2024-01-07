@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `ChartItem` (
 INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
 ('John Doe', '123456', 'example@mail.com', 'owner', null),
 ('Jane Doe', '123456', 'example1@mail.com', 'customer', 'abc mahallesi def sokak'),
-('John Smith', '123456', 'example2@mail.com', 'carrier', null);
+('Ahmet ', '123456', 'example2@mail.com', 'carrier', null);
 
 -- Inserting sample products
 INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUES
@@ -56,8 +56,8 @@ INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUE
 
 -- Inserting a sample chart
 INSERT INTO `Chart` (`userId`, `totalPrice`, `state`,`date`) VALUES
-(2, 25.0, 'purchased' ,'2024-01-05 12:30:00'),
-(2, 40.0, 'active' ,'2024-01-05 12:40:00');
+(2, 25.0, 'active' ,'2024-01-05 12:30:00'),
+(2, 40.0, 'purchased' ,'2024-01-05 12:40:00');
 
 
 -- Getting the auto-generated chartId for the newly inserted chart

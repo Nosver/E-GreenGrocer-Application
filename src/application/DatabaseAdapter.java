@@ -170,6 +170,22 @@ public class DatabaseAdapter implements Crud{
     	
     }
     
+    @Override
+    public void UpdateChartState(Chart chart) throws SQLException {
+    	 String updateQuery = "UPDATE oop3.Chart SET state = ? WHERE chartId = ?";
+    	 
+    	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+    		preparedStatement.setInt(2, chart.getChartId());
+    		
+            preparedStatement.setString(1, chart.getState());
+            
+            
+            preparedStatement.executeUpdate();
+    	}
+    	
+    }
+    
     public List<Chart> getPurchasedCharts() throws SQLException {
     	String query = "SELECT * FROM oop3.chart WHERE state = 'purchased'";
 
@@ -180,12 +196,13 @@ public class DatabaseAdapter implements Crud{
                 List<Chart> purchasedCharts = new ArrayList<>();
 
                 while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
                     int userId = resultSet.getInt("userId");
                     double totalPrice = resultSet.getDouble("totalPrice");
                     String state = resultSet.getString("state");
                     LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
 
-                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
                     purchasedCharts.add(chart);
                 }
 
@@ -205,12 +222,13 @@ public class DatabaseAdapter implements Crud{
             	ArrayList<Chart> activeCharts = new ArrayList<>();
 
                 while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
                     int userId = resultSet.getInt("userId");
                     double totalPrice = resultSet.getDouble("totalPrice");
                     String state = resultSet.getString("state");
                     LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
 
-                    Chart chart = new Chart(userId, totalPrice, state, date);
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
                     activeCharts.add(chart);
                 }
 
@@ -355,6 +373,9 @@ public class DatabaseAdapter implements Crud{
 	     }
 		
 	}
+	
+	
+	
 
 	@Override
 	public ArrayList<User> getAllCarriers() throws SQLException {
