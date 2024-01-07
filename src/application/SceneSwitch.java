@@ -13,8 +13,10 @@ import application.controller.ForgotPasswordScreenController2;
 import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
+import application.controller.ProductItemController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
+import application.controller.productScreenController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -87,6 +89,10 @@ public class SceneSwitch {
                 else if("HireCarrierScreen.fxml".equals(fxmlFileName)){
                 	HireCarrierController controller = loader.getController();
                 	controller.setUser(user);
+                }
+                else if("newProductScreen.fxml".equals(fxmlFileName)){
+                	productScreenController controller = new productScreenController(user); // constructor used // PROBLEM
+                	controller = loader.getController();
                 }
             	
             }

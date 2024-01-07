@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import application.DatabaseAdapter;
 import application.model.Product;
+import application.model.User;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -44,16 +45,25 @@ public class productScreenController {
     @FXML
     private ImageView CHART_IMG;
 
-
-	public void initialize() throws IOException {
-
-    	Image image = new Image("images/cartA.png");
+    private User user = null;
+    
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public productScreenController() {
+		
+	}
+    
+	public productScreenController(User user) throws IOException {
+		this.user = user;
+		Image image = new Image("images/cartA.png");
 		CHART_IMG.setImage(image);
-
+		
 		
 		DatabaseAdapter db = new DatabaseAdapter();
 		ArrayList<Product> products = null;
-		System.out.println("dcsd");
+		System.out.println(user.getId());
 
 		try {
 			products = db.getAllProducts();
@@ -62,8 +72,7 @@ public class productScreenController {
 			e.printStackTrace();
 		}
 
-
-		
+	
 		for (Product product : products) {
 			
 			FXMLLoader fxmlLoader = new FXMLLoader();
@@ -73,10 +82,18 @@ public class productScreenController {
 			
 	        ProductItemController productitemcontroller = fxmlLoader.getController();
 	        productitemcontroller.setProductItem(product);
+        	productitemcontroller.setUser(user);
+    		System.out.println(user.getId());
+    		System.out.println(user.getName());
+
 	        
 	        PRODUCTS_FLOW.getChildren().add(vbox);
 	    }
-
+		
 	}
+	
+
+
+
 
 }

@@ -454,6 +454,7 @@ public class DatabaseAdapter implements Crud{
                      double storedTotalPrice = resultSet.getDouble("totalPrice");
                      String storedState = resultSet.getString("state");
                      String storedDateStr = resultSet.getString("date");
+                     int storedChartId = resultSet.getInt("chartId");
                     
                      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                      LocalDateTime dateTime = LocalDateTime.parse(storedDateStr, formatter);
@@ -462,7 +463,7 @@ public class DatabaseAdapter implements Crud{
                      chart.setTotalPrice(storedTotalPrice);
                      chart.setState(storedState);
                      chart.setDate(dateTime);
-                   
+                     chart.setChartId(storedChartId);
                  }
              }
 			 
@@ -472,11 +473,18 @@ public class DatabaseAdapter implements Crud{
 		 return chart;
 	}
 	
-	public void insertChartItem(Product product, double quantity, Chart chart) {
+	public void insertChartItem(Product product, double quantity, Chart chart) throws SQLException {
 		
         String query = "INSERT INTO oop3.chartitem (chartId, productId, quantity) VALUES (?, ?, ?)";
 		
-        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            
+            preparedStatement.setInt(1, chart.getChartId());
+            preparedStatement.setInt(2, product.getId());
+            preparedStatement.setDouble(3, quantity);
+            
+            preparedStatement.executeUpdate();
+        }
         
         
 	}
