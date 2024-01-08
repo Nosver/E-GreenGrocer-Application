@@ -90,10 +90,11 @@ public class SceneSwitch {
                 	HireCarrierController controller = loader.getController();
                 	controller.setUser(user);
                 }
-                else if("newProductScreen.fxml".equals(fxmlFileName)){
-                	productScreenController controller = new productScreenController(user); // constructor used // PROBLEM
-                	controller = loader.getController();
+                else if ("newProductScreen.fxml".equals(fxmlFileName)) {
+                    productScreenController controller = loader.getController();
+                    controller.initializeWithData(user); // Pass the user to the controller
                 }
+
             	
             }
             
