@@ -14,6 +14,17 @@ public class Chart {
 		String state; //onChart // purchased //active //delivered
 		LocalDateTime date;
 		
+		public void print() {
+			System.out.println();
+			System.out.println("Chart: " + this);
+			System.out.println("UserID: " + userId);
+			System.out.println("chartId: " + chartId);
+			System.out.println("Total Price: " + totalPrice);
+			System.out.println("State: " + state);
+			System.out.println("Date: " + date);	
+			System.out.println();
+		}
+		
 		public Chart() {
 			this.state="onChart";
 			this.date=null;
@@ -91,6 +102,17 @@ public class Chart {
 		public void pushToArray(Pair<Product,Double> pair) {
 			items.add(pair);
 		}
+		
+		
+		public void calculatePrice() {
+			totalPrice = 0;
+			
+			for(Pair<Product, Double> pair : items) {
+				totalPrice += pair.getKey().getPrice() * pair.getValue();
+			}
+			
+		}
+		
 		
 		
 }
