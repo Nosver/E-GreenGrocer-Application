@@ -38,6 +38,9 @@ public class CourrierHomeScreenController {
     @FXML
     private Button OrderDeliveredButton;
     
+    @FXML
+    private Button ShowDetailsButton;
+    
     private User user;
     
     private DatabaseAdapter db = new DatabaseAdapter();
@@ -114,11 +117,31 @@ public class CourrierHomeScreenController {
  	            CustomerNameText.setText(getUserName(chart.getUserId())); 
  	            CustomerAdressText.setText(getCustomerAddress(chart.getUserId())); 
      		}
+     		else {
+     			CustomerNameText.setText(getUserName(null)); 
+  	            CustomerAdressText.setText(getCustomerAddress(null)); 
+     			
+     		}
          } catch (SQLException e) {
              e.printStackTrace();
          }
     	
     }
+    
+
+    @FXML
+    void ShowDetailsButtonClicked(MouseEvent event) throws SQLException {
+    	if(!db.getActiveChart().isEmpty()) {
+    		 SceneSwitch.switchScene("PurchasedProducts.fxml", event, user);
+    		 
+		}
+
+    }
+    
+    
+    
+    
+    
 
 
 }

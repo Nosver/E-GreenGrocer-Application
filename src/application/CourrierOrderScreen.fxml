@@ -30,5 +30,6 @@
         </TableView>
       <Button fx:id="BackButton1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#BackButtonClicked" text="Back" />
       <Button fx:id="SetActiveButton" layoutX="517.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#SetActiveButtonClicked" text="SetActive" />
+      <Button fx:id="ShowDetailsButton" layoutX="417.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#ShowDetailsButtonClicked" text="ShowDetails" />
     </children>
 </AnchorPane>

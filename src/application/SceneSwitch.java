@@ -14,6 +14,7 @@ import application.controller.ForgotPasswordScreenController2;
 import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
+import application.controller.PurchasedProductsController;
 import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
@@ -104,6 +105,10 @@ public class SceneSwitch {
                 }
                 else if("UpdateOwnerInfo.fxml".equals(fxmlFileName)){
                 	UpdateOwnerInfoController controller = loader.getController();
+                	controller.setUser(user);
+                }
+                else if("PurchasedProducts.fxml".equals(fxmlFileName)) {
+                	PurchasedProductsController controller= loader.getController();
                 	controller.setUser(user);
                 }
             	

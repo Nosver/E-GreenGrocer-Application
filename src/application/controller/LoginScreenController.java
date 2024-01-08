@@ -19,6 +19,8 @@ public class LoginScreenController {
 
     @FXML
     private Button createuser_BUTTON;
+    @FXML
+    private TextField PasswordText;
     
     @FXML
     private TextField EMailBox;
@@ -97,9 +99,18 @@ public class LoginScreenController {
     }
 
     @FXML
-    void showPasswordButtonClicked(MouseEvent event) {
+    void changeVisibilty(MouseEvent event) {
+    	if(showPasswordButton.isSelected()) {
+    		PasswordText.setText(PasswordBox.getText());
+    		PasswordText.setVisible(true);	
+    		PasswordBox.setVisible(false);		
+    		return;
+
+    	}
+    	PasswordBox.setText(PasswordText.getText());
+    	PasswordBox.setVisible(true);
+    	PasswordText.setVisible(false);	
     	
-    		
     }
    
 

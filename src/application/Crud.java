@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import application.model.Chart;
 import application.model.Product;
 import application.model.User;
@@ -26,4 +28,7 @@ public interface Crud {
 	void UpdateChartState(Chart chart) throws SQLException;
 	public List<Chart> getPurchasedAndActiveCharts() throws SQLException;
 	public List<Chart> getDeliveredCharts() throws SQLException;
+	ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throws SQLException;
+	String getProductNameByProductId(int productId) throws SQLException;
+	Double getProductPriceByProductId(int productId) throws SQLException;
 }

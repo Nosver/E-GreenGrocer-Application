@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `ChartItem` (
 INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
 ('John Doe', '123456', 'example@mail.com', 'owner', null),
 ('Jane Doe', '123456', 'example1@mail.com', 'customer', 'abc mahallesi def sokak'),
-('Ahmet ', '123456', 'example2@mail.com', 'carrier', null);
+('Ahmet Can Soral ', '123456', 'example2@mail.com', 'carrier', null);
 
 -- Inserting sample products
 INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUES
