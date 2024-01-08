@@ -91,6 +91,14 @@ public class Chart {
 		public void pushToArray(Pair<Product,Double> pair) {
 			items.add(pair);
 		}
+
+		public Chart(int userId, int chartId, double totalPrice, String state) {
+			
+			this.userId = userId;
+			this.chartId = chartId;
+			this.totalPrice = totalPrice;
+			this.state = state;
+		}
 		
 		
 }

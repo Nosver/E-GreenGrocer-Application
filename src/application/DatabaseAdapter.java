@@ -543,7 +543,7 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 			 try (ResultSet resultSet = statement.executeQuery()) {
                  if (resultSet.next()) {
                 	 
-                	 System.out.println("Accessing to char from db");
+                	 
                      int storedUserId = resultSet.getInt("userId");
                      double storedTotalPrice = resultSet.getDouble("totalPrice");
                      String storedState = resultSet.getString("state");
@@ -670,6 +670,64 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
             }
         }
 	}
+
+	@Override
+	public Chart getChartByUserId(int userId) throws SQLException {
+		String sql="SELECT * FROM oop3.chart WHERE userId = ? AND state = 'onChart'";
+		 try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+			 preparedStatement.setInt(1, userId);
+			 Chart result = new Chart();
+			 try (ResultSet resultSet = preparedStatement.executeQuery()){
+				 if (resultSet.next()) {
+		                int chartId = resultSet.getInt("chartId");
+		                double totalPrice = resultSet.getDouble("totalPrice");
+		                String state = resultSet.getString("state");
+		                
+		                return new Chart( userId,chartId, totalPrice, state);
+		            }
+			 }
+			 
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
+		
+		return null;
+	}
+
+	@Override
+	public boolean stockCheck(Product product, double currentOnChart, double updated) throws SQLException {
+		int productId = product.getId();
+	    
+	    double currentStock = getCurrentStock(productId);
+	    
+	    double availableStock = currentStock + currentOnChart;
+	    
+	    if (updated <= availableStock) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	
+	
+	private double getCurrentStock(int productId) throws SQLException {
+	    String sql = "SELECT stock FROM oop3.product WHERE productId = ?";
+	    
+	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	        preparedStatement.setInt(1, productId);
+	        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	            if (resultSet.next()) {
+	                return resultSet.getDouble("stock");
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return 0; // Return 0 in case the product is not found
+	}
+
+	
 	
 	
 

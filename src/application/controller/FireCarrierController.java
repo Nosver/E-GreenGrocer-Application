@@ -66,9 +66,7 @@ public class FireCarrierController implements Initializable{
     @FXML
     void fireButtonClicked(MouseEvent event) throws SQLException {
     	
-    	//PW constrains
-    	//Exist check
-    	//Recepivedik
+    
     	User carrier = carrierTable.getSelectionModel().getSelectedItem();
     	if(carrier== null) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);
