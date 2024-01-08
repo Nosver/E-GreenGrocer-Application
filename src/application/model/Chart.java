@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javafx.util.Pair;
 
 
-
 public class Chart {
 		int userId;
 		int chartId;
