@@ -51,7 +51,7 @@ public class CarrierProfileController implements Initializable{
 
 	@FXML
     void ClickOnChangeInfoButton(MouseEvent event) {
-    	//SceneSwitch.switchScene("", event, user);
+    	SceneSwitch.switchScene("UpdateCarrierInfoScreen.fxml", event, user);
     }
 
     @FXML

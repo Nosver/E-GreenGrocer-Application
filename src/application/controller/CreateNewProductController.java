@@ -140,7 +140,7 @@ public class CreateNewProductController {
     			return;
     		}
     		name=nameField.getText();
-    		Product product = new Product(name,stock,price,threshold,"images/"+imageFileName); 
+    		Product product = new Product(0,name,stock,price,threshold,"images/"+imageFileName); 
     		System.out.println(product);
     		saveImage(imageFilePath,"src/images");
     		DatabaseAdapter db = new DatabaseAdapter();

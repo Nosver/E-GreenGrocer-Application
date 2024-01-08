@@ -16,6 +16,7 @@ import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
 import application.controller.PurchasedProductsController;
+import application.controller.UpdateCarrierInfoController;
 import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
@@ -118,6 +119,10 @@ public class SceneSwitch {
                 }
                 else if("CarrierProfileScreen.fxml".equals(fxmlFileName)) {
                 	CarrierProfileController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("UpdateCarrierInfoScreen.fxml".equals(fxmlFileName)) {
+                	UpdateCarrierInfoController controller= loader.getController();
                 	controller.setUser(user);
                 }
             	
