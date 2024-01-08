@@ -23,18 +23,20 @@ public class CustomerScreenController   {
     private Button startShoppingButton;
     
     public User user; // inhertied by product screen
-
-    @FXML
-    void SeeMyProfileClicked(MouseEvent event) {
-    	SceneSwitch.switchScene("myProfileScreen.fxml", event, user);
-    }
-
+    
     public void setUser(User user) {
         this.user = user;
         System.out.print("Welcome User: ");
 		System.out.println(user.getName());
         WelcomeUserText.setText("Welcome, " + user.getName());
     }
+
+    @FXML
+    void SeeMyProfileClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("myProfileScreen.fxml", event, user);
+    }
+
+   
 
     @FXML
     void startShoppingButtonClicked(MouseEvent event) {

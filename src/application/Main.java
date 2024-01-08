@@ -50,6 +50,7 @@ public class Main extends Application {
 	        // Load Login Screen FXML file
 	    	Parent root=FXMLLoader.load(getClass().getResource("ChartScreen.fxml"));
 			Scene scene= new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/Login.css").toExternalForm());
 
 	        // Set the main FXML file as the scene
 	       

@@ -40,7 +40,7 @@ public class SceneSwitch {
             	if ("myProfileScreen.fxml".equals(fxmlFileName)) {
                     MyProfileController controller = loader.getController();
                     controller.setUser(user);
-                } else if ("customer.fxml".equals(fxmlFileName)) {
+                } else if ("Customer.fxml".equals(fxmlFileName)) {
                     CustomerScreenController controller = loader.getController();
                     controller.setUser(user);
                 }

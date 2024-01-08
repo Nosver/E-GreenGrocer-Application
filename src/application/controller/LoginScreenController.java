@@ -73,7 +73,7 @@ public class LoginScreenController {
     		if(user.getPassword().equals(enteredPassword)) {
     			System.out.println(user.getRole());
     			if(user.getRole().equals("customer"))
-    				SceneSwitch.switchScene("customer.fxml", event, user);
+    				SceneSwitch.switchScene("Customer.fxml", event, user);
     			else if(user.getRole().equals("owner"))
     				SceneSwitch.switchScene("OwnerScreen.fxml", event, user);
     			else if(user.getRole().equals("carrier"))
