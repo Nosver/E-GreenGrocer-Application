@@ -549,6 +549,7 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 			 try (ResultSet resultSet = statement.executeQuery()) {
                  if (resultSet.next()) {
                 	 
+                	 
                      int storedUserId = resultSet.getInt("userId");
                      double storedTotalPrice = resultSet.getDouble("totalPrice");
                      String storedState = resultSet.getString("state");
@@ -757,6 +758,98 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
             }
         }
 	}
+
+	@Override
+	public ArrayList<Product> getAllProductsWithStock() throws SQLException {
+		
+		String query = "SELECT * FROM oop3.product WHERE stock > 0 ";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+            ArrayList<Product> products = new ArrayList<Product>();
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                while(resultSet.next()){
+                    // Retrieve product data from the result set
+                	int storedProductID = resultSet.getInt("id");
+                    String storedProductName = resultSet.getString("name");
+                    double storedStock = resultSet.getDouble("stock");
+                    double storedPrice = resultSet.getDouble("price");
+                    double storedThreshold =resultSet.getDouble("threshold");
+                    String storedImagePath= resultSet.getString("imagePath");
+                    
+                    Product product = new Product(storedProductID, storedProductName, storedStock, storedPrice,storedThreshold,storedImagePath);
+                    
+                    products.add(product);
+                }
+                
+                /*
+                    for(int i=0; i < products.size(); i++) {
+                    	System.out.println(products.get(i).getName());
+                    }
+                */
+                return products;
+            }
+        }
+	}
+
+	@Override
+	public Chart getChartByUserId(int userId) throws SQLException {
+		String sql="SELECT * FROM oop3.chart WHERE userId = ? AND state = 'onChart'";
+		 try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+			 preparedStatement.setInt(1, userId);
+			 Chart result = new Chart();
+			 try (ResultSet resultSet = preparedStatement.executeQuery()){
+				 if (resultSet.next()) {
+		                int chartId = resultSet.getInt("chartId");
+		                double totalPrice = resultSet.getDouble("totalPrice");
+		                String state = resultSet.getString("state");
+		                
+		                return new Chart( userId,chartId, totalPrice, state);
+		            }
+			 }
+			 
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
+		
+		return null;
+	}
+
+	@Override
+	public boolean stockCheck(Product product, double currentOnChart, double updated) throws SQLException {
+		int productId = product.getId();
+	    
+	    double currentStock = getCurrentStock(productId);
+	    
+	    double availableStock = currentStock + currentOnChart;
+	    
+	    if (updated <= availableStock) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	
+	
+	private double getCurrentStock(int productId) throws SQLException {
+	    String sql = "SELECT stock FROM oop3.product WHERE productId = ?";
+	    
+	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	        preparedStatement.setInt(1, productId);
+	        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	            if (resultSet.next()) {
+	                return resultSet.getDouble("stock");
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return 0; // Return 0 in case the product is not found
+	}
+
+	
 	
 	
 

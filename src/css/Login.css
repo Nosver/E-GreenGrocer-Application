@@ -1,0 +1,52 @@
+/* Genel stil */
+VBox {
+    -fx-background-color: #1E1E1E; /* Arka plan rengi */
+}
+
+/* Menü çubuğu için stil */
+MenuBar {
+    -fx-background-color: #333; /* Menü çubuğu arka plan rengi */
+}
+
+Menu, MenuItem {
+    -fx-text-fill: white; /* Menü metin rengi */
+}
+
+/* AnchorPane için stil */
+AnchorPane {
+    -fx-background-color: #333; /* AnchorPane arka plan rengi */
+}
+
+/* Başlık Text stil */
+Text {
+    -fx-fill: #4CAF50; /* Metin rengi */
+    -fx-font-family: "Arial";
+    -fx-font-size: 30;
+}
+
+/* Giriş alanları ve butonlar için stil */
+TextField, PasswordField, Button {
+    -fx-background-color: #4CAF50; /* Arka plan rengi */
+    -fx-text-fill: white; /* Metin rengi */
+    -fx-font-size: 16;
+}
+
+/* CheckBox için stil */
+CheckBox {
+    -fx-text-fill: white; /* Metin rengi */
+}
+
+/* Hover efekti eklemek için stil */
+Button:hover, CheckBox:hover {
+    -fx-background-color: #45A049; /* Hover rengi */
+}
+
+/* Text alanları için stil */
+TextField, PasswordField {
+    -fx-background-color: #222; /* Arka plan rengi */
+}
+
+/* Placeholder için stil */
+TextField, PasswordField:placeholder {
+    -fx-text-fill: #888; /* Placeholder metin rengi */
+}

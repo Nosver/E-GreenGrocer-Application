@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import application.controller.CarrierProfileController;
 import application.controller.CourrierHomeScreenController;
 import application.controller.CourrierOrderScreenController;
 import application.controller.CreateNewProductController;
@@ -15,6 +16,7 @@ import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
 import application.controller.PurchasedProductsController;
+import application.controller.UpdateCarrierInfoController;
 import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
@@ -38,7 +40,7 @@ public class SceneSwitch {
             	if ("myProfileScreen.fxml".equals(fxmlFileName)) {
                     MyProfileController controller = loader.getController();
                     controller.setUser(user);
-                } else if ("customer.fxml".equals(fxmlFileName)) {
+                } else if ("Customer.fxml".equals(fxmlFileName)) {
                     CustomerScreenController controller = loader.getController();
                     controller.setUser(user);
                 }
@@ -109,6 +111,18 @@ public class SceneSwitch {
                 }
                 else if("PurchasedProducts.fxml".equals(fxmlFileName)) {
                 	PurchasedProductsController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("CourrierHomeScreen.fxml".equals(fxmlFileName)) {
+                	PurchasedProductsController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("CarrierProfileScreen.fxml".equals(fxmlFileName)) {
+                	CarrierProfileController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("UpdateCarrierInfoScreen.fxml".equals(fxmlFileName)) {
+                	UpdateCarrierInfoController controller= loader.getController();
                 	controller.setUser(user);
                 }
             	

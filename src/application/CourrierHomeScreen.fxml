@@ -53,7 +53,7 @@
       </MenuBar>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="MyProfileButton" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" text="My Profile" />
+            <Button fx:id="MyProfileButton" layoutX="17.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" text="My Profile" />
             <Text fx:id="WelcomeUserText" layoutX="231.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="177.33673095703125" />
             <Button fx:id="OrdersButton" layoutX="536.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#OrdersButtonClicked" text="Orders" />
             <Text layoutX="253.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Order">
@@ -65,6 +65,7 @@
             <Text fx:id="CustomerAdressText" layoutX="277.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No Active Order" />
             <Button fx:id="OrderDeliveredButton" layoutX="335.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#OrderDeliveredClicked" text="Order Delivered" />
             <Button fx:id="ShowDetailsButton" layoutX="239.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#ShowDetailsButtonClicked" text="ShowDetails" />
+            <Button fx:id="logOutButton" layoutX="23.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#logOutButtonPressed" text="Log Out" />
          </children>
       </AnchorPane>
    </children>

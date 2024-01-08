@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,41 +16,33 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
-public class MyProfileController implements Initializable {
+public class CarrierProfileController implements Initializable{
 
-	 @FXML
-	    private AnchorPane UserProfileScene;
+    @FXML
+    private AnchorPane UserProfileScene;
 
-	    @FXML
-	    private Text addressField;
-	    
-	    @FXML
-	    private Button backButton;
+    @FXML
+    private Button backButton;
 
-	    @FXML
-	    private Button changePersonalInfo;
+    @FXML
+    private Button changePersonalInfo;
 
-	    @FXML
-	    private Text emailField;
+    @FXML
+    private Text emailField;
 
-	    @FXML
-	    private Label nameField;
+    @FXML
+    private Label nameField;
 
-	    @FXML
-	    private Text passwordField;
+    @FXML
+    private Text passwordField;
 
-	    @FXML
-	    private Circle profileIconCircle;
+    @FXML
+    private Circle profileIconCircle;
     
     private User user;
-    
-    public User getUser() {
-		return user;
-	}
 
-	public void setUser(User user) {
+    public void setUser(User user) {
 		this.user = user;
-		addressField.setText(user.getAddress());
 		nameField.setText(user.getName());
 		emailField.setText(user.getEmail());
 		passwordField.setText(user.getPassword());
@@ -59,21 +50,19 @@ public class MyProfileController implements Initializable {
 	}
 
 	@FXML
-    void ClickOnChangeInfoButton(MouseEvent event) throws IOException {
-    	SceneSwitch.switchScene("UpdateUserInfo.fxml", event, this.user);
-    }
-	@FXML
-    void backButtonPressed(MouseEvent event) {
-		SceneSwitch.switchScene("Customer.fxml", event, this.user);
+    void ClickOnChangeInfoButton(MouseEvent event) {
+    	SceneSwitch.switchScene("UpdateCarrierInfoScreen.fxml", event, user);
     }
 
-	@Override
+    @FXML
+    void backButtonPressed(MouseEvent event) {
+    		SceneSwitch.switchScene("CourrierHomeScreen.fxml", event, user);
+    }
+
+    @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
 			Image image = new Image("images/profie icon.png",false);
 			profileIconCircle.setFill(new ImagePattern(image));
 	}
-	
-	
-
 }

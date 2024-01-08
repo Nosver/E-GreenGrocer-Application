@@ -1,10 +1,13 @@
 package application.controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import application.DatabaseAdapter;
 import application.SceneSwitch;
@@ -119,6 +122,21 @@ public class CourrierOrderScreenController {
 
     @FXML
     void SetActiveButtonClicked(MouseEvent event) throws SQLException {
+    	if(db.getPurchasedCharts().isEmpty()) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("There is no order to be delivered ");
+			Optional<ButtonType>	result = alert.showAndWait();
+			return;
+    	}
+    	if(!db.getActiveChart().isEmpty()) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("There is already active order!! ");
+			Optional<ButtonType>	result = alert.showAndWait();
+			return;
+    	}
+    	
     	Chart selectedOrder = orderTable.getSelectionModel().getSelectedItem();
     	selectedOrder.setState("active");
    

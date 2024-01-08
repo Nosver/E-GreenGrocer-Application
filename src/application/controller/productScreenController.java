@@ -48,7 +48,7 @@ public class productScreenController {
     public void setScreen() throws IOException, SQLException {
     	
     	DatabaseAdapter db = new DatabaseAdapter();
-	    ArrayList<Product> products = db.getAllProducts();
+	    ArrayList<Product> products = db.getAllProductsWithStock();
 
 	    for (Product product : products) {
 	        FXMLLoader fxmlLoader = new FXMLLoader(SceneSwitch.class.getResource("ProductItem.fxml"));
