@@ -29,14 +29,6 @@ public class Product {
 	}
 
 
-	public Product(String name, double stock, double price, double threshold, String imagePath) {
-		this.name = name;
-		this.stock = stock;
-		this.price = price;
-		this.threshold=threshold;
-		this.imagePath=imagePath;
-	}
-	
 	public Product(int id, String name, double stock, double price, double threshold, String imagePath) {
 		super();
 		this.id = id;
