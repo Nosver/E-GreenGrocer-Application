@@ -92,7 +92,7 @@ public class SceneSwitch {
                 }
                 else if ("newProductScreen.fxml".equals(fxmlFileName)) {
                     productScreenController controller = loader.getController();
-                    controller.initializeWithData(user); // Pass the user to the controller
+                    controller.setUser(user); // Pass the user to the controller
                 }
 
             	
