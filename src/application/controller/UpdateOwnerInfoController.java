@@ -49,6 +49,8 @@ public class UpdateOwnerInfoController {
     		SceneSwitch.switchScene("OwnerScreen.fxml", event, user);
     }
 
+    
+    
     @FXML
     void updateButtonClicked(MouseEvent event) throws SQLException {
     	if(!emailField.getText().isBlank()) {

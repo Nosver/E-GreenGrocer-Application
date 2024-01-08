@@ -13,7 +13,7 @@ import application.controller.ForgotPasswordScreenController2;
 import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
-import application.controller.ProductItemController;
+import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
 import application.controller.productScreenController;
@@ -95,6 +95,10 @@ public class SceneSwitch {
                     controller.setUser(user); // Pass the user to the controller
                 }
 
+                else if("UpdateOwnerInfo.fxml".equals(fxmlFileName)){
+                	UpdateOwnerInfoController controller = loader.getController();
+                	controller.setUser(user);
+                }
             	
             }
             

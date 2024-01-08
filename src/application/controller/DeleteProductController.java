@@ -81,6 +81,7 @@ public class DeleteProductController implements Initializable {
 
 		//deleteFile(toBeDeleted.getImagePath());
 		db.deleteProduct(toBeDeleted);
+		selectedProductLabel.setText(null);
 		refreshTable();
     }
 	
