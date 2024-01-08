@@ -64,10 +64,7 @@ public class MyProfileController implements Initializable {
     }
 	@FXML
     void backButtonPressed(MouseEvent event) {
-		if(user.getRole().equals("carrier"))
-			SceneSwitch.switchScene("CourrierHomeScreen.fxml", event, this.user);
-		else
-			SceneSwitch.switchScene("Customer.fxml", event, this.user);
+		SceneSwitch.switchScene("Customer.fxml", event, this.user);
     }
 
 	@Override
