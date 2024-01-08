@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import application.model.Chart;
 import application.model.Product;
 import application.model.User;
@@ -237,6 +239,38 @@ public class DatabaseAdapter implements Crud{
             }
         }
     }
+    
+
+@Override
+public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throws SQLException {
+    String query = "SELECT p.*, ci.quantity FROM oop3.product p " +
+                   "JOIN oop3.chartitem ci ON p.id = ci.productId " +
+                   "WHERE ci.chartId = ?";
+
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.setInt(1, chartId);
+
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            ArrayList<Pair<Product, Double>> productsWithQuantity = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int productId = resultSet.getInt("id");
+                String productName = resultSet.getString("name");
+                double stock = resultSet.getDouble("stock");
+                double price = resultSet.getDouble("price");
+                double threshold = resultSet.getDouble("threshold");
+                String imagePath = resultSet.getString("imagePath");
+                double quantity = resultSet.getDouble("quantity");
+
+                Product product = new Product(productId, productName, stock, price, threshold, imagePath);
+                Pair<Product, Double> productWithQuantity = new Pair<>(product, quantity);
+                productsWithQuantity.add(productWithQuantity);
+            }
+
+            return productsWithQuantity;
+        }
+    }
+}
 
 
     
@@ -308,6 +342,42 @@ public class DatabaseAdapter implements Crud{
             }
         
     
+    }
+    
+    @Override
+    public String getProductNameByProductId(int productId) throws SQLException {
+        String query = "SELECT name FROM oop3.product WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, productId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Retrieve product name from the result set
+                    return resultSet.getString("name");
+                }
+            }
+        }
+
+        return null;
+    }
+    
+    @Override
+    public Double getProductPriceByProductId(int productId) throws SQLException {
+        String query = "SELECT price FROM oop3.product WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, productId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Retrieve product name from the result set
+                    return resultSet.getDouble("price");
+                }
+            }
+        }
+
+        return null;
     }
 
 	@Override

@@ -40,6 +40,9 @@ public class CourrierOrderScreenController {
     @FXML
     private TableView<Chart> orderTable;
     
+    @FXML
+    private Button SetActiveButton;
+    
     private DatabaseAdapter db = new DatabaseAdapter();
     
     private User user;
@@ -148,6 +151,11 @@ public class CourrierOrderScreenController {
         }
     	
     	
+    }
+    
+    @FXML
+    void ShowDetailsButtonClicked(MouseEvent event) {
+
     }
 
    

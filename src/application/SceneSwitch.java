@@ -13,6 +13,7 @@ import application.controller.ForgotPasswordScreenController2;
 import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
+import application.controller.PurchasedProductsController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
 import application.controller.ViewActiveOrderController;
@@ -96,6 +97,10 @@ public class SceneSwitch {
                 }
                 else if("ViewPastOrders.fxml".equals(fxmlFileName)) {
                 	ViewPastOrderController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("PurchasedProducts.fxml".equals(fxmlFileName)) {
+                	PurchasedProductsController controller= loader.getController();
                 	controller.setUser(user);
                 }
             	
