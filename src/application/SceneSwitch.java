@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import application.controller.CarrierProfileController;
 import application.controller.CourrierHomeScreenController;
 import application.controller.CourrierOrderScreenController;
 import application.controller.CreateNewProductController;
@@ -109,6 +110,14 @@ public class SceneSwitch {
                 }
                 else if("PurchasedProducts.fxml".equals(fxmlFileName)) {
                 	PurchasedProductsController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("CourrierHomeScreen.fxml".equals(fxmlFileName)) {
+                	PurchasedProductsController controller= loader.getController();
+                	controller.setUser(user);
+                }
+                else if("CarrierProfileScreen.fxml".equals(fxmlFileName)) {
+                	CarrierProfileController controller= loader.getController();
                 	controller.setUser(user);
                 }
             	

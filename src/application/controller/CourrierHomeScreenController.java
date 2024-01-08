@@ -97,7 +97,7 @@ public class CourrierHomeScreenController {
 
     @FXML
     void SeeMyProfileClicked(MouseEvent event) {
-    	SceneSwitch.switchScene("myProfileScreen.fxml", event, user);
+    	SceneSwitch.switchScene("CarrierProfileScreen.fxml", event, user);
     }
     public void setUser(User user) {
         this.user = user;
@@ -111,20 +111,10 @@ public class CourrierHomeScreenController {
     	 activeCharts.get(0).setState("delivered");
     	 db.UpdateChartState(activeCharts.get(0));
     	 
-    	 try {
-     		if(!db.getActiveChart().isEmpty()) {
- 	            loadActiveCharts();
- 	            CustomerNameText.setText(getUserName(chart.getUserId())); 
- 	            CustomerAdressText.setText(getCustomerAddress(chart.getUserId())); 
-     		}
-     		else {
-     			CustomerNameText.setText(getUserName(null)); 
-  	            CustomerAdressText.setText(getCustomerAddress(null)); 
-     			
-     		}
-         } catch (SQLException e) {
-             e.printStackTrace();
-         }
+    	
+    	 CustomerNameText.setText("NO ACTIVE ORDER"); 
+	     CustomerAdressText.setText(null); 
+         
     	
     }
     
@@ -138,7 +128,10 @@ public class CourrierHomeScreenController {
 
     }
     
-    
+    @FXML
+    void logOutButtonPressed(MouseEvent event) {
+    		SceneSwitch.switchScene("LoginScreen.fxml", event, null);
+    }
     
     
     

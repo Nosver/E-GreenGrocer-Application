@@ -10,18 +10,18 @@
     <children>
         <TableView fx:id="orderTable" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0">
             <columns>
-                <TableColumn fx:id="userNameColumn" text="CustomerName">
+                <TableColumn fx:id="userNameColumn" prefWidth="109.5999755859375" text="CustomerName">
                     <cellValueFactory>
                         <PropertyValueFactory property="customerName" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="CustomerAdressColumn" prefWidth="142.0" text="CustomerAdress">
+                <TableColumn fx:id="CustomerAdressColumn" prefWidth="150.4000244140625" text="CustomerAdress">
                     <cellValueFactory>
                         <PropertyValueFactory property="customerAddress" />
                     </cellValueFactory>
                 </TableColumn>
-            <TableColumn fx:id="DateColumn" prefWidth="115.0" text="Date" />
-                <TableColumn fx:id="TotalPriceColumn" minWidth="0.0" prefWidth="81.0" text="TotalPrice">
+            <TableColumn fx:id="DateColumn" prefWidth="123.20001220703125" text="Date" />
+                <TableColumn fx:id="TotalPriceColumn" minWidth="0.0" prefWidth="116.79998779296875" text="TotalPrice">
                     <cellValueFactory>
                         <PropertyValueFactory property="orderContent" />
                     </cellValueFactory>
@@ -30,6 +30,5 @@
         </TableView>
       <Button fx:id="BackButton1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#BackButtonClicked" text="Back" />
       <Button fx:id="SetActiveButton" layoutX="517.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#SetActiveButtonClicked" text="SetActive" />
-      <Button fx:id="ShowDetailsButton" layoutX="417.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#ShowDetailsButtonClicked" text="ShowDetails" />
     </children>
 </AnchorPane>
