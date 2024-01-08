@@ -636,6 +636,40 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
             }
         }
 	}
+
+	@Override
+	public ArrayList<Product> getAllProductsWithStock() throws SQLException {
+		
+		String query = "SELECT * FROM oop3.product WHERE stock > 0 ";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+            ArrayList<Product> products = new ArrayList<Product>();
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                while(resultSet.next()){
+                    // Retrieve product data from the result set
+                	int storedProductID = resultSet.getInt("id");
+                    String storedProductName = resultSet.getString("name");
+                    double storedStock = resultSet.getDouble("stock");
+                    double storedPrice = resultSet.getDouble("price");
+                    double storedThreshold =resultSet.getDouble("threshold");
+                    String storedImagePath= resultSet.getString("imagePath");
+                    
+                    Product product = new Product(storedProductID, storedProductName, storedStock, storedPrice,storedThreshold,storedImagePath);
+                    
+                    products.add(product);
+                }
+                
+                /*
+                    for(int i=0; i < products.size(); i++) {
+                    	System.out.println(products.get(i).getName());
+                    }
+                */
+                return products;
+            }
+        }
+	}
 	
 	
 
