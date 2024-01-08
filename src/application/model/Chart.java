@@ -18,6 +18,7 @@ public class Chart {
 		public Chart() {
 			this.state="onChart";
 			this.date=null;
+			this.items = new ArrayList<Pair<Product,Double>>();
 		}
 		
 		public int getChartId() {
@@ -71,7 +72,7 @@ public class Chart {
 		public Chart(int userId, double totalPrice, String state, LocalDateTime date) {
 			super();
 			this.userId = userId;
-			
+			this.items = new ArrayList<Pair<Product,Double>>();
 			this.totalPrice = totalPrice;
 			this.state = state;
 			this.date = date;
@@ -82,10 +83,14 @@ public class Chart {
 			
 			this.chartId = chartId;
 			this.userId = userId;
-			
+			this.items = new ArrayList<Pair<Product,Double>>();
 			this.totalPrice = totalPrice;
 			this.state = state;
 			this.date = date;
+		}
+		
+		public void pushToArray(Pair<Product,Double> pair) {
+			items.add(pair);
 		}
 		
 		

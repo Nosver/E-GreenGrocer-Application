@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -8,24 +7,17 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.DatabaseAdapter;
+import application.SceneSwitch;
 import application.model.Product;
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
+import application.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class productScreenController {
 
@@ -43,40 +35,46 @@ public class productScreenController {
 
     @FXML
     private ImageView CHART_IMG;
+    
+    public User user = null;
+    
+    public void setUser(User user) {this.user = user;}
+    
+    public void printUser() {
+    	System.out.print("Product Screen Controller User: ");
+		System.out.println(user.getName());
+    }
+    
+    public void setScreen() throws IOException, SQLException {
+    	
+    	DatabaseAdapter db = new DatabaseAdapter();
+	    ArrayList<Product> products = db.getAllProducts();
 
+	    for (Product product : products) {
+	        FXMLLoader fxmlLoader = new FXMLLoader(SceneSwitch.class.getResource("ProductItem.fxml"));
 
-	public void initialize() throws IOException {
+	        // Load the FXML file and set the controller in one step
+	        fxmlLoader.setController(new ProductItemController());
+	        Parent root = fxmlLoader.load();
 
-    	Image image = new Image("images/cartA.png");
-		CHART_IMG.setImage(image);
+	        // Get the controller after the FXML file is loaded
+	        ProductItemController item_controller = fxmlLoader.getController();
+	        item_controller.setUser(user); // Pass the user to the controller
+	        item_controller.setProductItem(product);
 
-		
-		DatabaseAdapter db = new DatabaseAdapter();
-		ArrayList<Product> products = null;
-		System.out.println("dcsd");
+	        VBox vbox = (VBox) root; // Assuming the root is a VBox, adjust if needed
 
-		try {
-			products = db.getAllProducts();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-
-		
-		for (Product product : products) {
-			
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("/application/ProductItem.fxml"));
-			
-			VBox vbox = fxmlLoader.load();
-			
-	        ProductItemController productitemcontroller = fxmlLoader.getController();
-	        productitemcontroller.setProductItem(product);
-	        
 	        PRODUCTS_FLOW.getChildren().add(vbox);
 	    }
-
+    }
+    
+	@FXML
+	public void initialize() throws IOException, SQLException {
+		
+		Image image = new Image("images/cartA.png");
+		CHART_IMG.setImage(image);
+		
+		
 	}
 
 }

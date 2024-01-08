@@ -1,11 +1,9 @@
 package application;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -61,7 +59,7 @@ public class Main extends Application {
 	        // Set the stage title and scene
 	        primaryStage.setTitle("Main Screen");
 	        primaryStage.setScene(scene);
-	        //primaryStage.setResizable(false);
+	        primaryStage.setResizable(false);
 	        // Show the main screen
 	        primaryStage.show();
 	    } catch (IOException e) {

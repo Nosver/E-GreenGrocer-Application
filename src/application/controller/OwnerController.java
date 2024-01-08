@@ -23,6 +23,8 @@ public class OwnerController implements Initializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@FXML
+    private Button logOutButton;
 
 	@FXML
     private Button ViewActiveOrdersButton;
@@ -84,7 +86,7 @@ public class OwnerController implements Initializable{
 
     @FXML
     void updateOwnerInfoClicked(MouseEvent event) {
-
+    	SceneSwitch.switchScene("UpdateOwnerInfo.fxml", event, user);
     }
 
     @FXML
@@ -104,4 +106,8 @@ public class OwnerController implements Initializable{
 		
 	}
 
+	@FXML
+    void logOutButtonClicked(MouseEvent event) {
+			SceneSwitch.switchScene("LoginScreen.fxml", event, null);
+    }
 }

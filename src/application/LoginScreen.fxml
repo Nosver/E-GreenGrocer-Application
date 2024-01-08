@@ -71,12 +71,13 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <CheckBox fx:id="showPasswordButton" layoutX="449.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#showPasswordButtonClicked" text="Show Password" />
+            <CheckBox fx:id="showPasswordButton" layoutX="449.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changeVisibilty" text="Show Password" />
             <Button fx:id="loginButton" alignment="CENTER" layoutX="326.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#loginButtonClicked" prefHeight="36.0" prefWidth="123.0" text="Login" />
             <Button fx:id="createuser_BUTTON" alignment="CENTER" layoutX="248.0" layoutY="450.0" mnemonicParsing="false" onMouseClicked="#createUserButtonClicked" prefHeight="36.0" prefWidth="279.0" text="You don't have an account? Create one!" />
             <Button fx:id="forgotpassword_BUTTON" alignment="CENTER" layoutX="274.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#resetPasswordButtonClicked" prefHeight="36.0" prefWidth="227.0" text="I don't remember my password" />
             <TextField fx:id="EMailBox" layoutX="279.0" layoutY="131.0" prefWidth="160" />
             <PasswordField fx:id="PasswordBox" layoutX="279.0" layoutY="194.0" prefWidth="160" />
+            <TextField fx:id="PasswordText" layoutX="279.0" layoutY="193.0" prefHeight="25.0" prefWidth="160.0" promptText="PasswordText" />
          </children>
     </AnchorPane>
   </children>

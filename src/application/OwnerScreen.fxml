@@ -100,6 +100,7 @@
             <Button fx:id="fireCarrierButton" layoutX="261.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#fireCarrierButtonClicked" prefHeight="26.0" prefWidth="118.0" text="Fire Carrier" />
             <Button fx:id="ViewActiveOrdersButton" layoutX="452.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#ViewActiveOrdersButtonClicked" prefHeight="48.0" prefWidth="118.0" text="View active orders" />
             <Button fx:id="viewPastOrdersButton" layoutX="452.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#viewPastOrdersButtonClicked" prefHeight="48.0" prefWidth="118.0" text="View past orders" />
+            <Button fx:id="logOutButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#logOutButtonClicked" text="Log Out" />
          </children>
     </AnchorPane>
   </children>

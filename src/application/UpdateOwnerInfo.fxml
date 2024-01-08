@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="599.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginScreenController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UpdateOwnerInfoController">
   <children>
-    <MenuBar VBox.vgrow="ALWAYS">
+    <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -54,30 +52,33 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="540.0" prefWidth="960.0" VBox.vgrow="NEVER">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Text layoutX="274.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="227.13671875">
+            <Label layoutX="139.0" layoutY="117.0" text="Name :">
                <font>
-                  <Font size="27.0" />
+                  <Font size="24.0" />
                </font>
-            </Text>
-            <Text layoutX="170.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail" textAlignment="RIGHT" wrappingWidth="104.0">
+            </Label>
+            <Label layoutX="139.0" layoutY="172.0" text="Password : ">
                <font>
-                  <Font size="20.0" />
+                  <Font size="24.0" />
                </font>
-            </Text>
-            <Text layoutX="170.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="RIGHT" wrappingWidth="104.0">
+            </Label>
+            <Label layoutX="139.0" layoutY="221.0" text="Email :">
                <font>
-                  <Font size="20.0" />
+                  <Font size="24.0" />
                </font>
-            </Text>
-            <CheckBox fx:id="showPasswordButton" layoutX="449.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changeVisibilty" text="Show Password" />
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="326.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#loginButtonClicked" prefHeight="36.0" prefWidth="123.0" text="Login" />
-            <Button fx:id="createuser_BUTTON" alignment="CENTER" layoutX="248.0" layoutY="450.0" mnemonicParsing="false" onMouseClicked="#createUserButtonClicked" prefHeight="36.0" prefWidth="279.0" text="You don't have an account? Create one!" />
-            <Button fx:id="forgotpassword_BUTTON" alignment="CENTER" layoutX="274.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#resetPasswordButtonClicked" prefHeight="36.0" prefWidth="227.0" text="I don't remember my password" />
-            <TextField fx:id="EMailBox" layoutX="279.0" layoutY="131.0" prefWidth="160" />
-            <PasswordField fx:id="PasswordBox" layoutX="279.0" layoutY="194.0" prefWidth="160" />
-            <TextField fx:id="PasswordText" layoutX="279.0" layoutY="193.0" prefHeight="25.0" prefWidth="160.0" promptText="PasswordText" />
+            </Label>
+            <Label layoutX="202.0" layoutY="27.0" text="Update Owner Info">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameUpdateField" layoutX="288.0" layoutY="126.0" />
+            <TextField fx:id="passwordUpdateField" layoutX="287.0" layoutY="177.0" />
+            <TextField fx:id="emailField" layoutX="288.0" layoutY="226.0" />
+            <Button fx:id="updateButton" layoutX="511.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#updateButtonClicked" prefHeight="52.0" prefWidth="75.0" text="Update" />
+            <Button fx:id="BackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#BackButtonClicked" text="Back" />
          </children>
     </AnchorPane>
   </children>

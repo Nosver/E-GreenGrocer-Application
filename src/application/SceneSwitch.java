@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import application.controller.CourrierHomeScreenController;
 import application.controller.CourrierOrderScreenController;
@@ -14,10 +15,10 @@ import application.controller.HireCarrierController;
 import application.controller.MyProfileController;
 import application.controller.OwnerController;
 import application.controller.PurchasedProductsController;
+import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
-import application.controller.ViewActiveOrderController;
-import application.controller.ViewPastOrderController;
+import application.controller.productScreenController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -91,12 +92,19 @@ public class SceneSwitch {
                 	HireCarrierController controller = loader.getController();
                 	controller.setUser(user);
                 }
-                else if("ViewActiveOrders.fxml".equals(fxmlFileName)) {
-                	ViewActiveOrderController controller= loader.getController();
-                	controller.setUser(user);
+                else if ("newProductScreen.fxml".equals(fxmlFileName)) {
+                    productScreenController controller = loader.getController();
+                    controller.setUser(user); // Pass the user to the controller
+                    controller.printUser();
+                    try {
+						controller.setScreen();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
-                else if("ViewPastOrders.fxml".equals(fxmlFileName)) {
-                	ViewPastOrderController controller= loader.getController();
+                else if("UpdateOwnerInfo.fxml".equals(fxmlFileName)){
+                	UpdateOwnerInfoController controller = loader.getController();
                 	controller.setUser(user);
                 }
                 else if("PurchasedProducts.fxml".equals(fxmlFileName)) {
@@ -110,6 +118,10 @@ public class SceneSwitch {
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
+            if("newProductScreen.fxml".equals(fxmlFileName))
+            	stage.setResizable(true);
+            else
+            	stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
