@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
-public class ProductItemController {
+public class ProductItemController{
 
     @FXML
     private TextField PRODUCT_AMOUNT;
@@ -32,15 +32,13 @@ public class ProductItemController {
     @FXML
     private Text PRODUCT_PRICE;
     
-    private User user = null;
+    public User user = null;
     
-    public void setUser(User user) {
-    	this.user = user;
-    }    
-    
-    public void initialize() throws SQLException {
-    	DatabaseAdapter databaseAdapter = new DatabaseAdapter();
-         user = databaseAdapter.getUserByEmail("example1@mail.com"); // User must come from previous screen through scene switch
+	public void setUser(User user) {this.user = user;}
+	    
+    public void printUser() {
+    	System.out.print("Product Screen Item Controller User: ");
+		System.out.println(user.getName());
     }
     
     @SuppressWarnings("unchecked")

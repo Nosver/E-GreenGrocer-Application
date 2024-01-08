@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import application.controller.CourrierHomeScreenController;
 import application.controller.CourrierOrderScreenController;
@@ -93,8 +94,14 @@ public class SceneSwitch {
                 else if ("newProductScreen.fxml".equals(fxmlFileName)) {
                     productScreenController controller = loader.getController();
                     controller.setUser(user); // Pass the user to the controller
+                    controller.printUser();
+                    try {
+						controller.setScreen();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
-
                 else if("UpdateOwnerInfo.fxml".equals(fxmlFileName)){
                 	UpdateOwnerInfoController controller = loader.getController();
                 	controller.setUser(user);
