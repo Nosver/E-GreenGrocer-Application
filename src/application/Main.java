@@ -61,7 +61,7 @@ public class Main extends Application {
 	        // Set the stage title and scene
 	        primaryStage.setTitle("Main Screen");
 	        primaryStage.setScene(scene);
-	        //primaryStage.setResizable(false);
+	        primaryStage.setResizable(false);
 	        // Show the main screen
 	        primaryStage.show();
 	    } catch (IOException e) {
