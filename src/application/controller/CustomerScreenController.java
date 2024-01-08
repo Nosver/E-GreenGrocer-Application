@@ -22,7 +22,7 @@ public class CustomerScreenController   {
     @FXML
     private Button startShoppingButton;
     
-    private User user;
+    public User user; // inhertied by product screen
 
     @FXML
     void SeeMyProfileClicked(MouseEvent event) {
@@ -31,6 +31,8 @@ public class CustomerScreenController   {
 
     public void setUser(User user) {
         this.user = user;
+        System.out.print("Welcome User: ");
+		System.out.println(user.getName());
         WelcomeUserText.setText("Welcome, " + user.getName());
     }
 
