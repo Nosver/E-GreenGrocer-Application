@@ -21,6 +21,7 @@ public class DatabaseAdapter implements Crud{
 	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/oop3";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "1A2b3c4d5e.";
+	private static final Exception SQLException = null;
 
     private static Connection connection;
 
@@ -528,6 +529,8 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 	public Chart getChart(User user) { 
 		
 		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
+		chartQuery = "SELECT * FROM oop3.chart WHERE userId = ? AND state = ?";
+		
 		Chart chart = new Chart();
 		
 		try (PreparedStatement statement = connection.prepareStatement(chartQuery)){
@@ -539,7 +542,10 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 			 
 			 // Pull chart from database
 			 System.out.println("Pulling Chart data from DB");
+			 
 			 statement.setInt(1, user.getId());
+			 statement.setString(2, "onChart");
+			 
 			 try (ResultSet resultSet = statement.executeQuery()) {
                  if (resultSet.next()) {
                 	 
@@ -568,20 +574,136 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 		 return chart;
 	}
 	
+	public boolean isStockSufficient(Product product, double quantity) throws Exception {
+		
+		String checkQuery = "SELECT * FROM oop3.product WHERE id = ?";
+		PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
+		checkStatement.setInt(1, product.getId());
+		
+		ResultSet resultSet = checkStatement.executeQuery();
+		
+		if (!resultSet.next()) {throw SQLException;}
+		
+		double stock = resultSet.getDouble("stock");
+		
+		if(stock <= quantity) {return false;}
+		return true;				
+	}
+	
 	public void insertChartItem(Product product, double quantity, Chart chart) throws SQLException {
 		
-        String query = "INSERT INTO oop3.chartitem (chartId, productId, quantity) VALUES (?, ?, ?)";
+	    // Check if there is the same product in the same customer's chart
+	    String checkQuery = "SELECT * FROM oop3.chartitem WHERE chartId = ? AND productId = ?";
+	    
+	    try (PreparedStatement checkStatement = connection.prepareStatement(checkQuery)) {
+	        checkStatement.setInt(1, chart.getChartId());
+	        checkStatement.setInt(2, product.getId());
+
+	        try (ResultSet resultSet = checkStatement.executeQuery()) {
+	            if (resultSet.next()) {
+	                // Product already exists in the chart, update the quantity
+	                double existingQuantity = resultSet.getDouble("quantity");
+	                double newQuantity = existingQuantity + quantity;
+
+	                String updateQuery = "UPDATE oop3.chartitem SET quantity = ? WHERE chartId = ? AND productId = ?";
+	                try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+	                    updateStatement.setDouble(1, newQuantity);
+	                    updateStatement.setInt(2, chart.getChartId());
+	                    updateStatement.setInt(3, product.getId());
+	                    updateStatement.executeUpdate();
+	                }
+
+	                System.out.println("Item quantity updated in DB table. Product ID: " + product.getId());
+	            } else {
+	                // Product does not exist, insert a new row
+	                String insertQuery = "INSERT INTO oop3.chartitem (chartId, productId, quantity) VALUES (?, ?, ?)";
+	                try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
+	                    insertStatement.setInt(1, chart.getChartId());
+	                    insertStatement.setInt(2, product.getId());
+	                    insertStatement.setDouble(3, quantity);
+	                    insertStatement.executeUpdate();
+	                }
+
+	                System.out.println("Item inserted into DB table. Product ID: " + product.getId());
+	            }
+	        }
+	    }
+	}
+	
+	private void pullChartInfo(Chart chart) {
+		// PULL THIS OVERWRITE INTO CHART OBJ.
+		// !!!
+	}
+
+	private void updateChartPrice(Chart chart) throws Exception {
 		
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-        	
-            preparedStatement.setInt(1, chart.getChartId());
-            preparedStatement.setInt(2, product.getId());	
-            preparedStatement.setDouble(3, quantity);      
-            preparedStatement.executeUpdate();
-            System.out.print("Item is inserted to DB table, Product ID: ");
-            System.out.println(product.getId());
-        }
-    }
+		// Get product and thier quantity from chart table
+        
+	      
+        // Put into chart obj
+        
+        // Calculate char prices from obj
+        chart.calculatePrice();
+
+		
+		String query = "SELECT * FROM oop3.chart WHERE chartId = ?";
+		PreparedStatement checkStatement = connection.prepareStatement(query);
+		checkStatement.setInt(1, chart.getChartId());
+		ResultSet resultSet = checkStatement.executeQuery();
+		
+		if (!resultSet.next()) {throw SQLException;}
+		        
+        String updateQuery = "UPDATE oop3.chart SET totalPrice = ? WHERE chartId = ?";
+        PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+        
+        updateStatement.setDouble(1, chart.getTotalPrice());
+        updateStatement.setInt(2, chart.getChartId());
+        updateStatement.executeUpdate();
+	}
+	
+	public void updateChart(Product product, double quantity, Chart chart) throws Exception{
+		
+		insertChartItem(product, quantity, chart);
+		
+		
+		
+		updateChartPrice(chart);
+		
+		reduceStock(product, quantity);
+		
+	}
+	
+	// If chart is deleted restore the stock in DB
+	public void restoreStock(Product product, double quantity) {
+		
+	}
+	
+	// Reduce the stock when purchased
+	public void reduceStock(Product product, double quantity) throws Exception {			// THESHOLD CHECK !!!!!!
+		
+		String query = "SELECT * FROM oop3.product WHERE id = ?";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setInt(1, product.getId());
+		
+		ResultSet resultSet = statement.executeQuery();
+		
+		if(!resultSet.next()) { throw SQLException;}	// If prodcut does not exist throw exception
+		
+		double stock = resultSet.getDouble("stock");
+		double updatedStock = stock - quantity;
+		
+		System.out.println("asdasdadsd");
+		// Put updated stock to DB
+		String updateQuery = "UPDATE oop3.product SET stock = ? WHERE id = ?";
+		PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+		
+		product.setStock(updatedStock);
+		
+		updateStatement.setDouble(1, updatedStock);
+		updateStatement.setInt(2, product.getId());
+		
+		updateStatement.executeUpdate();
+	}
 
 	@Override
 	public List<Chart> getPurchasedAndActiveCharts() throws SQLException {

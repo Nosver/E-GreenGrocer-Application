@@ -1,14 +1,16 @@
 package application.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Optional;
 
 import application.DatabaseAdapter;
 import application.model.Chart;
 import application.model.Product;
 import application.model.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,17 +44,31 @@ public class ProductItemController{
     }
     
     @SuppressWarnings("unchecked")
-	private void handlePurchaseButtonClicked(Product product) throws NumberFormatException, SQLException {
+	private void handlePurchaseButtonClicked(Product product) throws Exception {
     	
 		DatabaseAdapter databaseAdapter = new DatabaseAdapter();
 		Chart chart = databaseAdapter.getChart(user); // Also controls if chart does exist
+		chart.print();
 		
-		Pair<Product,Double> pair = new Pair(product, Double.parseDouble(PRODUCT_AMOUNT.getText()));
+		double amount = Double.parseDouble(PRODUCT_AMOUNT.getText());
+		
+		Pair<Product,Double> pair = new Pair(product, amount);
 		
 		chart.pushToArray(pair);
 		
-		databaseAdapter.insertChartItem(product, Double.parseDouble(PRODUCT_AMOUNT.getText()), chart);
+		// Stock is not sufficient
+		if(databaseAdapter.isStockSufficient(product, amount) == false) {
+			Alert stockAlert = new Alert(Alert.AlertType.WARNING);
+			stockAlert.setTitle("Stock is not enough!");
+			stockAlert.setContentText("Please try again later, or lesser amount.");
+			return;
+		}
 		
+		databaseAdapter.updateChart(product, amount, chart);		
+		
+		Alert added2Chart = new Alert(Alert.AlertType.CONFIRMATION);
+		added2Chart.setTitle("Product is added to your chart!");
+		Optional<ButtonType>result = added2Chart.showAndWait();
     }
     
     public void setProductItem(Product product) {
@@ -62,12 +78,12 @@ public class ProductItemController{
     	PRODUCT_IMG.setImage(image);
     	PRODUCT_PRICE.setText(Double.toString(product.getPrice()));
     	PRODUCT_BUTTON.setOnMouseClicked(event -> {
-			try {
-				handlePurchaseButtonClicked(product);
-			} catch (NumberFormatException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    	try {
+			handlePurchaseButtonClicked(product);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		});
     }
 
