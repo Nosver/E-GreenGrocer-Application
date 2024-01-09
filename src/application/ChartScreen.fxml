@@ -114,7 +114,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="selectedItemLabel" layoutX="465.0" layoutY="78.0" text="Label">
+            <Label fx:id="selectedItemLabel" layoutX="465.0" layoutY="78.0" prefHeight="28.0" prefWidth="102.0">
                <font>
                   <Font size="19.0" />
                </font>

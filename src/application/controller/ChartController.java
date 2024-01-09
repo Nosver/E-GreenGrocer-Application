@@ -127,7 +127,6 @@ public class ChartController {
 		userChart=db.getChartByUserId(user.getId());//user.getId()
     	System.out.println(userChart.getChartId());
     	ArrayList<Pair<Product, Double>> products = db.getProductIdByChartId(userChart.getChartId());
-    	System.out.println(products.get(0).left.getId());
     	
     	
     	ArrayList<ActiveProductTable> activeProductTableList = new ArrayList();
