@@ -144,5 +144,13 @@ public class ChartController {
    	chartTable.setItems(productList);
     }
     
+    @FXML
+    void chartClicked(MouseEvent event) {
+    	ActiveProductTable selected = chartTable.getSelectionModel().getSelectedItem();
+    	selectedItemLabel.setText(selected.getName());
+    	quantityInput.setText(String.valueOf(selected.getQuantitiy()));
+    
+    }
+    
 
 }

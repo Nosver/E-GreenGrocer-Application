@@ -44,6 +44,9 @@ public class LoginScreenController {
 
     @FXML
     void loginButtonClicked(MouseEvent event) throws SQLException {
+    	if(PasswordBox.getText().isBlank()) {
+    		PasswordBox.setText(PasswordText.getText());
+    	}
     		if(EMailBox.getText().isBlank()) {
     			Alert alert = new Alert(Alert.AlertType.WARNING);
     			alert.setTitle("error");

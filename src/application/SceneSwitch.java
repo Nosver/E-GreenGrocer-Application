@@ -129,7 +129,7 @@ public class SceneSwitch {
             }
             
             Scene scene = new Scene(root);
-
+            scene.getStylesheets().add(Main.class.getResource("/css/Login.css").toExternalForm());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             if("newProductScreen.fxml".equals(fxmlFileName))

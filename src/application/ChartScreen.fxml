@@ -88,7 +88,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="chartTable" layoutX="25.0" layoutY="44.0" prefHeight="298.0" prefWidth="246.0">
+            <TableView fx:id="chartTable" layoutX="25.0" layoutY="44.0" onMouseClicked="#chartClicked" prefHeight="298.0" prefWidth="246.0">
               <columns>
                 <TableColumn fx:id="nameCollumn" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="quantityCollumn" prefWidth="91.20001220703125" text="Quantity" />
