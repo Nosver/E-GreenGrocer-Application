@@ -45,7 +45,32 @@ public class ProductItemController{
     
     @SuppressWarnings("unchecked")
 	private void handlePurchaseButtonClicked(Product product) throws Exception {
+    	if(PRODUCT_AMOUNT.getText().isBlank()) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setContentText("Amount can not be blank");
+			Optional<ButtonType>result = alert.showAndWait();
+			return;
+    	}
     	
+    	try {
+    	    double productAmount = Double.parseDouble(PRODUCT_AMOUNT.getText());
+
+    	    if (productAmount <= 0) {
+    	        Alert alert = new Alert(Alert.AlertType.WARNING);
+    	        alert.setTitle("Error");
+    	        alert.setContentText("Amount must be a positive value");
+    	        alert.showAndWait();
+    	        return;
+    	    }
+
+    	} catch (NumberFormatException e) {
+    	    Alert alert = new Alert(Alert.AlertType.WARNING);
+    	    alert.setTitle("Error");
+    	    alert.setContentText("Please enter a valid numeric value");
+    	    alert.showAndWait();
+    	    return;
+    	}
 		DatabaseAdapter databaseAdapter = new DatabaseAdapter();
 		Chart chart = databaseAdapter.getChart(user); // Also controls if chart does exist
 		chart.print();
@@ -67,8 +92,9 @@ public class ProductItemController{
 		
 		databaseAdapter.updateChart(product, amount, chart);		
 		
-		Alert added2Chart = new Alert(Alert.AlertType.CONFIRMATION);
-		added2Chart.setTitle("Product is added to your chart!");
+		Alert added2Chart = new Alert(Alert.AlertType.INFORMATION);
+		added2Chart.setTitle("success");
+		added2Chart.setContentText("Product is added to your chart!");
 		Optional<ButtonType>result = added2Chart.showAndWait();
 		
 		setProductItem(product);
