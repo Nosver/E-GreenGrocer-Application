@@ -380,6 +380,36 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 
         return null;
     }
+    
+    @Override
+    public Product getProductByProductName(String name) throws SQLException {
+        String query = "SELECT * FROM oop3.product WHERE name = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, name);
+            
+            
+            
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Retrieve product name from the result set
+                	Integer storedId= resultSet.getInt("id");
+                    String storedProductName = resultSet.getString("name");
+                    double storedStock = resultSet.getDouble("stock");
+                    double storedPrice = resultSet.getDouble("price");
+                    double storedThreshold =resultSet.getDouble("threshold");
+                    String storedImagePath= resultSet.getString("imagePath");
+                    
+                    Product product = new Product(storedId,storedProductName, storedStock, storedPrice,storedThreshold,storedImagePath);
+                    
+                    return product;
+                }
+            }
+        }
+
+        return null;
+    }
+    
 
 	@Override
 	public void insertProduct(Product product) throws SQLException {
@@ -429,16 +459,51 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 
 	@Override
 	public void UpdateProductById(Product product) throws SQLException {
-   	 String updateQuery = "UPDATE oop3.product SET name=?, stock=?, price=?, threshold=?, imagePath=? WHERE id=?";
+   	 String updateQuery = "UPDATE oop3.product SET name=?, stock=?, price= ?, threshold=?, imagePath=? WHERE id=?";
    	 try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
    		 statement.setString(1,product.getName());
    		 statement.setDouble(2, product.getStock());
    		 statement.setDouble(3, product.getPrice());
+
    		 statement.setDouble(4, product.getThreshold());
    		 statement.setString(5,product.getImagePath());
    		 statement.setInt(6,product.getId());
    		 
    		statement.executeUpdate();
+	   	 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
+	}
+	@Override
+	public void UpdateProductByIdNew(Product product) throws SQLException {
+   	 String updateQuery = "UPDATE oop3.product SET name=?, stock=?, threshold=?, imagePath=? WHERE id=?";
+   	 try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
+   		 statement.setString(1,product.getName());
+   		 statement.setDouble(2, product.getStock());
+   		 statement.setDouble(3, product.getThreshold());
+   		 statement.setString(4,product.getImagePath());
+   		 statement.setInt(5,product.getId());
+   		 
+   		statement.executeUpdate();
+	   	 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
+	}
+	
+	public void UpdateQuantityByChartAndProductId(int chartId, int productId, Double quantity) throws SQLException {
+   	 String updateQuery = "UPDATE oop3.chartItem SET quantity = ? WHERE chartId= ? AND productId = ?";
+   	 try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
+   		 
+   		 statement.setDouble(1,quantity);
+   		 statement.setInt(2, chartId);
+   		 statement.setInt(3, productId);
+   		 
+   		statement.executeUpdate();
+   		
 	   	 }catch (SQLException e) {
 	         e.printStackTrace();
 	         
@@ -586,7 +651,7 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 		
 		double stock = resultSet.getDouble("stock");
 		
-		if(stock <= quantity) {return false;}
+		if(stock < quantity) {return false;}
 		return true;				
 	}
 	
@@ -630,10 +695,12 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 	    }
 	}
 	
+	/*
 	private void pullChartInfo(Chart chart) {
 		// PULL THIS OVERWRITE INTO CHART OBJ.
 		// !!!
 	}
+	*/
 
 	private void updateChartPrice(Chart chart) throws Exception {
 		
@@ -664,8 +731,6 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 	public void updateChart(Product product, double quantity, Chart chart) throws Exception{
 		
 		insertChartItem(product, quantity, chart);
-		
-		
 		
 		updateChartPrice(chart);
 		
@@ -850,7 +915,19 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 	}
 
 	
-	
+	public void deleteItem(int chartId, int productId) {
+		String deleteStatement = "DELETE FROM oop3.chartItem WHERE chartId = ? AND productId = ?";
+		
+		 try (PreparedStatement statement = connection.prepareStatement(deleteStatement)){
+			 statement.setInt(1,chartId);
+			 statement.setInt(2,productId);
+
+			 statement.executeUpdate();
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+	}
 	
 
 	

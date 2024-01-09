@@ -66,6 +66,9 @@ public class Product {
 		this.stock = stock;
 	}
 	public double getPrice() {
+		if(stock <= threshold) {
+			return price*2;
+		}
 		return price;
 	}
 	public void setPrice(double price) {

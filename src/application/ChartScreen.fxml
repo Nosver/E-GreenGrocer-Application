@@ -120,7 +120,7 @@
                </font>
             </Label>
             <Button fx:id="deleteItemButton" layoutX="318.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#deleteItemButtonClicked" prefHeight="45.0" prefWidth="101.0" text="Delete Item" />
-            <Button fx:id="updateQuantity" layoutX="454.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#updaeQuantityClicked" prefHeight="46.0" prefWidth="124.0" text="Update Quantity" />
+            <Button fx:id="updateQuantity" layoutX="454.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#updateQuantityClicked" prefHeight="46.0" prefWidth="124.0" text="Update Quantity" />
             <Label layoutX="333.0" layoutY="205.0" prefHeight="28.0" prefWidth="90.0" text="Quantitiy:">
                <font>
                   <Font size="19.0" />

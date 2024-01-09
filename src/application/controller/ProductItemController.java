@@ -57,10 +57,11 @@ public class ProductItemController{
 		chart.pushToArray(pair);
 		
 		// Stock is not sufficient
-		if(databaseAdapter.isStockSufficient(product, amount) == false) {
+		if(!databaseAdapter.isStockSufficient(product, amount)) {
 			Alert stockAlert = new Alert(Alert.AlertType.WARNING);
 			stockAlert.setTitle("Stock is not enough!");
 			stockAlert.setContentText("Please try again later, or lesser amount.");
+			Optional<ButtonType>result = stockAlert.showAndWait();
 			return;
 		}
 		
@@ -69,6 +70,8 @@ public class ProductItemController{
 		Alert added2Chart = new Alert(Alert.AlertType.CONFIRMATION);
 		added2Chart.setTitle("Product is added to your chart!");
 		Optional<ButtonType>result = added2Chart.showAndWait();
+		
+		setProductItem(product);
     }
     
     public void setProductItem(Product product) {

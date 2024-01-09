@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import application.controller.CarrierProfileController;
+import application.controller.ChartController;
 import application.controller.CourrierHomeScreenController;
 import application.controller.CourrierOrderScreenController;
 import application.controller.CreateNewProductController;
@@ -125,11 +126,21 @@ public class SceneSwitch {
                 	UpdateCarrierInfoController controller= loader.getController();
                 	controller.setUser(user);
                 }
+                else if("ChartScreen.fxml".equals(fxmlFileName)) {
+                	ChartController controller= loader.getController();
+                	controller.setUser(user);
+                    try {
+						controller.setScreen();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
             	
             }
             
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(Main.class.getResource("/css/Login.css").toExternalForm());
+            //scene.getStylesheets().add(Main.class.getResource("/css/Login.css").toExternalForm());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             if("newProductScreen.fxml".equals(fxmlFileName))

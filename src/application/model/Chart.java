@@ -113,7 +113,6 @@ public class Chart {
 		
 		
 		public void calculatePrice() {
-			totalPrice = 0;
 			
 			for(Pair<Product, Double> pair : items) {
 				totalPrice += pair.getKey().getPrice() * pair.getValue();

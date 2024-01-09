@@ -34,6 +34,8 @@ public interface Crud {
 	public  ArrayList<Product> getAllProductsWithStock() throws SQLException;
 	public Chart getChartByUserId(int userId) throws SQLException;
 	public boolean stockCheck(Product product, double currentOnChart, double updated ) throws SQLException;
+	Product getProductByProductName(String name) throws SQLException;
+	void UpdateProductByIdNew(Product product) throws SQLException;
 		
 
 }

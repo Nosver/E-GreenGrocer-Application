@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -27,6 +28,10 @@ public class productScreenController {
 	@FXML
 	private URL location;
 
+	 @FXML
+	 private Button BACK_BUTTON;
+
+	
 	@FXML
 	private FlowPane PRODUCTS_FLOW;
 	
@@ -36,7 +41,7 @@ public class productScreenController {
     @FXML
     private ImageView CHART_IMG;
     
-    public User user = null;
+    public User user;
     
     public void setUser(User user) {this.user = user;}
     
@@ -67,6 +72,19 @@ public class productScreenController {
 	        PRODUCTS_FLOW.getChildren().add(vbox);
 	    }
     }
+    
+    @FXML
+    void BackButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("Customer.fxml", event, user);
+    }
+
+    @FXML
+    void ChartButtonClicked(MouseEvent event) {
+    	System.out.println(user);
+    	SceneSwitch.switchScene("ChartScreen.fxml", event, user);
+
+    }
+    
     
 	@FXML
 	public void initialize() throws IOException, SQLException {
