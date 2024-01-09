@@ -48,9 +48,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 	    try {
 	        // Load Login Screen FXML file
-	    	Parent root=FXMLLoader.load(getClass().getResource("ChartScreen.fxml"));
+	    	Parent root=FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
 			Scene scene= new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/css/Login.css").toExternalForm());
+			//scene.getStylesheets().add(getClass().getResource("/css/Login.css").toExternalForm());
 
 	        // Set the main FXML file as the scene
 	       

@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class DeleteProductController implements Initializable {
@@ -31,6 +32,9 @@ public class DeleteProductController implements Initializable {
 
     @FXML
     private Button deleteProductButton;
+    
+    @FXML
+    private ImageView selectedProductImage;
 
     @FXML
     private TableColumn<Product, String> nameColumn;
@@ -82,6 +86,7 @@ public class DeleteProductController implements Initializable {
 		//deleteFile(toBeDeleted.getImagePath());
 		db.deleteProduct(toBeDeleted);
 		selectedProductLabel.setText(null);
+		selectedProductImage.setImage(null);
 		refreshTable();
     }
 	
@@ -139,6 +144,7 @@ public class DeleteProductController implements Initializable {
     void tableClicked(MouseEvent event) {
 		Product product = productTable.getSelectionModel().getSelectedItem();
 		selectedProductLabel.setText(product.getName());
+		selectedProductImage.setImage(new Image(product.getImagePath()));
     }
 	
 

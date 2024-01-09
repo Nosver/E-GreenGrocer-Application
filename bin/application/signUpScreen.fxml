@@ -81,6 +81,7 @@
             <PasswordField fx:id="PasswordBox" layoutX="279.0" layoutY="213.0" prefWidth="160" />
             <CheckBox layoutX="375.0" layoutY="244.0" mnemonicParsing="false" text="Show Password" />
             <Button fx:id="RegisterButton" alignment="CENTER" layoutX="265.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#RegisterButtonClicked" prefHeight="36.0" prefWidth="123.0" text="Register" />
+            <Button fx:id="backButton" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
          </children>
       </AnchorPane>
   </children>

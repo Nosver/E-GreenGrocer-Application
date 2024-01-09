@@ -19,6 +19,9 @@ import javafx.scene.input.MouseEvent;
 public class ForgotPasswordScreenController1{
 	
 	private User user;
+	
+	@FXML
+    private Button backButton;
     
     public User getUser() {
 		return user;
@@ -59,6 +62,11 @@ public class ForgotPasswordScreenController1{
     	}
     	
     	
+    }
+	
+	@FXML
+    void backButtonClicked(MouseEvent event) {
+			SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     }
     
 }

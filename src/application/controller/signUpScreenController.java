@@ -19,6 +19,9 @@ public class signUpScreenController {
 
     @FXML
     private TextField EMailBox;
+    
+    @FXML
+    private Button backButton;	
 
     @FXML
     private PasswordField PasswordBox;
@@ -69,6 +72,16 @@ public class signUpScreenController {
     		User user = new User(nameBox.getText(), PasswordBox.getText(),EMailBox.getText(),"customer" ,null);
         	
         	DatabaseAdapter db= new DatabaseAdapter();
+        	
+        	User u =db.getUserByEmail(EMailBox.getText());
+        	if(u!= null) {
+        		Alert alert = new Alert(Alert.AlertType.WARNING);
+    			alert.setTitle("error");
+    			alert.setContentText("Customer already exists");
+    			Optional<ButtonType>	result = alert.showAndWait();
+    			return;
+        	}
+        	
         	db.insertUser(user);
             
             SceneSwitch.switchScene("LoginScreen.fxml", event, null);
@@ -114,6 +127,10 @@ public class signUpScreenController {
         return true;
     }
 
+    @FXML
+    void backButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("LoginScreen.fxml", event, null);
+    }
   
 }
 

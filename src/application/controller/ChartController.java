@@ -59,6 +59,10 @@ public class ChartController {
     
     private User user;
     
+    
+    
+    Chart userChart;
+    
     private DatabaseAdapter db = new DatabaseAdapter();
 
     @FXML
@@ -85,25 +89,32 @@ public class ChartController {
     }
 
     @FXML
-    void updaeQuantityClicked(MouseEvent event) {
+    void updaeQuantityClicked(MouseEvent event) throws SQLException {
     	ActiveProductTable carrier = chartTable.getSelectionModel().getSelectedItem();
-    	if(carrier==null)
+    	int row= chartTable.getSelectionModel().getSelectedIndex();
+    	System.out.println(row);
+    	if(carrier==null) {
     		return;
-    	if(updateQuantity.getText().isBlank() || !containsNonAlphabetic(updateQuantity.getText()))
+    	}
+    	
+    	double quantity;	
+    	if(updateQuantity.getText().isBlank() || !containsNonAlphabetic(updateQuantity.getText())) {
     		return;
-    	double quantity;
+    	}
+    	
     	try {
     		quantity = Double.parseDouble(updateQuantity.getText());
-
+    		System.out.println(quantity);
         } catch (NumberFormatException e) {
         	return;
         }
+    	
     	//stok check
-    	//boolean db.stockCheck(carrier.)
+    	//boolean available= db.stockCheck();
     	
     	//sepete ekle
     	//render yap
-    }
+    	}
     
     private static boolean containsNonAlphabetic(String password) {
         Pattern pattern = Pattern.compile(".*[^a-zA-Z].*");
@@ -112,17 +123,16 @@ public class ChartController {
     
     @FXML
     void initialize() throws SQLException {
-    	Chart chart=db.getChartByUserId(1);//user.getId()
-    	System.out.println(chart.getChartId());
-    	ArrayList<Pair<Product, Double>> products = db.getProductIdByChartId(chart.getChartId());
-    	System.out.println(products);
+    	 userChart=db.getChartByUserId(1);//user.getId()
+    	System.out.println(userChart.getChartId());
+    	ArrayList<Pair<Product, Double>> products = db.getProductIdByChartId(userChart.getChartId());
+    	System.out.println(products.get(0).left.getId());
     	
     	
     	ArrayList<ActiveProductTable> activeProductTableList = new ArrayList();
    	 
    	 for(int i=0; i<products.size(); i++) {
    		 double totalPrice = products.get(i).left.getPrice() * products.get(i).right;
-   		 
    		 ActiveProductTable activeProductTable = new ActiveProductTable(totalPrice,products.get(i).left.getName(),products.get(i).right);
    		 activeProductTableList.add(activeProductTable);
    	 }
