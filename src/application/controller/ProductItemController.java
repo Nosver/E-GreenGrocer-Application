@@ -98,6 +98,7 @@ public class ProductItemController{
 		Optional<ButtonType>result = added2Chart.showAndWait();
 		
 		setProductItem(product);
+		
     }
     
     public void setProductItem(Product product) {
