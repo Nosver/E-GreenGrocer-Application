@@ -36,6 +36,6 @@ public interface Crud {
 	public boolean stockCheck(Product product, double currentOnChart, double updated ) throws SQLException;
 	Product getProductByProductName(String name) throws SQLException;
 	void UpdateProductByIdNew(Product product) throws SQLException;
-		
-
+	List<Chart> getPurchasedActiveAndDeliveredCharts(User user) throws SQLException;
+	public void deleteChartByChartId(int id) throws SQLException;
 }

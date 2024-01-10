@@ -21,6 +21,7 @@ import application.controller.UpdateCarrierInfoController;
 import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
+import application.controller.ViewMyOrdersController;
 import application.controller.productScreenController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
@@ -132,7 +133,16 @@ public class SceneSwitch {
                     try {
 						controller.setScreen();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
+                else if("viewMyOrdersScreen.fxml".equals(fxmlFileName)) {
+                	ViewMyOrdersController controller = loader.getController();
+                	System.out.println("hello");
+                	controller.setUser(user);
+                	try {
+                		controller.setScreen();
+                	}catch (SQLException e) {
 						e.printStackTrace();
 					}
                 }

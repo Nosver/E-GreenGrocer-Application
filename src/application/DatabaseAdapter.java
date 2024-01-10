@@ -796,6 +796,35 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
             }
         }
 	}
+	
+	@Override
+	public ArrayList<Chart> getPurchasedActiveAndDeliveredCharts(User user) throws SQLException {
+		
+		String query = "SELECT * FROM oop3.chart WHERE userId = ? AND (state = 'purchased' OR state = 'active' OR state = 'delivered');\r\n"
+				+ "";
+
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        	preparedStatement.setInt(1, user.getId());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            	ArrayList<Chart> purchasedCharts = new ArrayList<>();
+
+                while (resultSet.next()) {
+                	int chartId = resultSet.getInt("chartId");
+                    int userId = resultSet.getInt("userId");
+                    double totalPrice = resultSet.getDouble("totalPrice");
+                    String state = resultSet.getString("state");
+                    LocalDateTime date = resultSet.getObject("date", LocalDateTime.class);
+
+                    Chart chart = new Chart(chartId, userId, totalPrice, state, date);
+                    purchasedCharts.add(chart);
+                }
+
+                return purchasedCharts;
+            }
+        }
+	}
 
 	@Override
 	public List<Chart> getDeliveredCharts() throws SQLException {
@@ -922,6 +951,29 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 			 statement.setInt(1,chartId);
 			 statement.setInt(2,productId);
 
+			 statement.executeUpdate();
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+	}
+
+	@Override
+	public void deleteChartByChartId(int id) throws SQLException {
+		String sql ="DELETE From oop3.chartItem Where chartId = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)){
+			 statement.setInt(1,id);
+			 
+			 statement.executeUpdate();
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		
+		String sql2 ="DELETE From oop3.chart Where chartId = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql2)){
+			 statement.setInt(1,id);
+			 
 			 statement.executeUpdate();
 		 }catch (SQLException e) {
 	         e.printStackTrace();

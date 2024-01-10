@@ -39,6 +39,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CustomerScreenController">
@@ -84,10 +85,14 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="MyProfileButton" layoutX="119.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" text="View My Profile" />
-            <Text fx:id="WelcomeUserText" layoutX="231.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="177.33673095703125" />
-            <Button fx:id="startShoppingButton" layoutX="121.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#startShoppingButtonClicked" text="Start Shopping" />
+            <Button fx:id="MyProfileButton" layoutX="270.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#SeeMyProfileClicked" prefHeight="47.0" prefWidth="99.0" text="View My Profile" />
+            <Text fx:id="WelcomeUserText" layoutX="152.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="334.13671875">
+               <font>
+                  <Font size="35.0" />
+               </font></Text>
+            <Button fx:id="startShoppingButton" layoutX="262.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#startShoppingButtonClicked" prefHeight="47.0" prefWidth="114.0" text="Start Shopping" />
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#logOutButtonClicked" text="Log Out" />
+            <Button layoutX="266.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#viewMyOrdersClicked" prefHeight="47.0" prefWidth="108.0" text="ViewMyOrders" />
       </children>
     </AnchorPane>
   </children>
