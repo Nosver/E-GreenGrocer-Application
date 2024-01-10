@@ -48,10 +48,9 @@ public class PaymentScreenController {
 
     private void showPaymentFailureAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("PAYMNET FAİLED");
+        alert.setTitle("PAYMNET FAILED");
         alert.setHeaderText(null);
         alert.setContentText("Payment failed. Please enter a valid credit card number.");
         alert.showAndWait();
     }
 }
-Bu 
