@@ -37,7 +37,7 @@ public class ProductItemController{
     
 	public void setUser(User user) {this.user = user;}
 	    
-    public void printUser() {
+    public void printUser() { // tes
     	System.out.print("Product Screen Item Controller User: ");
 		System.out.println(user.getName());
     }
