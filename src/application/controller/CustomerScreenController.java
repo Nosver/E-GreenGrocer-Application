@@ -36,8 +36,6 @@ public class CustomerScreenController   {
     	SceneSwitch.switchScene("myProfileScreen.fxml", event, user);
     }
 
-   
-
     @FXML
     void startShoppingButtonClicked(MouseEvent event) {
     	SceneSwitch.switchScene("newProductScreen.fxml", event, user);
@@ -45,6 +43,7 @@ public class CustomerScreenController   {
     
     @FXML
     void logOutButtonClicked(MouseEvent event) {
+    	
     	SceneSwitch.switchScene("LoginScreen.fxml", event, null);
     }
     

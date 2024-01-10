@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.sql.SQLException;
 import java.util.Optional;
 
 import application.DatabaseAdapter;
