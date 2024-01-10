@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import application.DatabaseAdapter;
 import application.SceneSwitch;
 import application.model.Product;
+import application.model.SortByName;
 import application.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +56,7 @@ public class productScreenController {
     	
     	DatabaseAdapter db = new DatabaseAdapter();
 	    ArrayList<Product> products = db.getAllProductsWithStock();
+        Collections.sort(products, new SortByName());
 
 	    for (Product product : products) {
 	        FXMLLoader fxmlLoader = new FXMLLoader(SceneSwitch.class.getResource("ProductItem.fxml"));

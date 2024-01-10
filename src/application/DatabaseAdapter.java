@@ -877,7 +877,7 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 		 }catch(Exception e){
 			 e.printStackTrace();
 		 }
-		
+		System.out.println("null");
 		return null;
 	}
 

@@ -42,6 +42,11 @@ public class CustomerScreenController   {
     void startShoppingButtonClicked(MouseEvent event) {
     	SceneSwitch.switchScene("newProductScreen.fxml", event, user);
     }
+    
+    @FXML
+    void logOutButtonClicked(MouseEvent event) {
+    	SceneSwitch.switchScene("LoginScreen.fxml", event, null);
+    }
 	
 
 }

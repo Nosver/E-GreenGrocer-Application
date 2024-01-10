@@ -125,7 +125,13 @@ public class ChartController {
 	public void setScreen() throws SQLException {
 		
 		userChart=db.getChartByUserId(user.getId());//user.getId()
-    	System.out.println(userChart.getChartId());
+		if(userChart==null) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("No Items on the chart");
+			Optional<ButtonType>result = alert.showAndWait();
+			return;
+		}
     	ArrayList<Pair<Product, Double>> products = db.getProductIdByChartId(userChart.getChartId());
     	
     	
@@ -233,6 +239,8 @@ public class ChartController {
     @FXML
     void chartClicked(MouseEvent event) {
     	ActiveProductTable selected = chartTable.getSelectionModel().getSelectedItem();
+    	if(selected==null)
+    		return;
     	selectedItemLabel.setText(selected.getName());
     	quantityInput.setText(String.valueOf(selected.getQuantitiy()));
     
