@@ -217,10 +217,10 @@ public class DatabaseAdapter implements Crud{
     @Override
     public ArrayList<Chart> getActiveChart() throws SQLException {  // bunu kontrol et list e gerek yok aslında
     	String query = "SELECT * FROM oop3.chart WHERE state = 'active'";
-
-
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	
+	
+	
+	        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
             	ArrayList<Chart> activeCharts = new ArrayList<>();
 

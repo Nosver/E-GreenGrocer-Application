@@ -22,6 +22,7 @@ import application.controller.UpdateOwnerInfoController;
 import application.controller.UpdateProductController;
 import application.controller.UpdateUserInfoController;
 import application.controller.productScreenController;
+import application.controller.PaymentScreenController;
 import application.model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -136,6 +137,10 @@ public class SceneSwitch {
 						e.printStackTrace();
 					}
                 }
+                else if("PaymentScreen.fxml".equals(fxmlFileName)) {
+                	UpdateCarrierInfoController controller= loader.getController();
+                	controller.setUser(user);
+                }
             	
             }
             
@@ -145,6 +150,8 @@ public class SceneSwitch {
             stage.setScene(scene);
             if("newProductScreen.fxml".equals(fxmlFileName))
             	stage.setResizable(true);
+            else if("PaymentScreen.fxml".equals(fxmlFileName))
+        	stage.setResizable(true);
             else
             	stage.setResizable(false);
             stage.show();

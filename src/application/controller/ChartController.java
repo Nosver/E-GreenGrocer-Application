@@ -118,7 +118,7 @@ public class ChartController {
 
 	@FXML
     void payButton(MouseEvent event) {
-
+		SceneSwitch.switchScene("PaymentScreen.fxml", event, user);
     }
 
 	
