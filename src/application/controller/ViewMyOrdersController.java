@@ -118,6 +118,8 @@ public class ViewMyOrdersController {
     @FXML
     void chartTableSelected(MouseEvent event) throws SQLException {
     	Chart chart = chartTable.getSelectionModel().getSelectedItem();
+    	if(chart==null)
+    		return;
     	selectedOrder.setText(Integer.toString(chart.getChartId()));
     	ArrayList<Pair<Product, Double>> products = db.getProductIdByChartId(chart.getChartId());
     	ArrayList<ActiveProductTable> activeProductTableList = new ArrayList();
