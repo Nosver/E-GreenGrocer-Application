@@ -576,8 +576,9 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 	 * - if not create go to first
 	 */
 	
-	public boolean doesChartExist(int userId) {
-        String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
+	public boolean doesChartExist(int userId) {  // Check if given user's onChart state chart exist!
+		System.out.println("a123123123");
+		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ? AND state = 'onChart'";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(chartQuery)) {
             preparedStatement.setInt(1, userId);
@@ -591,6 +592,8 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
         }
     }
 	
+	
+	
 	public Chart getChart(User user) { 
 		
 		String chartQuery = "SELECT * FROM oop3.chart WHERE userId = ?";
@@ -602,6 +605,7 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 			
 			 // If user's chart does not exist create one
 			 if(!doesChartExist(user.getId())) {
+				
 				createChart(user);
 			 }
 			 
