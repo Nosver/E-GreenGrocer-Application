@@ -175,14 +175,14 @@ public class DatabaseAdapter implements Crud{
     
     @Override
     public void UpdateChartState(Chart chart) throws SQLException {
-    	 String updateQuery = "UPDATE oop3.Chart SET state = ? WHERE chartId = ?";
+    	 String updateQuery = "UPDATE oop3.Chart SET state = ?, date = ? WHERE chartId = ?";
     	 
     	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
-
-    		preparedStatement.setInt(2, chart.getChartId());
     		
-            preparedStatement.setString(1, chart.getState());
-            
+    		preparedStatement.setString(1, chart.getState());
+    		preparedStatement.setObject(2, chart.getDate());
+    		preparedStatement.setInt(3, chart.getChartId());
+     
             
             preparedStatement.executeUpdate();
     	}
@@ -605,7 +605,6 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 			
 			 // If user's chart does not exist create one
 			 if(!doesChartExist(user.getId())) {
-				
 				createChart(user);
 			 }
 			 
@@ -642,7 +641,7 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 	     }
 		 return chart;
 	}
-	
+		
 	public boolean isStockSufficient(Product product, double quantity) throws Exception {
 		
 		String checkQuery = "SELECT * FROM oop3.product WHERE id = ?";

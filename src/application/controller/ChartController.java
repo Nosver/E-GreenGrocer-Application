@@ -1,6 +1,7 @@
 package application.controller;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -117,8 +118,20 @@ public class ChartController {
 	}
 
 	@FXML
-    void payButton(MouseEvent event) {
-		SceneSwitch.switchScene("PaymentScreen.fxml", event, user);
+    void payButton(MouseEvent event) throws SQLException { // PAY NOW
+		// Change state to purchase
+		Chart chart = db.getChart(user);
+		chart.setState("purchased");
+		chart.setDate(LocalDateTime.now());
+		db.UpdateChartState(chart);
+		
+		// Alert
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Payment Successful!");
+		alert.setContentText("You can see your order at view my orders page.");
+		Optional<ButtonType>result = alert.showAndWait();
+		
+		SceneSwitch.switchScene("Customer.fxml", event, user);
     }
 
 	
