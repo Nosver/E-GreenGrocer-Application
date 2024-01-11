@@ -94,6 +94,7 @@ public class ViewMyOrdersController {
 
     @FXML
     void cancelOrderClicked(MouseEvent event) throws SQLException {
+    	
     	Chart chart = chartTable.getSelectionModel().getSelectedItem();
     	if(chart==null)
     		return;
@@ -107,11 +108,38 @@ public class ViewMyOrdersController {
     	}
     	
     	db.deleteChartByChartId(chart.getChartId());
+    	
+    	
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("successful");
 		alert.setContentText("Order is cancelled");
 		Optional<ButtonType>result = alert.showAndWait();
 		setScreen();
+		
+		
+    	if(chart==null)
+    		return;
+    	selectedOrder.setText(Integer.toString(chart.getChartId()));
+    	ArrayList<Pair<Product, Double>> products = db.getProductIdByChartId(chart.getChartId());
+    	ArrayList<ActiveProductTable> activeProductTableList = new ArrayList();
+      	 
+    	Double totalTotalPrice = 0.0;
+    	
+    	
+   	 	for(int i=0; i<products.size(); i++) {
+   	 		double totalPrice = products.get(i).left.getPrice() * products.get(i).right;
+   	 		totalTotalPrice += totalPrice;
+   	 		ActiveProductTable activeProductTable = new ActiveProductTable(totalPrice,products.get(i).left.getName(),products.get(i).right);
+   	 		activeProductTableList.add(activeProductTable);
+   	 	}
+   	 	ObservableList<ActiveProductTable> productList= FXCollections.observableArrayList(activeProductTableList);
+   	 
+   	 	price.setCellValueFactory(new PropertyValueFactory<ActiveProductTable,Double>("price"));
+	 	name.setCellValueFactory(new PropertyValueFactory<ActiveProductTable,String>("name"));
+	 	quantity.setCellValueFactory(new PropertyValueFactory<ActiveProductTable,Double>("quantitiy"));
+	 	productTable.setItems(productList);
+	 	
+	 	selectedOrder.setText(null);
 		
     }
 

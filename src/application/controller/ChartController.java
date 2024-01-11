@@ -119,6 +119,20 @@ public class ChartController {
 
 	@FXML
     void payButton(MouseEvent event) throws SQLException { // PAY NOW
+		
+		// Check if address does exist
+		
+		if(user.getAddress() == null) {
+			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("You don't have a settled address !");
+			alert.setContentText("You need to adjust an adress to pay !");
+			Optional<ButtonType>result = alert.showAndWait();
+			
+			SceneSwitch.switchScene("UpdateUserInfo.fxml", event, user);
+			return;
+		}
+		
 		// Change state to purchase
 		Chart chart = db.getChart(user);
 		chart.setState("purchased");

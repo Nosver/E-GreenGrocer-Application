@@ -17,6 +17,7 @@ import application.model.Chart;
 import application.model.Product;
 import application.model.User;
 
+
 public class DatabaseAdapter implements Crud{
 	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/oop3";
 	private static final String USERNAME = "root";
@@ -963,8 +964,72 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
 
 	@Override
 	public void deleteChartByChartId(int id) throws SQLException {
-		String sql ="DELETE From oop3.chartItem Where chartId = ?";
+		
+		String sql ="select * From oop3.chartItem Where chartId = ?";
+		ArrayList<Pair<Integer,Double>> pairArray = new ArrayList<Pair<Integer,Double>>();
+				
 		try (PreparedStatement statement = connection.prepareStatement(sql)){
+			 statement.setInt(1,id);
+			 
+			 try(ResultSet resultSet = statement.executeQuery()){
+				 
+	                while(resultSet.next()){
+	                	
+	                	int storedProductID = resultSet.getInt("productId");
+	                	Double quantity = resultSet.getDouble("quantity");
+	                	
+	                	Pair<Integer,Double> add= new Pair<Integer,Double>(storedProductID,quantity);
+	                    
+	                    pairArray.add(add);
+	                }
+	                
+	            }
+			 
+			 
+		 }catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	     }
+		for(int i=0; i<pairArray.size(); i++) {
+			String currentQuantity ="Select * From oop3.product Where id = ? ";
+			try (PreparedStatement statement = connection.prepareStatement(currentQuantity)){
+				 statement.setInt(1,pairArray.get(i).left);
+				 
+				 try(ResultSet resultSet = statement.executeQuery()){
+					 
+		                while(resultSet.next()){
+		                	
+		                	Double quantity = resultSet.getDouble("stock");
+		                	
+		                	Pair<Integer, Double> pair = new Pair<Integer, Double>(pairArray.get(i).left,pairArray.get(i).right + quantity);
+		                    
+		                    pairArray.set(i,pair);
+		                    
+		        			String quantityQuery ="update oop3.product set stock = ? Where id = ? ";
+		        			
+		        			try (PreparedStatement quantityStatement = connection.prepareStatement(quantityQuery)){
+		       				 	quantityStatement.setDouble(1, pair.right);
+		       				 	quantityStatement.setInt(2, pair.left);
+		       				 	
+		       				 	quantityStatement.executeUpdate();
+		        			}
+		                    
+		        		
+		                }
+		                
+		            }
+				 
+				 
+			 }catch (SQLException e) {
+		         e.printStackTrace();
+		         
+		     }
+		}
+		
+		
+		
+		String sql1 ="DELETE From oop3.chartItem Where chartId = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql1)){
 			 statement.setInt(1,id);
 			 
 			 statement.executeUpdate();
