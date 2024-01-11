@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(100) NOT NULL UNIQUE,
     `role`  VARCHAR(10) NOT NULL, 
-    `address` VARCHAR(100) 
+    `address` VARCHAR(100) ,
+    `chartId` INT 
 );
 
 
