@@ -158,12 +158,8 @@ public class SceneSwitch {
             //scene.getStylesheets().add(Main.class.getResource("/css/Login.css").toExternalForm());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            if("newProductScreen.fxml".equals(fxmlFileName))
-            	stage.setResizable(true);
-            else if("PaymentScreen.fxml".equals(fxmlFileName))
-        	stage.setResizable(true);
-            else
-            	stage.setResizable(false);
+
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
