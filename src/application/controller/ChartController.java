@@ -2,6 +2,7 @@ package application.controller;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -26,9 +27,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class ChartController {
+	
+    @FXML
+    private Button SET_TIME;
+	
+	@FXML
+    private Text DELIVERY_TIME;
 
+    @FXML
+    private TextField HOURS_LATER;
+	
     @FXML
     private Button backButton;
 
@@ -63,6 +74,8 @@ public class ChartController {
     private Button updateQuantity;
     
     private User user;
+    
+    private LocalDateTime date;
     
     Chart userChart;
         
@@ -133,10 +146,18 @@ public class ChartController {
 			return;
 		}
 		
+		if(date == null) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("You have to give a proper date !");
+			alert.setContentText("Enter a date before purchasing !");
+			Optional<ButtonType>result = alert.showAndWait();
+			return;
+		}
+		
 		// Change state to purchase
 		Chart chart = db.getChart(user);
 		chart.setState("purchased");
-		chart.setDate(LocalDateTime.now());
+		chart.setDate(date);
 		db.UpdateChartState(chart);
 		
 		// Alert
@@ -273,5 +294,55 @@ public class ChartController {
     
     }
     
+    
+    @FXML
+    void setTime(MouseEvent event) {
+    	
+    	Long value;
+    	
+    	try {    
+    		value = Long.parseLong(HOURS_LATER.getText());
+    	}catch(Exception e){
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setContentText("Please enter a valid delivery time !");
+			Optional<ButtonType>result = alert.showAndWait();
+    		return;
+    	}
+    	
+    	if(HOURS_LATER.getText().isBlank() || value <= 0  ) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setContentText("Please enter a valid delivery time !");
+			Optional<ButtonType>result = alert.showAndWait();
+    		return;
+    	}
+    	
+    	if(value > 48 ) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setContentText("Delivery time must be in 2 days!");
+			Optional<ButtonType>result = alert.showAndWait();
+    		return;
+    	}
+    	
+    	LocalDateTime deliveryTime = LocalDateTime.now().plusHours(value);
+    	 
+    	this.date = deliveryTime;
+    	
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+        String formattedDeliveryTime = deliveryTime.format(formatter);
+    	
+    	DELIVERY_TIME.setText(formattedDeliveryTime);
+    	
+    }
+    
 
 }
+
+
+
+
+
+
