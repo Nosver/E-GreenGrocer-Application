@@ -129,7 +129,7 @@ public class CourrierOrderScreenController {
 			Optional<ButtonType>	result = alert.showAndWait();
 			return;
     	}
-    	if(!db.getActiveChart().isEmpty()) {
+    	if(db.getActiveChartIdByUser(user) != -1) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("error");
 			alert.setContentText("There is already active order!! ");
