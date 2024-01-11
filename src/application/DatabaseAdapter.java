@@ -139,7 +139,7 @@ public class DatabaseAdapter implements Crud{
     @Override
     public  void insertUser(User user) throws SQLException {
         
-            String query = "INSERT INTO oop3.users (name, password, email, role ,address) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO oop3.users (name, password, email, role ,address,chartId) VALUES (?, ?, ?, ?, ?,?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 
@@ -148,6 +148,7 @@ public class DatabaseAdapter implements Crud{
                 preparedStatement.setString(3, user.getEmail());
                 preparedStatement.setString(4, user.getRole());
                 preparedStatement.setString(5, user.getAddress());
+                preparedStatement.setInt(6, user.getChartId());
                 
 
                 preparedStatement.executeUpdate();

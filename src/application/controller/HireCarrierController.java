@@ -110,7 +110,7 @@ public class HireCarrierController implements Initializable {
     	}
     	
     	User carrier = new User(nameField.getText(),passwordField.getText(),emailField.getText(),"carrier",null);
-    	
+    	carrier.setChartId(-1);
     	DatabaseAdapter db= new DatabaseAdapter();
     	
     	User user= db.getUserByEmail(emailField.getText());
