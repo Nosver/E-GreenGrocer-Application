@@ -38,4 +38,6 @@ public interface Crud {
 	void UpdateProductByIdNew(Product product) throws SQLException;
 	List<Chart> getPurchasedActiveAndDeliveredCharts(User user) throws SQLException;
 	public void deleteChartByChartId(int id) throws SQLException;
+	Chart getChartByChartId(int chartId);
+	int getActiveChartIdByUser(User user);
 }

@@ -2,6 +2,8 @@ package application.model;
 
 public class User {
 	int id;
+	int chartId;
+	
 	String name;
 	String password;
 	String email;
@@ -10,6 +12,12 @@ public class User {
 	
 	
 	
+	public int getChartId() {
+		return chartId;
+	}
+	public void setChartId(int chartId) {
+		this.chartId = chartId;
+	}
 	public User() {
 		
 	}
@@ -20,6 +28,7 @@ public class User {
 		this.email = email;
 		this.address=address;
 		this.role= role;
+		this.chartId = -1;
 	}
 
 	public String getRole() {
@@ -36,7 +45,7 @@ public class User {
 		this.email = email;
 		this.address = address;
 		this.role= role;
-		
+		this.chartId = -1;
 	}
 	public String getAddress() {
 		return address;

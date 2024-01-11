@@ -158,7 +158,7 @@ public class DatabaseAdapter implements Crud{
     
     @Override
     public void UpdateUser(User user) throws SQLException {
-    	 String updateQuery = "UPDATE oop3.users SET name=?, password=?, email=?, address=? WHERE id=?";
+    	 String updateQuery = "UPDATE oop3.users SET name=?, password=?, email=?, address=?, chartId= ? WHERE id=?";
     	try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
 
             
@@ -166,11 +166,17 @@ public class DatabaseAdapter implements Crud{
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getAddress());
-            
-            preparedStatement.setInt(5, user.getId());
+            preparedStatement.setInt(5, user.getChartId());
+            preparedStatement.setInt(6, user.getId());
+           
+
             
             preparedStatement.executeUpdate();
     	}
+    	
+    }
+    
+    public void updateChartIDofUser(User user, Chart chart) {
     	
     }
     
@@ -241,6 +247,28 @@ public class DatabaseAdapter implements Crud{
         }
     }
     
+    @Override
+    public int getActiveChartIdByUser(User user) {
+        String sql = "SELECT chartId FROM oop3.users WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, user.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt("chartId");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1; // PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    }
+	        
+        
+    
+    
 
 @Override
 public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throws SQLException {
@@ -272,8 +300,30 @@ public ArrayList<Pair<Product, Double>> getProductIdByChartId(int chartId) throw
         }
     }
 }
-
-
+	@Override
+	public Chart getChartByChartId(int chartId) {
+	    String sql = "SELECT * FROM Chart WHERE chartId = ?";
+	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	        preparedStatement.setInt(1, chartId);
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	
+	        if (resultSet.next()) {
+	            Chart chart = new Chart();
+	            chart.setChartId(resultSet.getInt("chartId"));
+	            chart.setUserId(resultSet.getInt("userId"));
+	            chart.setTotalPrice(resultSet.getDouble("totalPrice"));
+	            chart.setState(resultSet.getString("state"));
+	            chart.setDate(resultSet.getTimestamp("date").toLocalDateTime());
+	
+	            return chart;
+	        }
+	
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	
+	    return null; 
+	}
     
     @Override
     public  ArrayList<Product> getAllProducts() throws SQLException{

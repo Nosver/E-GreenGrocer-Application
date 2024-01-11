@@ -79,6 +79,7 @@ public class SceneSwitch {
                 else if("CourrierHomeScreen.fxml".equals(fxmlFileName)){
                 	CourrierHomeScreenController controller = loader.getController();
                 	controller.setUser(user);
+                	controller.setScreen();
                 }
                 else if("UpdateProductScreen.fxml".equals(fxmlFileName)){
                 	UpdateProductController controller = loader.getController();

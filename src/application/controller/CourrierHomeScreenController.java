@@ -45,26 +45,36 @@ public class CourrierHomeScreenController {
     
     private DatabaseAdapter db = new DatabaseAdapter();
     private Chart chart;
-   
+    private int chartId;
     
     
     @FXML
     private void loadActiveCharts() throws SQLException {
-        ArrayList<Chart> activeCharts = db.getActiveChart();
-        
-        this.chart = activeCharts.get(0);
+    	chartId = db.getActiveChartIdByUser(user);
+    	System.out.println(chartId);
+    	this.chart = db.getChartByChartId(chartId);
+         
        
     }
 
     @FXML
     public void initialize() {
         
+    	
+    }
+    
+    @FXML
+    public void setScreen() {
+
     	try {
-    		if(!db.getActiveChart().isEmpty()) {
+    		if(db.getActiveChartIdByUser(user) != -1) {
+    	    	System.out.println(db.getActiveChartIdByUser(user));
+
 	            loadActiveCharts();
 	            CustomerNameText.setText(getUserName(chart.getUserId())); 
 	            CustomerAdressText.setText(getCustomerAddress(chart.getUserId())); 
     		}
+    		
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -107,13 +117,16 @@ public class CourrierHomeScreenController {
     
     @FXML
     void OrderDeliveredClicked(MouseEvent event) throws SQLException {
-    	 ArrayList<Chart> activeCharts = db.getActiveChart(); 
-    	 activeCharts.get(0).setState("delivered");
-    	 db.UpdateChartState(activeCharts.get(0));
+    	 chartId = db.getActiveChartIdByUser(user);
+    	 this.chart = db.getChartByChartId(chartId);
+    	 chart.setState("delivered");
+    	 db.UpdateChartState(chart);
     	 
     	
     	 CustomerNameText.setText("NO ACTIVE ORDER"); 
 	     CustomerAdressText.setText(null); 
+	     this.user.setChartId(-1);
+	     db.UpdateUser(user);
          
     	
     }
@@ -121,7 +134,7 @@ public class CourrierHomeScreenController {
 
     @FXML
     void ShowDetailsButtonClicked(MouseEvent event) throws SQLException {
-    	if(!db.getActiveChart().isEmpty()) {
+    	if(db.getActiveChartIdByUser(user) != -1) {
     		 SceneSwitch.switchScene("PurchasedProducts.fxml", event, user);
     		 
 		}

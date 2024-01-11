@@ -139,8 +139,11 @@ public class CourrierOrderScreenController {
     	
     	Chart selectedOrder = orderTable.getSelectionModel().getSelectedItem();
     	selectedOrder.setState("active");
+    	
+    	this.user.setChartId(selectedOrder.getChartId()); // newUpdate
    
     	db.UpdateChartState(selectedOrder);
+    	db.UpdateUser(user);
     	
     	userNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Chart, String>, ObservableValue<String>>() {
     	    @Override
