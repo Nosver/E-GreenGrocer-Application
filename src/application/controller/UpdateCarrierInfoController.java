@@ -64,6 +64,15 @@ public class UpdateCarrierInfoController {
 			return;
     	}
     	
+    	// Check if email is valid
+    	if(!(emailField.getText().contains("@") && emailField.getText().contains("."))) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("Given mail is not vaild!");
+			Optional<ButtonType> result = alert.showAndWait();
+			return;
+    	}
+    	
     	if(passwordUpdateField.getText().isBlank()) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("error");

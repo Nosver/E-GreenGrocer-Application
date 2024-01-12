@@ -309,6 +309,8 @@ public class ChartController {
     	
     	Long value;
     	
+    	
+    	
     	try {    
     		value = Long.parseLong(HOURS_LATER.getText());
     	}catch(Exception e){
@@ -327,7 +329,7 @@ public class ChartController {
     		return;
     	}
     	
-    	if(value > 48 ) {
+    	if(value > 48 || value <= 2) {
     		Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("Error");
 			alert.setContentText("Delivery time must be in 2 days!");

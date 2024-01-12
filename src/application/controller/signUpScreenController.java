@@ -31,7 +31,11 @@ public class signUpScreenController {
 
     @FXML
     private TextField nameBox;
-
+    
+    public static boolean isValidEmail(String email) {
+        // Check if the email contains '@' and '.'
+        return email != null && email.contains("@") && email.contains(".");
+    }
 
     @FXML
     void RegisterButtonClicked(MouseEvent event) throws SQLException {
@@ -49,6 +53,14 @@ public class signUpScreenController {
 			alert.setTitle("error");
 			alert.setContentText("Email can not be blank");
 			Optional<ButtonType>	result = alert.showAndWait();
+			return;
+    	}
+    	// Check if email is valid
+    	if(!(EMailBox.getText().contains("@") && EMailBox.getText().contains("."))) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("Given mail is not vaild!");
+			Optional<ButtonType> result = alert.showAndWait();
 			return;
     	}
     	

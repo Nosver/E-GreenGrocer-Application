@@ -54,6 +54,14 @@ public class LoginScreenController {
     			Optional<ButtonType>	result = alert.showAndWait();
     			return;
     		}
+    		// Check if email is valid
+        	if(!(EMailBox.getText().contains("@") && EMailBox.getText().contains("."))) {
+        		Alert alert = new Alert(Alert.AlertType.WARNING);
+    			alert.setTitle("error");
+    			alert.setContentText("Given mail is not vaild!");
+    			Optional<ButtonType> result = alert.showAndWait();
+    			return;
+        	}
     		else if(PasswordBox.getText().isBlank()) {
     			Alert alert = new Alert(Alert.AlertType.WARNING);
     			alert.setTitle("error");

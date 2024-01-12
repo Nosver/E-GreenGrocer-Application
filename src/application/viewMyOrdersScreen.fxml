@@ -88,19 +88,19 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="back" />
-            <TableView fx:id="chartTable" layoutX="14.0" layoutY="57.0" onMouseClicked="#chartTableSelected" prefHeight="290.0" prefWidth="203.0">
+            <TableView fx:id="chartTable" layoutX="14.0" layoutY="57.0" onMouseClicked="#chartTableSelected" prefHeight="290.0" prefWidth="277.0">
               <columns>
                   <TableColumn fx:id="chartId" prefWidth="29.600006103515625" text="id" />
-                <TableColumn fx:id="totalPrice" prefWidth="65.5999755859375" text="TotalPrice" />
-                <TableColumn fx:id="date" prefWidth="44.79998779296875" text="Date" />
-                  <TableColumn fx:id="state" prefWidth="61.60002441406249" text="State" />
+                <TableColumn fx:id="totalPrice" prefWidth="61.0" text="TotalPrice" />
+                <TableColumn fx:id="date" prefWidth="118.0" text="Date" />
+                  <TableColumn fx:id="state" prefWidth="67.0" text="State" />
               </columns>
             </TableView>
-            <TableView fx:id="productTable" layoutX="403.0" layoutY="57.0" prefHeight="290.0" prefWidth="222.0">
+            <TableView fx:id="productTable" layoutX="418.0" layoutY="57.0" prefHeight="290.0" prefWidth="207.0">
               <columns>
-                <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
-                <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
-                  <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
+                <TableColumn fx:id="name" prefWidth="72.0" text="Name" />
+                <TableColumn fx:id="price" prefWidth="65.0" text="Price" />
+                  <TableColumn fx:id="quantity" prefWidth="69.0" text="Quantity" />
               </columns>
             </TableView>
             <Label layoutX="165.0" layoutY="9.0" text="Select Order to View or Cancel">
@@ -108,13 +108,13 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label layoutX="239.0" layoutY="100.0" text="Selected Order Id">
+            <Label layoutX="306.0" layoutY="110.0" prefHeight="28.0" prefWidth="81.0" text="Order ID:">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Button fx:id="cancelOrderButton" layoutX="247.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#cancelOrderClicked" prefHeight="61.0" prefWidth="95.0" text="Cancel Order" />
-            <Label fx:id="selectedOrder" layoutX="287.0" layoutY="145.0" prefHeight="0.0" prefWidth="28.0">
+            <Button fx:id="cancelOrderButton" layoutX="306.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#cancelOrderClicked" prefHeight="61.0" prefWidth="95.0" text="Cancel Order" />
+            <Label fx:id="selectedOrder" layoutX="333.0" layoutY="148.0" prefHeight="0.0" prefWidth="28.0">
                <font>
                   <Font size="22.0" />
                </font>

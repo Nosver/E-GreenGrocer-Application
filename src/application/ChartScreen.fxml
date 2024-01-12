@@ -120,19 +120,19 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Button fx:id="deleteItemButton" layoutX="300.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#deleteItemButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Delete Item" />
-            <Button fx:id="updateQuantity" layoutX="400.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#updateQuantityClicked" prefHeight="25.0" prefWidth="101.0" text="Update Quantity" />
+            <Button fx:id="deleteItemButton" layoutX="300.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#deleteItemButtonClicked" prefHeight="25.0" prefWidth="120.0" text="Delete Item" />
+            <Button fx:id="updateQuantity" layoutX="454.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#updateQuantityClicked" prefHeight="25.0" prefWidth="124.0" text="Update Quantity" />
             <Label layoutX="291.0" layoutY="159.0" prefHeight="28.0" prefWidth="90.0" text="Quantitiy:">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="quantityInput" layoutX="390.0" layoutY="160.0" />
-            <TextField fx:id="HOURS_LATER" layoutX="398.0" layoutY="206.0" />
+            <TextField fx:id="quantityInput" layoutX="398.0" layoutY="161.0" />
+            <TextField fx:id="HOURS_LATER" layoutX="398.0" layoutY="206.0" promptText="Enter between 2 and 48" />
             <Text layoutX="276.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How much hours later:" />
             <Text fx:id="DELIVERY_TIME" layoutX="399.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text layoutX="309.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Time:" />
-            <Button fx:id="SET_TIME" layoutX="564.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#setTime" text="Set Time" />
+            <Button fx:id="SET_TIME" layoutX="554.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#setTime" text="Set Time" />
          </children>
     </AnchorPane>
   </children>

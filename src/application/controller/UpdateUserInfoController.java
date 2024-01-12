@@ -55,6 +55,7 @@ public class UpdateUserInfoController  {
     			Optional<ButtonType>	result = alert.showAndWait();
     			return;
     		}
+    		// 123456Aa!
     		
     		if(!isStrongPassword(passwordUpdateField.getText())) {
     			Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -68,6 +69,16 @@ public class UpdateUserInfoController  {
     			user.setAddress(addressField.getText());
     		}
     		if(!emailField.getText().isBlank()) {
+    			
+    			// Check if email is valid
+    	    	if(!(emailField.getText().contains("@") && emailField.getText().contains("."))) {
+    	    		Alert alert = new Alert(Alert.AlertType.WARNING);
+    				alert.setTitle("error");
+    				alert.setContentText("Given mail is not vaild!");
+    				Optional<ButtonType> result = alert.showAndWait();
+    				return;
+    	    	}
+    	    	
     			user.setEmail(emailField.getText());
     		}
     		if(!nameUpdateField.getText().isBlank()) {
