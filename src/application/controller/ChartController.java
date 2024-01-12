@@ -99,7 +99,7 @@ public class ChartController {
     	db.deleteItem(userChart.getChartId(), product.getId());
     	
     	
-    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Successful");
 		alert.setContentText("The product is deleted successfully !");
 		Optional<ButtonType>result = alert.showAndWait();

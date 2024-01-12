@@ -45,10 +45,8 @@ CREATE TABLE IF NOT EXISTS `ChartItem` (
 
 
 -- Inserting sample users
-INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`) VALUES
-('John Doe', '123456', 'example@mail.com', 'owner', null),
-('Jane Doe', '123456', 'example1@mail.com', 'customer', 'abc mahallesi def sokak'),
-('Ahmet Can Soral ', '123456', 'example2@mail.com', 'carrier', null);
+INSERT INTO `users` (`name`, `password`, `email`, `role`, `address`, `chartId`) VALUES
+('Sami Manav', '123456', 'sami@mail.com', 'owner', null, -1);
 
 -- Inserting sample products
 INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUES
@@ -70,30 +68,11 @@ INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUE
 ( 'Onion', 300, 9.90, 200, 'images/Sogan.png'),
 ( 'Strawberry', 15, 89.90, 10, 'images/Strawberry.png'),
 ( 'Tomato', 200, 45.90, 100, 'images/Tomato.png'),
-( 'Leek', 30, 29.90, 25, 'images/Pırasa.png'),
+( 'Leek', 32, 19.90, 25, 'images/Pırasa.png'),
 ( 'Passion Fruit', 30, 29.90, 25, 'images/carkifelek.png'),
-( 'Dragon Fruit', 30, 29.90, 25, 'images/ejder.png'),
-( 'Plum', 30, 29.90, 25, 'images/erik.png'),
-( 'Cherry', 30, 29.90, 25, 'images/kiraz.png'),
-( 'Cauliflower', 30, 29.90, 25, 'images/karnibahar.jpg.png'),
-( 'Mandarine', 30, 29.90, 25, 'images/mandalina.png'),
+( 'Dragon Fruit', 46, 39.90, 25, 'images/ejder.png'),
+( 'Plum', 42, 23.90, 25, 'images/erik.png'),
+( 'Cherry', 34, 59.90, 25, 'images/kiraz.png'),
+( 'Cauliflower', 33, 79.90, 25, 'images/karnibahar.jpg.png'),
+( 'Mandarine', 41, 56.90, 25, 'images/mandalina.png'),
 ('Orange', 500, 40, 100, 'images/Orange.png');
-
-
-
-
-
-
--- Inserting a sample chart
-INSERT INTO `Chart` (`userId`, `totalPrice`, `state`,`date`) VALUES
-(2, 25.0, 'active' ,'2024-01-05 12:30:00'),
-(2, 40.0, 'purchased' ,'2024-01-05 12:40:00');
-
-
--- Getting the auto-generated chartId for the newly inserted chart
-SET @chartId = LAST_INSERT_ID();
-
--- Inserting items for the chart
-INSERT INTO `ChartItem` (`chartId`, `productId`, `quantity`) VALUES
-(@chartId, 1, 2.0),  -- Adding 2 units of Product A
-(@chartId, 2, 3.0);  -- Adding 3 units of Product B
