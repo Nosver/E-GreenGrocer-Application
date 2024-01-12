@@ -133,7 +133,16 @@ public class ChartController {
 	@FXML
     void payButton(MouseEvent event) throws SQLException { // PAY NOW
 		
-		// Check if address does exist
+		userChart=db.getChartByUserId(user.getId());
+		ArrayList<Pair<Product,Double>>list= db.getProductIdByChartId(userChart.getChartId());
+		System.out.println(list);
+		if(list.size()==0) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("No Items on the chart");
+			Optional<ButtonType>result = alert.showAndWait();
+			return;
+		}
 		
 		if(user.getAddress() == null) {
 			

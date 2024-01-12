@@ -5,17 +5,21 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.DatabaseAdapter;
 import application.SceneSwitch;
+import application.model.Chart;
 import application.model.Product;
 import application.model.SortByName;
 import application.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -82,7 +86,16 @@ public class productScreenController {
     }
 
     @FXML
-    void ChartButtonClicked(MouseEvent event) {
+    void ChartButtonClicked(MouseEvent event) throws SQLException {
+    	DatabaseAdapter db= new DatabaseAdapter();
+    	Chart userChart=db.getChartByUserId(user.getId());
+    	if(userChart== null) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("error");
+			alert.setContentText("No Items on the chart");
+			Optional<ButtonType>result = alert.showAndWait();
+			return;
+    	}
     	System.out.println(user);
     	SceneSwitch.switchScene("ChartScreen.fxml", event, user);
 

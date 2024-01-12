@@ -76,8 +76,8 @@ INSERT INTO `Product` ( `name`, `stock`, `price`, `threshold`,`imagePath`) VALUE
 ( 'Plum', 30, 29.90, 25, 'images/erik.png'),
 ( 'Cherry', 30, 29.90, 25, 'images/kiraz.png'),
 ( 'Cauliflower', 30, 29.90, 25, 'images/karnibahar.jpg.png'),
-( 'Mandarine', 30, 29.90, 25, 'images/mandalina.png');
-
+( 'Mandarine', 30, 29.90, 25, 'images/mandalina.png'),
+('Orange', 500, 40, 100, 'images/Orange.png');
 
 
 
