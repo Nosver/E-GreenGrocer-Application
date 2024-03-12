@@ -18,7 +18,7 @@
 
 ### 7. Save and apply the changes in Eclipse.
 
-### 8. Change the database username and password in DatabaseAdapter.java.
+### 8. Change the database URL, username and password in application.properities.
 
 ### 9. Run table.sql file to initialize the database.
 
