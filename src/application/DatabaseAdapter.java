@@ -19,9 +19,14 @@ import application.model.User;
 
 
 public class DatabaseAdapter implements Crud{
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/oop3";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "1A2b3c4d5e.";
+	private static ConfigReader dbConfig =new ConfigReader();
+	
+	private static final String JDBC_URL = dbConfig.getJdbcUrl();
+	
+	private static final String USERNAME = dbConfig.getUsername();
+	
+	private static final String PASSWORD = dbConfig.getPassword();
+	
 	private static final Exception SQLException = null;
 
     private static Connection connection;

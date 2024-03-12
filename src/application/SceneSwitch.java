@@ -39,7 +39,6 @@ public class SceneSwitch {
             Parent root = loader.load();
 
             if (user != null) {
-                // Assume the controller has a setUser method
             	if ("myProfileScreen.fxml".equals(fxmlFileName)) {
                     MyProfileController controller = loader.getController();
                     controller.setUser(user);
