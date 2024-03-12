@@ -23,3 +23,5 @@
 ### 9. Run table.sql file to initialize the database.
 
 ### 10. Click on the Run button to execute the project on Eclipse.
+
+### !! Note that the default owner email is sami@mail.com and the password is 123456. !!
